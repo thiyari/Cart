@@ -4,6 +4,13 @@ var mongoose = require('mongoose')
 var routes = require('./routes/routes')
 const cors = require('cors')
 
+app.use(cors(
+    {
+      origin: "http://localhost:4200"
+    }
+   
+  ));
+
 const checkDB = async()=>{
     try{
         // mongodb connection string
