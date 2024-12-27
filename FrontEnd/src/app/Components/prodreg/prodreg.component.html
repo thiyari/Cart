@@ -21,7 +21,13 @@
             <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="phone" placeholder="Enter Price">
       
           </div>
-        
+
+          <label htmlFor='uploadImage'>
+            <div className='uploadBox'>
+              <input type='file' multiple accept="image/*" id='uploadImage' (change)="upload_images($event)"/>
+            </div>
+          </label>
+
         <button type="submit" class="btn btn-primary mt-4" (click)="prod_reg()" >Submit</button>
       </form>
     </div>

@@ -6,6 +6,7 @@ module.exports.createProductsDBService = (productDetails) => {
                     await productsModel.products.create({
                             name: productDetails.name,
                             description: productDetails.description,
+                            images: productDetails.images,
                             price: productDetails.price
                     });
                     
