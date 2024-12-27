@@ -41,7 +41,6 @@ export class ProdregComponent {
 
   prod_reg()
   {
-    console.log(this.images)
 
     let bodyData = {
       "name" : this.name,
