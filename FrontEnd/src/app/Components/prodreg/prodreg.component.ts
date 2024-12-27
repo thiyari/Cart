@@ -20,22 +20,22 @@ export class ProdregComponent {
   }
 
 
-  imagebased64 = async (file:File)=>{
-    const reader = new FileReader()
-    await reader.readAsDataURL(file)
-    const data = new Promise((resolve,reject)=>{
-      reader.onload = () => resolve(reader.result)
-      reader.onerror = (err) => reject(err)
-    })
-    return data
-  }
 
 
-  upload_images = async(event:any)=>{
-    let images = []
+  upload_images(event:any){
+    let base64:string[] = []
     for (let i = 0; i < event.target.files.length; i++) {
-       images.push(await this.imagebased64(event.target.files[i]))
+       let file = event.target.files[i];
+       let reader = new FileReader();
+       reader.readAsDataURL(file);
+       reader.onload = function () {
+        base64.push(reader.result as string)
+       };
+       reader.onerror = function (error) {
+         console.log('Error: ', error);
+       };
     }
+    this.images = base64
   }
 
 
