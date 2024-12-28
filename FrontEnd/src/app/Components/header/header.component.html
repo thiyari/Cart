@@ -1,24 +1,33 @@
 <header>
-    <div class="navbar navbar-dark shadow-sm fixed-top">
-        <div class="container">
-            <div class="navbar-brand align-item-center d-flex">
-                <i style="font-size: 40px;" class="fas fa-solid fa-truck">&nbsp;
+    <div class="navbar navbar-expand-md navbar-dark shadow-sm fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand align-item-center d-flex">
+                <i style="font-size: 30px;" class="fas fa-solid fa-truck">&nbsp;
                 </i>
-                <strong style="font-size: 30px;">Mani Stores</strong>
-                <div class="form-group">
-                    <input type="text"class="form-control" placeholder="search products">
-                </div>
-                <span class="fas fa-search search-icon"></span>
+                <strong style="font-size: 20px;">Mani Stores</strong>
+            </a>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <input type="text"class="form-control" placeholder="search products">
+                    </li>
+                    <span class="fas fa-search search-icon"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="nav-item">
+                        <strong style="font-size: 20px; color: white">Login</strong>
+                        <a routerLink="/prodreg" class="btn" href="#">
+                            <i style="font-size: 30px; color: white" class="fas fa fa-user"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div>
-                <button routerLink="/prodreg" class="btn">
-                    <i style="font-size: 30px; color: white" class="fas fa fa-user"></i>
-                </button>
-                <button routerLink="cart" class="btn">
-                    <i style="font-size: 30px; color: white" class="fas fa-solid fa-cart-shopping"></i>
-                    <div class="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
-                </button>
-            </div>
+            <a routerLink="/cart" class="btn" href="#">
+                <i style="font-size: 30px; color: white" class="fas fa-solid fa-cart-shopping"></i>
+                <div class="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+            </a>
         </div>
     </div>
 </header>
