@@ -21,3 +21,15 @@ module.exports.createProductsDBService = (productDetails) => {
     });
 
 }
+
+
+module.exports.fetchProductsDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.products.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}

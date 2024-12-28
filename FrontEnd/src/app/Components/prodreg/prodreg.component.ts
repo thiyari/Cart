@@ -48,7 +48,7 @@ export class ProdregComponent {
       "price" : this.price,
       "images": this.images
     };
-    this.http.post("http://localhost:8086/products/create",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
+    this.http.post("http://localhost:8086/api/products/create",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Product Registered Successfully");
