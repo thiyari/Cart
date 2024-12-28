@@ -19,7 +19,7 @@ export class ProductsComponent implements OnInit {
       if (res.message === "Success"){
         this.productsList = res.records;
         this.productsList.forEach((a:any)=>{
-          Object.assign(a,{quantity:1,total:a.price})
+          Object.assign(a,{quantity:1,total:parseFloat(a.price)})
         })
       }
     })
