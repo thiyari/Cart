@@ -42,3 +42,43 @@
     transition: 0.3s ease-in-out;
     transform: scale(1.1);
 }
+
+@media only screen and (max-width: 360px){
+    .item{
+        margin: 5px 10px;
+        text-align: center;
+        width:50%;
+    }
+    .item img {
+        width: 25px;
+        height: 25px;
+    }
+    .card{
+        padding: 10px;
+        margin: 12px;
+        width: 72%;
+    }
+    .btn-primary{
+        width:auto;
+    }
+}
+
+@media only screen and (min-width: 361px) and (max-width: 768px){
+    .item{
+        margin: 5px 10px;
+        text-align: center;
+        width:50%;
+    }
+    .item img {
+        width: 25px;
+        height: 25px;
+    }
+    .card{
+        padding: 10px;
+        margin: 12px;
+        width: 72%;
+    }
+    .btn-primary{
+        width:auto;
+    }
+}
