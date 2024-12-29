@@ -55,3 +55,56 @@ h4, h6 {
     padding: 12px 72px;
     border-radius: 3px !important;
 }
+
+
+@media only screen and (max-width: 360px){
+    .card  {
+        height: 54vh;
+        margin-left: 1px;
+        padding: 25px;
+        margin-right:40px;
+    }    
+    .center{
+        position: absolute;
+        top: 43%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .center img{
+        text-decoration: none;
+        color: inherit;
+        border: none;
+        outline: none;
+        height: 162px;
+        width: 235px;
+        margin: 10px 50px;
+    }
+    
+}
+
+@media only screen and (min-width: 361px) and (max-width: 768px){
+    .card  {
+        height: 54vh;
+        margin-left: 1px;
+        padding: 25px;
+        margin-right:40px;
+    }    
+    .center{
+        position: absolute;
+        top: 43%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .center img{
+        text-decoration: none;
+        color: inherit;
+        border: none;
+        outline: none;
+        height: 162px;
+        width: 235px;
+        margin: 10px 50px;
+    }
+        
+}
