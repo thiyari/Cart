@@ -15,4 +15,12 @@ export class ApiService {
       return res;
     }))
   }
+
+  addProduct(bodyData:any){
+    return this.http.post<any>("http://localhost:8086/api/products/create",bodyData)
+    .subscribe((resultData:any)=>{
+      console.log(resultData);
+      alert("Product Registered Successfully");
+    })
+  }
 }

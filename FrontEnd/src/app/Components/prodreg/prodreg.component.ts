@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-prodreg',
@@ -14,13 +14,7 @@ export class ProdregComponent {
   price: string = "";
   images: string[] = [];
 
-  constructor(private http: HttpClient )
-  {
-   
-  }
-
-
-
+  constructor(private api: ApiService ){ }
 
   upload_images(event:any){
     let base64:string[] = []
@@ -48,17 +42,12 @@ export class ProdregComponent {
       "price" : this.price,
       "images": this.images
     };
-    this.http.post("http://localhost:8086/api/products/create",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
-    {
-        console.log(resultData);
-        alert("Product Registered Successfully");
-      
- 
-        this.name = '';
-        this.description = '';
-        this.price  = '';
-        this.images = []
-    });
+    this.api.addProduct(bodyData)
+    this.name = '';
+    this.description = '';
+    this.price  = '';
+    this.images = []
   }
-
 }
+
+
