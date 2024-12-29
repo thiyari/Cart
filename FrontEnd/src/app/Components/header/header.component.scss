@@ -6,6 +6,12 @@ header {
     background-color: darkblue;
 }
 
+.nav-item{
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .form-control {
     border-radius: 3px;
     width: 300px;
@@ -15,7 +21,7 @@ header {
 .search-icon {
     position: absolute;
     z-index: 10;
-    right: 52%;
+    right: 63%;
     top: 22px;
     color: darkblue;
 }
