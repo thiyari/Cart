@@ -2,7 +2,9 @@
     <div class="row">
         <ng-container>
             <div class="card col-md-3">
-                <img src="{{product.images[0]}}" alt="image">
+                <div class="images" *ngFor="let image of product.images">
+                    <img [src]="image" alt="image" height="150" width="150">
+                </div>
                 <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{product.name}}</h5>
                 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{product.description}}</p>
                 <p><strong>Price:</strong> ₹{{product.price}}</p>
