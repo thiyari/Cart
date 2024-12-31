@@ -9,6 +9,7 @@ import { CartComponent } from './Components/cart/cart.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { FormsModule } from  '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ViewProductComponent } from './Components/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
     ProdregComponent,
     HeaderComponent,
     CartComponent,
-    ProductsComponent
+    ProductsComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,
