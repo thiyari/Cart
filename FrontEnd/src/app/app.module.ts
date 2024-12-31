@@ -10,6 +10,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { FormsModule } from  '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ViewProductComponent } from './Components/view-product/view-product.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SlickCarouselModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
