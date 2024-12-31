@@ -19,7 +19,7 @@
                 <p><strong>Quantity: </strong>
                 <select class='select-option' required
                 [(ngModel)]='optionSelected' (ngModelChange)='onOptionsSelected($event)'>
-                    <option class='option' *ngFor='let option of options' [value]="option">{{option}}</option>
+                    <option class='option' *ngFor='let option of options' selected [value]="option">{{option}}</option>
                 </select>
                 </p>
                 <br>

@@ -15,9 +15,8 @@ import { CartService } from '../../service/cart.service';
 export class ViewProductComponent implements OnInit{
 
   public product: any;
-  defaultValue: any = 1;
   options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  optionSelected: any;
+  optionSelected: any = 1;
 
   constructor(private api: ApiService, private route: ActivatedRoute, private cartService: CartService){}
 
