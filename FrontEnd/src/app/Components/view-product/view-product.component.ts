@@ -15,6 +15,9 @@ import { CartService } from '../../service/cart.service';
 export class ViewProductComponent implements OnInit{
 
   public product: any;
+  defaultValue: any = 1;
+  options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  optionSelected: any;
 
   constructor(private api: ApiService, private route: ActivatedRoute, private cartService: CartService){}
 
@@ -26,18 +29,13 @@ export class ViewProductComponent implements OnInit{
         this.product = res.records.find((item:any)=>
           item._id === id
         );
-        Object.assign(this.product,{quantity:1,total:parseFloat(this.product.price)})
       }
     })
   }
 
-  addtocart(item: any){
-    this.cartService.addtocart(item);
-  }
-
   slideConfig = {
-    "slidesToShow": 1,
-    "slidesToScroll": 1,
+    "slidesToShow": 2,
+    "slidesToScroll": 2,
     "autoplay": true,
     "autoplaySpeed": 5000,
     "pauseOnHover": true,
@@ -48,8 +46,8 @@ export class ViewProductComponent implements OnInit{
       "settings": {
         "arrows": true,
         "infinite": true,
-        "slidesToShow": 3,
-        "slidesToScroll": 3
+        "slidesToShow": 1,
+        "slidesToScroll": 1
       },
       },
       {
@@ -63,6 +61,15 @@ export class ViewProductComponent implements OnInit{
         }
     ]
 
+  }
+
+  onOptionsSelected(event: any){
+    this.optionSelected = parseInt(event); //option value will be sent as event
+    }
+  
+  addtocart(item: any){
+    Object.assign(this.product,{quantity:this.optionSelected,total:parseFloat(this.product.price)*this.optionSelected})
+    this.cartService.addtocart(item);
   }
 
 }

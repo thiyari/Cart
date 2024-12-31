@@ -1,19 +1,32 @@
 <div class="container">
-    <div class="row">
-        <ng-container>
-            <!--<div class="card col-md-3">-->
-                <ngx-slick-carousel class="carousel" 
-                    #slickModal="slick-carousel" 
-                    [config]="slideConfig">
-                    <div ngxSlickItem *ngFor="let image of product.images" class="slide">
-                        <img src="{{image}}" alt="image" class="img-style">
-                    </div>
-                </ngx-slick-carousel>
+    <div class="row border" style="margin-top: 20px;">
+        <div class="col-md-7">
+        <div class="card" style="border: none;">
+            <ngx-slick-carousel class="carousel" 
+            #slickModal="slick-carousel" 
+            [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let image of product.images" class="slide">
+                    <img src="{{image}}" alt="image" class="img-style">
+                </div>
+            </ngx-slick-carousel>
+        </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
                 <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{product.name}}</h5>
-                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{product.description}}</p>
-                <p><strong>Price:</strong> ₹{{product.price}}</p>
+                <p style="max-width: 100ch;">{{product.description}}</p>
+                <p><strong>Price: </strong> ₹{{product.price}}</p>
+                <p><strong>Quantity: </strong>
+                <select class='select-option' required
+                [(ngModel)]='optionSelected' (ngModelChange)='onOptionsSelected($event)'>
+                    <option class='option' *ngFor='let option of options' [value]="option">{{option}}</option>
+                </select>
+                </p>
+                <br>
                 <button class="btn btn-primary" (click)="addtocart(product)">Add to cart</button>
-            <!--</div>-->
-        </ng-container>
+                <br>
+                <button class="btn btn-success" routerLink="/products">Shop More</button>
+            </div>
+        </div>
     </div>
 </div>
