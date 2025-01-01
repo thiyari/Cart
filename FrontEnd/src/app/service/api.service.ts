@@ -18,15 +18,14 @@ export class ApiService {
 
   addProduct(bodyData:any){
     return this.http.post<any>("http://localhost:8086/api/products/create",bodyData)
-    .subscribe((resultData:any)=>{
-      console.log(resultData);
+    .subscribe(()=>{
       alert("Product Registered Successfully");
     })
   }
 
   submit_order(bodyData: any){
     return this.http.post<any>("http://localhost:8086/api/orders/create",bodyData)
-    .subscribe((resultData:any)=>{
+    .subscribe(()=>{
       alert("Order Saved in Database")
     })
   }
