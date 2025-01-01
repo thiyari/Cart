@@ -8,55 +8,63 @@
         </h1>    
 
             <div class="card-body">
-            <form (onSubmit)="order_submit()" class="was-validated">
+            <form class="was-validated">
                 <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label class="form-label">First name</label>
                         <input 
+                        [(ngModel)]="fname" [ngModelOptions]="{standalone: true}"
                         type="text"  
                         class="form-control mb-3" 
                         id="fname" 
                         placeholder="Enter First Name"
-                        name="fname"
                         required/>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Last Name</label>
                         <input 
+                        [(ngModel)]="lname" [ngModelOptions]="{standalone: true}"
                         type="text"  
                         class="form-control mb-3" 
                         id="lname" 
                         placeholder="Enter Last Name"
-                        name="lname"
                         required/>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input 
+                        [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
                         type="email"  
                         class="form-control mb-3" 
                         id="email" 
                         placeholder="Enter Email"
-                        name="email"
                         required/>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                     </div>
                     <div class="form-group">
                         <div class="mb-3">
                           <label htmlFor="address" class="form-label">Shipping Address</label>
                           <textarea 
+                          [(ngModel)]="address" [ngModelOptions]="{standalone: true}"
                           class="form-control" 
                           id="address" 
                           placeholder="Enter the address for delivery"
-                          name="address"
                           rows="5"
                           required></textarea>
                         </div>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
-                        <div>
-                            <button type="submit" class="btn btn-success mt-4">Pay Now</button>
-                        </div>
+                    <div>
+                        <button (click)="order_submit()" type="submit" class="btn btn-success mt-4">Pay Now</button>
+                    </div>
                 </div>
                 <div class="col-md-3"></div>
                 </div>

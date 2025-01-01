@@ -23,6 +23,35 @@ module.exports.createProductsDBService = (productDetails) => {
 }
 
 
+
+module.exports.createOrdersDBService = (orderDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.orders.create({
+                                orderid: orderDetails.orderid,
+                                firstname: orderDetails.firstname,
+                                lastname: orderDetails.lastname,
+                                email: orderDetails.email,
+                                shippingaddress: orderDetails.shippingaddress,
+                                ordersplaced: orderDetails.ordersplaced,
+                                grandtotal: orderDetails.grandtotal,
+                                paymentstatus: orderDetails.paymentstatus
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }
+    
+
+
 module.exports.fetchProductsDBService = () => {
         return new Promise(async function myFn(resolve,reject){
                 result = await productsModel.products.find({});

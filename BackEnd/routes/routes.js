@@ -4,4 +4,6 @@ var productsController = require('../src/products/productsController')
 
 router.route('/api/products').get(productsController.fetchProductsControllerFn)
 router.route('/api/products/create').post(productsController.createProductsControllerFn)
+router.route('/api/orders/create').post(productsController.createOrdersControllerFn)
+
 module.exports = router

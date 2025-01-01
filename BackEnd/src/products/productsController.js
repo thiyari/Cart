@@ -17,6 +17,23 @@ var createProductsControllerFn = async(req,res)=>
         }
     }
 
+    var createOrdersControllerFn = async(req,res)=>
+        {
+            try
+            {
+                var status = await productsService.createOrdersDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Order created successfully"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error creating an Order"});
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+    
 
 
 var fetchProductsControllerFn = async(req,res)=>
@@ -35,5 +52,6 @@ var fetchProductsControllerFn = async(req,res)=>
 
 module.exports = {
     createProductsControllerFn,
-    fetchProductsControllerFn
+    fetchProductsControllerFn,
+    createOrdersControllerFn
 }
