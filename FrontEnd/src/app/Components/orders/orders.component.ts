@@ -33,7 +33,7 @@ order_submit(){
   }
   else{
     let bodyData = {
-      "orderid":"12345",
+      "orderid": Math.floor(100000000 + Math.random() * 900000000),
       "firstname" : this.fname,
       "lastname" : this.lname,
       "email" : this.email,

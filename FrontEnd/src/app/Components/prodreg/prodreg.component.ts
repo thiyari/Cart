@@ -37,6 +37,7 @@ export class ProdregComponent {
   {
 
     let bodyData = {
+      "pid": Math.floor(100000000 + Math.random() * 900000000),
       "name" : this.name,
       "description" : this.description,
       "price" : this.price,

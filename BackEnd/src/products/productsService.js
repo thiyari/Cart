@@ -4,6 +4,7 @@ module.exports.createProductsDBService = (productDetails) => {
     return new Promise(function myFn(resolve,reject){
             async function insert(){
                     await productsModel.products.create({
+                            pid: productDetails.pid,
                             name: productDetails.name,
                             description: productDetails.description,
                             images: productDetails.images,

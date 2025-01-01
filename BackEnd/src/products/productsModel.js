@@ -2,6 +2,10 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var productsSchema = new Schema({
+    pid:{
+        type: Number,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -18,12 +22,14 @@ var productsSchema = new Schema({
         type: String,
         required: true
     }
+},{
+    timestamps: true
 })
 
 
 var ordersSchema = new Schema({
     orderid: {
-        type: String,
+        type: Number,
         required: true
     },
     firstname: {
@@ -43,6 +49,10 @@ var ordersSchema = new Schema({
         required: true
     },
     ordersplaced: [{
+        pid: {
+            type: Number,
+            rquired: true
+        },
         name: {
             type: String,
             required: true
@@ -68,7 +78,11 @@ var ordersSchema = new Schema({
         type: String,
         required: true
     }
-})
+},{
+    timestamps: true
+});
+
+
 
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
