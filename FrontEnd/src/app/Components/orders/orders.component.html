@@ -1,1 +1,70 @@
-<p>orders works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-2"></div>
+          <div class="col-sm-8 form-container">
+    <div class="card">
+        <h1 class="card-header">
+            <div class="header-font">Order Placement</div>
+        </h1>    
+
+            <div class="card-body">
+            <form (onSubmit)="order_submit()" class="was-validated">
+                <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">First name</label>
+                        <input 
+                        type="text"  
+                        class="form-control mb-3" 
+                        id="fname" 
+                        placeholder="Enter First Name"
+                        name="fname"
+                        required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input 
+                        type="text"  
+                        class="form-control mb-3" 
+                        id="lname" 
+                        placeholder="Enter Last Name"
+                        name="lname"
+                        required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input 
+                        type="email"  
+                        class="form-control mb-3" 
+                        id="email" 
+                        placeholder="Enter Email"
+                        name="email"
+                        required/>
+                    </div>
+                    <div class="form-group">
+                        <div class="mb-3">
+                          <label htmlFor="address" class="form-label">Shipping Address</label>
+                          <textarea 
+                          class="form-control" 
+                          id="address" 
+                          placeholder="Enter the address for delivery"
+                          name="address"
+                          rows="5"
+                          required></textarea>
+                        </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-success mt-4">Pay Now</button>
+                        </div>
+                </div>
+                <div class="col-md-3"></div>
+                </div>
+                
+            </form>
+            </div>
+
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+</div>
