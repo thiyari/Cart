@@ -33,12 +33,16 @@ export class ViewProductComponent implements OnInit{
   }
 
   slideConfig = {
-    "slidesToShow": 2,
-    "slidesToScroll": 2,
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "dots":true,
     "autoplay": true,
     "autoplaySpeed": 5000,
     "pauseOnHover": true,
     "infinite": true,
+    "draggable": true,
+    "swipe	":true,
+    "arrows": true,
     "responsive": [
       {
       "breakpoint": 992,

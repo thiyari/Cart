@@ -2,7 +2,8 @@
 <ng-container *ngIf="products.length !=0">
     <div class="card-table">
         <div class="cart-product">
-            <table class="table table-responsive">
+            <div class ="table-responsive-md">                  
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Sr. No</th>
@@ -15,7 +16,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-group-divider">
                     <tr *ngFor="let item of products; let i = index">
                         <td>{{i+1}}</td>
                         <td>{{item.name}}</td>
@@ -37,6 +38,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 </ng-container>
