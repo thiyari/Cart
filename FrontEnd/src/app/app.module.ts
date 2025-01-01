@@ -11,6 +11,7 @@ import { FormsModule } from  '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { OrdersComponent } from './Components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HeaderComponent,
     CartComponent,
     ProductsComponent,
-    ViewProductComponent
+    ViewProductComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
