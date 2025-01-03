@@ -14,6 +14,7 @@ export class OrdersComponent implements OnInit{
 fname: string ="";
 lname: string ="";
 email: string ="";
+phone: string="";
 address: string ="";
 public products: any = [];
 public grandTotal !: number ;
@@ -28,7 +29,7 @@ constructor(private api: ApiService, private cartService: CartService){}
   }
 
 order_submit(){
-  if (this.fname === "" || this.lname === "" || this.email === "" || this.address === ""){
+  if (this.fname === "" || this.lname === "" || this.email === "" || this.phone === "" || this.address === ""){
     alert("Please fill the fields")
   }
   else{
@@ -37,6 +38,7 @@ order_submit(){
       "firstname" : this.fname,
       "lastname" : this.lname,
       "email" : this.email,
+      "phone": parseInt(this.phone),
       "shippingaddress": this.address,
       "ordersplaced":this.products,
       "grandtotal":this.grandTotal,
@@ -46,6 +48,7 @@ order_submit(){
     this.fname = "";
     this.lname = "";
     this.email  = "";
+    this.phone = "";
     this.address = "";    
   }
 }

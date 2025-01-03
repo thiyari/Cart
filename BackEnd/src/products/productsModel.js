@@ -44,6 +44,10 @@ var ordersSchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: Number,
+        required: true
+    },
     shippingaddress: {
         type: String,
         required: true

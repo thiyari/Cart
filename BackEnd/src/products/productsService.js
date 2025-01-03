@@ -33,6 +33,7 @@ module.exports.createOrdersDBService = (orderDetails) => {
                                 firstname: orderDetails.firstname,
                                 lastname: orderDetails.lastname,
                                 email: orderDetails.email,
+                                phone: orderDetails.phone,
                                 shippingaddress: orderDetails.shippingaddress,
                                 ordersplaced: orderDetails.ordersplaced,
                                 grandtotal: orderDetails.grandtotal,
