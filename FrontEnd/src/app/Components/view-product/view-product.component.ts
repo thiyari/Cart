@@ -26,7 +26,7 @@ export class ViewProductComponent implements OnInit{
     .subscribe(res=>{
       if (res.message === "Success"){
         this.product = res.records.find((item:any)=>
-          item._id === id
+          JSON.stringify(item.pid) === id
         );
       }
     })

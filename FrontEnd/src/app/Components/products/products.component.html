@@ -36,7 +36,7 @@
                 <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{item.name}}</h5>
                 <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100ch;">{{item.description}}</p>
                 <p><strong>Price:</strong> ₹{{item.price}}</p>
-                <a class="btn btn-primary" [routerLink]="['/product',item._id]">View Product</a>
+                <a class="btn btn-primary" [routerLink]="['/product',item.pid]">View Product</a>
             </div>
         </ng-container>
     </div>

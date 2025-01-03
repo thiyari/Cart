@@ -11,20 +11,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaymentComponent implements OnInit{
 
-  public order_id: any;
   public orders: any;
 
   constructor(private api: ApiService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.order_id = this.route.snapshot.params['orderid'];
-    this.api.getOrders()
+    const order_id = this.route.snapshot.params['orderid'];
+    this.orders = this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
         this.orders = res.records.find((item:any)=>
-          item.orderid === this.order_id 
+          JSON.stringify(item.orderid) === order_id
         );
-        console.log(this.orders)
       }
     })
   }
