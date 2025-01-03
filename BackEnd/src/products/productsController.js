@@ -49,9 +49,22 @@ var fetchProductsControllerFn = async(req,res)=>
 
 
     
+var fetchOrdersControllerFn = async(req,res)=>
+    {
+        const result = await (productsService.fetchOrdersDBService())
+        if(result.status){
+           return res.status(200).send({message:"Success",records:result.data});
+        }
+        else {
+            return res.status(400).send({message:'Failed',records:result.data});
+        }
+    }
+
+    
 
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
-    createOrdersControllerFn
+    createOrdersControllerFn,
+    fetchOrdersControllerFn
 }

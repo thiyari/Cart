@@ -27,8 +27,16 @@ export class ApiService {
   submit_order(bodyData: any){
     return this.http.post<any>("http://localhost:8086/api/orders/create",bodyData)
     .subscribe(()=>{
+      const order_id = bodyData.orderid
       alert("Order Saved in Database")
-      this.router.navigate(['/payment'])
+      this.router.navigate(['/payment/'+ order_id])
     })
+  }
+
+  getOrders(){
+    return this.http.get<any>("http://localhost:8086/api/orders")
+    .pipe(map((res)=>{
+      return res;
+    }))
   }
 }

@@ -64,3 +64,14 @@ module.exports.fetchProductsDBService = () => {
                 }
         })
 }
+
+module.exports.fetchOrdersDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.orders.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}

@@ -13,8 +13,8 @@ const routes: Routes = [
   {path:'cart',component: CartComponent},
   {path:'prodreg',component: ProdregComponent},
   {path:'orders',component: OrdersComponent},
-  {path:'payment',component: PaymentComponent},
   {path:'product/:id',component: ViewProductComponent},
+  {path:'payment/:orderid',component: PaymentComponent},
 ];
 
 @NgModule({
