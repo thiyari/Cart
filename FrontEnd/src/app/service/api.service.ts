@@ -38,4 +38,13 @@ export class ApiService {
       return res;
     }))
   }
+
+  phonepe(data: any){
+    return this.http.post<any>("http://localhost:8086/api/phonepe",data)
+    .subscribe(()=>{
+      alert("Send to BackEnd");
+    })
+  }
+
+
 }
