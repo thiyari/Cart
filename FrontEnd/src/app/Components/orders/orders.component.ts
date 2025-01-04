@@ -29,12 +29,17 @@ constructor(private api: ApiService, private cartService: CartService){}
   }
 
 order_submit(){
-  if (this.fname === "" || this.lname === "" || this.email === "" || this.phone === "" || this.address === ""){
+  if (this.fname === "" || this.lname === "" || this.email === "" || this.phone === "" || this.phone.length != 10 || this.address === ""){
     alert("Please fill the fields")
   }
   else{
+    const currDate = new Date().toLocaleDateString();
+    const currTime = new Date().toLocaleTimeString();
+    const datetime = currDate+currTime
+    const random_digits = datetime.replace(/[^0-9]/g, "")
+    const orderid = Math.floor(10 + Math.random() * 90)+random_digits;
     let bodyData = {
-      "orderid": Math.floor(100000000 + Math.random() * 900000000),
+      "orderid": orderid,
       "firstname" : this.fname,
       "lastname" : this.lname,
       "email" : this.email,

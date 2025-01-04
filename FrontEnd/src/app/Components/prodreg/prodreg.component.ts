@@ -35,9 +35,13 @@ export class ProdregComponent {
 
   prod_reg()
   {
-
+    const currDate = new Date().toLocaleDateString();
+    const currTime = new Date().toLocaleTimeString();
+    const datetime = currDate+currTime
+    const random_digits = datetime.replace(/[^0-9]/g, "")
+    const pid = Math.floor(10 + Math.random() * 90)+random_digits;
     let bodyData = {
-      "pid": Math.floor(100000000 + Math.random() * 900000000),
+      "pid": pid,
       "name" : this.name,
       "description" : this.description,
       "price" : this.price,

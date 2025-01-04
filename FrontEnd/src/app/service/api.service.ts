@@ -28,7 +28,6 @@ export class ApiService {
     return this.http.post<any>("http://localhost:8086/api/orders/create",bodyData)
     .subscribe(()=>{
       const order_id = bodyData.orderid
-      alert("Order Saved in Database")
       this.router.navigate(['/payment/'+ order_id])
     })
   }

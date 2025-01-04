@@ -19,11 +19,13 @@ export class PaymentComponent implements OnInit{
     const order_id = this.route.snapshot.params['orderid'];
     this.orders = this.api.getOrders()
     .subscribe(res=>{
+      console.log(res.records)
       if (res.message === "Success"){
         this.orders = res.records.find((item:any)=>
           JSON.stringify(item.orderid) === order_id
         );
       }
     })
+    console.log(this.orders)
   }
 }
