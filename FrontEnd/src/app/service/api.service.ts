@@ -42,10 +42,10 @@ export class ApiService {
   phonepe(data: any){
     return this.http.post<any>("http://localhost:8086/api/phonepe",data)
     .subscribe((response)=>{
-      console.log(response)
         if(response.data && response.data.instrumentResponse.redirectInfo.url){
           window.location.href = response.data.instrumentResponse.redirectInfo.url;
         }
+        return window.location.href
     })
   }
 
