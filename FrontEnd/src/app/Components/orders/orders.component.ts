@@ -51,7 +51,8 @@ order_submit(){
       "pin": this.pin,
       "ordersplaced":this.products,
       "grandtotal":this.grandTotal,
-      "paymentstatus":"pending"
+      "referenceid": 'T' + Date.now(),
+      "transactionstatus":"pending"
     };
     this.api.submit_order(bodyData)
     this.name = "";

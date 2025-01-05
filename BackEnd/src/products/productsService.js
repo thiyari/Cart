@@ -39,7 +39,8 @@ module.exports.createOrdersDBService = (orderDetails) => {
                                 pin: orderDetails.pin,
                                 ordersplaced: orderDetails.ordersplaced,
                                 grandtotal: orderDetails.grandtotal,
-                                paymentstatus: orderDetails.paymentstatus
+                                referenceid: orderDetails.referenceid,
+                                transactionstatus: orderDetails.transactionstatus
                         });
                         
                 }
@@ -77,3 +78,33 @@ module.exports.fetchOrdersDBService = () => {
                 }
         })
 }
+
+module.exports.createpaymentsDBService = (paymentsDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.payments.create({
+                                referenceid: paymentsDetails.referenceid,
+                                transactionid: paymentsDetails.transactionid,
+                                amount: paymentsDetails.amount
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                // updating the payment status in the orders
+                                productsModel.orders.updateOne(
+                                        { referenceid: paymentsDetails.referenceid }, 
+                                        { $set: { transactionstatus: paymentsDetails.transactionid }})
+                                .catch( error => {
+                                        console.log(error);
+                                        }
+                                );
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }
+    

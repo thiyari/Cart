@@ -86,7 +86,11 @@ var ordersSchema = new Schema({
         type: String,
         required: true
     },
-    paymentstatus: {
+    referenceid: {
+        type: String,
+        required: true
+    },
+    transactionstatus: {
         type: String,
         required: true
     }
@@ -94,8 +98,25 @@ var ordersSchema = new Schema({
     timestamps: true
 });
 
-
+var paymentsSchema = new Schema({
+    referenceid: {
+        type: String,
+        required: true
+    },
+    transactionid: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    }
+},{
+    timestamps: true
+})
 
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
-module.exports = {products, orders}
+const payments = mongoose.model("payments",paymentsSchema)
+
+module.exports = {products, orders, payments}

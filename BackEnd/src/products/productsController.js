@@ -7,22 +7,22 @@ let salt_key = process.env.SALT_KEY
 let merchant_id = process.env.MERCHANT_ID
 var productsService = require('./productsService');
 
-var createProductsControllerFn = async(req,res)=>
-    {
-        try
+    var createProductsControllerFn = async(req,res)=>
         {
-            var status = await productsService.createProductsDBService(req.body, res)
-            if(status){
-                res.status(200).send({"status":true,"message":"Product created successfully"});
+            try
+            {
+                var status = await productsService.createProductsDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Product created successfully"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error creating a product"});
+                }
             }
-            else {
-                res.status(400).send({"status":false,"message":"Error creating a product"});
+            catch(err){
+                console.log(err);
             }
         }
-        catch(err){
-            console.log(err);
-        }
-    }
 
     var createOrdersControllerFn = async(req,res)=>
         {
@@ -66,6 +66,23 @@ var fetchOrdersControllerFn = async(req,res)=>
             return res.status(400).send({message:'Failed',records:result.data});
         }
     }
+
+    var paymentsControllerFn = async(req,res)=>
+        {
+            try
+            {
+                var status = await productsService.createpaymentsDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Payment created successfully"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error creating the payment"});
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
 
     
 var phonepeControllerFn = async(req, res) => {
@@ -148,8 +165,26 @@ var phonepestatusControllerFn = async(req, res) => {
 
     // CHECK PAYMENT STATUS
     axios.request(options).then(async(response)=>{
-        if(response.data.success === true){
-            const url = 'http://localhost:4200/success'
+        if(response.data.success === true && response.data.code === 'PAYMENT_SUCCESS'){
+            const options = {
+                url: 'http://localhost:8086/api/payments',
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                data: {
+                  referenceid: response.data.data.merchantTransactionId,
+                  transactionid: response.data.data.transactionId,
+                  amount: response.data.data.amount/100
+                }
+              };
+              
+              axios(options)
+                .then(() => {
+                    console.log("payment histroy created")
+                });
+            const url = 'http://localhost:4200/'
             return res.redirect(url)
         } else {
             const url = 'http://localhost:4200/failure'
@@ -166,5 +201,6 @@ module.exports = {
     createOrdersControllerFn,
     fetchOrdersControllerFn,
     phonepeControllerFn,
-    phonepestatusControllerFn
+    phonepestatusControllerFn,
+    paymentsControllerFn
 }

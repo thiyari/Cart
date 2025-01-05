@@ -32,8 +32,9 @@ export class PaymentComponent implements OnInit{
       amount: this.orders.grandtotal,
       number: this.orders.phone,
       MUID: "MUID" + Date.now(),
-      transactionId: 'T' + Date.now()
+      transactionId: this.orders.referenceid
     }
+    console.log(data)
     this.api.phonepe(data)
   }
 }
