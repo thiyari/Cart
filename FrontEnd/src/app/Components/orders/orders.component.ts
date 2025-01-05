@@ -11,11 +11,13 @@ import { CartService } from '../../service/cart.service';
 })
 export class OrdersComponent implements OnInit{
 
-fname: string ="";
-lname: string ="";
+name: string ="";
 email: string ="";
 phone: string="";
 address: string ="";
+city: string ="";
+state: string="";
+pin: string="";
 public products: any = [];
 public grandTotal !: number ;
 
@@ -29,7 +31,7 @@ constructor(private api: ApiService, private cartService: CartService){}
   }
 
 order_submit(){
-  if (this.fname === "" || this.lname === "" || this.email === "" || this.phone === "" || this.phone.length != 10 || this.address === ""){
+  if (this.name === "" || this.email === "" || this.phone === "" || this.phone.length != 10 || this.address === "" || this.city === "" || this.state === "" || this.pin ==="" || this.pin.length != 6){
     alert("Please fill the fields")
   }
   else{
@@ -40,21 +42,25 @@ order_submit(){
     const orderid = Math.floor(10 + Math.random() * 90)+random_digits;
     let bodyData = {
       "orderid": orderid,
-      "firstname" : this.fname,
-      "lastname" : this.lname,
+      "name" : this.name,
       "email" : this.email,
       "phone": parseInt(this.phone),
       "shippingaddress": this.address,
+      "city": this.city,
+      "state": this.state,
+      "pin": this.pin,
       "ordersplaced":this.products,
       "grandtotal":this.grandTotal,
       "paymentstatus":"pending"
     };
     this.api.submit_order(bodyData)
-    this.fname = "";
-    this.lname = "";
+    this.name = "";
     this.email  = "";
     this.phone = "";
     this.address = "";    
+    this.city = "";
+    this.state = "";
+    this.pin = "";
   }
 }
 }

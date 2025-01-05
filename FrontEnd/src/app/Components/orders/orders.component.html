@@ -56,25 +56,13 @@
                         <div class="col-md-3"></div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">First name</label>
+                                <label class="form-label">Full name</label>
                                 <input 
-                                [(ngModel)]="fname" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
                                 type="text"  
                                 class="form-control mb-3" 
-                                id="fname" 
+                                id="name" 
                                 placeholder="Enter First Name"
-                                required/>
-                                <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Please fill out this field.</div>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Last Name</label>
-                                <input 
-                                [(ngModel)]="lname" [ngModelOptions]="{standalone: true}"
-                                type="text"  
-                                class="form-control mb-3" 
-                                id="lname" 
-                                placeholder="Enter Last Name"
                                 required/>
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div>
@@ -117,6 +105,43 @@
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">City</label>
+                                <input 
+                                [(ngModel)]="city" [ngModelOptions]="{standalone: true}"
+                                type="text"  
+                                class="form-control mb-3" 
+                                id="city" 
+                                placeholder="Enter the city"
+                                required/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">State</label>
+                                <input 
+                                [(ngModel)]="state" [ngModelOptions]="{standalone: true}"
+                                type="text"  
+                                class="form-control mb-3" 
+                                id="state" 
+                                placeholder="Enter the state"
+                                required/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Pin</label>
+                                <input 
+                                [(ngModel)]="pin" [ngModelOptions]="{standalone: true}"
+                                type="text"  
+                                class="form-control mb-3" 
+                                id="pin" 
+                                placeholder="Enter the pin"
+                                pattern="^[1-9][0-9]{5}$"
+                                required/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                             <div>
                                 <button (click)="order_submit()" type="submit" class="btn btn-success mt-4" style="width: 100%">Pay Now</button>

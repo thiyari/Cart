@@ -30,11 +30,13 @@ module.exports.createOrdersDBService = (orderDetails) => {
                 async function insert(){
                         await productsModel.orders.create({
                                 orderid: orderDetails.orderid,
-                                firstname: orderDetails.firstname,
-                                lastname: orderDetails.lastname,
+                                name: orderDetails.name,
                                 email: orderDetails.email,
                                 phone: orderDetails.phone,
                                 shippingaddress: orderDetails.shippingaddress,
+                                city: orderDetails.city,
+                                state: orderDetails.state,
+                                pin: orderDetails.pin,
                                 ordersplaced: orderDetails.ordersplaced,
                                 grandtotal: orderDetails.grandtotal,
                                 paymentstatus: orderDetails.paymentstatus

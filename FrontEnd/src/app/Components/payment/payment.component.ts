@@ -28,7 +28,7 @@ export class PaymentComponent implements OnInit{
   }
   payment_method(){
     let data = {
-      name: this.orders.firstname+" "+this.orders.lastname,
+      name: this.orders.name,
       amount: this.orders.grandtotal,
       number: this.orders.phone,
       MUID: "MUID" + Date.now(),

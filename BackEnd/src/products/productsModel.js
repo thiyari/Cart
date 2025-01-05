@@ -32,11 +32,7 @@ var ordersSchema = new Schema({
         type: Number,
         required: true
     },
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
+    name: {
         type: String,
         required: true
     },
@@ -50,6 +46,18 @@ var ordersSchema = new Schema({
     },
     shippingaddress: {
         type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    pin: {
+        type: Number,
         required: true
     },
     ordersplaced: [{
