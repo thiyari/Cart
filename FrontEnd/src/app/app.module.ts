@@ -14,6 +14,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { TransactionComponent } from './Components/transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FilterPipe } from './shared/filter.pipe';
     ViewProductComponent,
     OrdersComponent,
     PaymentComponent,
-    FilterPipe
+    FilterPipe,
+    TransactionComponent
   ],
   imports: [
     BrowserModule,

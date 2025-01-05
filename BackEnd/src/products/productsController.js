@@ -184,7 +184,7 @@ var phonepestatusControllerFn = async(req, res) => {
                 .then(() => {
                     console.log("payment histroy created")
                 });
-            const url = 'http://localhost:4200/'
+            const url = `http://localhost:4200/transaction/?referenceid=${response.data.data.referenceid}`
             return res.redirect(url)
         } else {
             const url = 'http://localhost:4200/failure'
