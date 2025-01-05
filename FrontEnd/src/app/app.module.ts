@@ -7,12 +7,13 @@ import { ProdregComponent } from './Components/prodreg/prodreg.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { ProductsComponent } from './Components/products/products.component';
-import { FormsModule } from  '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from  '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { PaymentComponent } from './Components/payment/payment.component';
     ProductsComponent,
     ViewProductComponent,
     OrdersComponent,
-    PaymentComponent
+    PaymentComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

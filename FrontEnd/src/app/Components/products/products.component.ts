@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,8 @@ import { ApiService } from '../../service/api.service';
 })
 export class ProductsComponent implements OnInit {
   public productsList: any;
-  constructor(private api: ApiService){}
+  searchKey: string = "";
+  constructor(private api: ApiService, private cartService: CartService){}
 
   ngOnInit(): void {
     this.api.getProducts()
@@ -18,6 +20,10 @@ export class ProductsComponent implements OnInit {
       if (res.message === "Success"){
         this.productsList = res.records;
       }
+    })
+
+    this.cartService.search.subscribe((value:any)=>{
+      this.searchKey = value;
     })
   }
 
