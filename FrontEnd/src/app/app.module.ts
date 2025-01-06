@@ -14,7 +14,6 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
-import { TransactionComponent } from './Components/transaction/transaction.component';
 import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-success.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-su
     OrdersComponent,
     PaymentComponent,
     FilterPipe,
-    TransactionComponent,
     PhonepeSuccessComponent
   ],
   imports: [

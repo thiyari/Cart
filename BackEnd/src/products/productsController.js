@@ -54,7 +54,17 @@ var fetchProductsControllerFn = async(req,res)=>
         }
     }
 
-
+var fetchPhonepetxnControllerFn = async(req,res)=>
+    {
+        const result = await (productsService.fetchPhonepetxnDBService())
+        if(result.status){
+           return res.status(200).send({message:"Success",records:result.data});
+        }
+        else {
+            return res.status(400).send({message:'Failed',records:result.data});
+        }
+    }
+    
     
 var fetchOrdersControllerFn = async(req,res)=>
     {
@@ -186,7 +196,7 @@ var phonepestatusControllerFn = async(req, res) => {
                 .then(() => {
                     console.log("payment histroy created")
                 });
-            const url = `http://localhost:4200/phonepetxn/?referenceid=${reference_id}`
+            const url = `http://localhost:4200/phonepetxn/${reference_id}`
             return res.redirect(url)
         } else {
             res.status(500).send({ error: 'Transaction Failed' })
@@ -203,5 +213,6 @@ module.exports = {
     fetchOrdersControllerFn,
     phonepeControllerFn,
     phonepestatusControllerFn,
-    paymentsControllerFn
+    paymentsControllerFn,
+    fetchPhonepetxnControllerFn
 }

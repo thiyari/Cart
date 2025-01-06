@@ -4,6 +4,7 @@ var productsController = require('../src/products/productsController')
 
 router.route('/api/products').get(productsController.fetchProductsControllerFn)
 router.route('/api/orders').get(productsController.fetchOrdersControllerFn)
+router.route('/api/phonepetxn').get(productsController.fetchPhonepetxnControllerFn)
 router.route('/api/phonepe').post(productsController.phonepeControllerFn)
 router.route('/api/payments').post(productsController.paymentsControllerFn)
 router.route('/api/products/create').post(productsController.createProductsControllerFn)

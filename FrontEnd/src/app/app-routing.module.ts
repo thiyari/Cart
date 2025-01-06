@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'cart',component: CartComponent},
   {path:'prodreg',component: ProdregComponent},
   {path:'orders',component: OrdersComponent},
-  {path:'phonepetxn',component:PhonepeSuccessComponent},
+  {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},
   {path:'product/:id',component: ViewProductComponent},
   {path:'payment/:orderid',component: PaymentComponent},
 ];

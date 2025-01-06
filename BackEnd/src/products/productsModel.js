@@ -98,7 +98,7 @@ var ordersSchema = new Schema({
     timestamps: true
 });
 
-var phonepeSchema = new Schema({
+var phonepetxnsSchema = new Schema({
     referenceid: {
         type: String,
         required: true
@@ -117,6 +117,6 @@ var phonepeSchema = new Schema({
 
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
-const phonepe = mongoose.model("phonepe",phonepeSchema)
+const phonepetxns = mongoose.model("phonepetxns",phonepetxnsSchema)
 
-module.exports = {products, orders, phonepe}
+module.exports = {products, orders, phonepetxns}

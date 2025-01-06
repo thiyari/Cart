@@ -34,7 +34,6 @@ export class PaymentComponent implements OnInit{
       MUID: "MUID" + Date.now(),
       transactionId: this.orders.referenceid
     }
-    console.log(data)
     this.api.phonepe(data)
   }
 }
