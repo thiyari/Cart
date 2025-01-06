@@ -11,23 +11,23 @@
                     <tbody class="table-group-divider">
                         <tr>
                             <td><b>Transaction Reference Number:</b></td>
-                            <td></td>
+                            <td>{{response.transactionid}}</td>
                         </tr>
                         <tr>
                             <td><b>Transaction Date and Time:</b></td>
-                            <td></td>
+                            <td>{{formatedDate(transaction.createdAt)}}</td>
                         </tr>
                         <tr>
                             <td><b>Order Id:</b></td>
-                            <td></td>
+                            <td>{{response.orderid}}</td>
                         </tr>
                         <tr>
                             <td><b>Name:</b></td>
-                            <td></td>
+                            <td>{{response.name}}</td>
                         </tr>
                         <tr>
                             <td><b>Amount:</b></td>
-                            <td></td>
+                            <td>₹ {{response.amount}}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -13,31 +13,39 @@ import { stringify } from 'querystring';
 
 export class PhonepeSuccessComponent implements OnInit{
 
-  public orderid: any; 
   public transaction: any;
-  public order: any;
+  public order: any; 
+  public response: any;
 
   constructor(private api: ApiService, private route: ActivatedRoute){}
   
   ngOnInit(): void {
-
     const reference_id = this.route.snapshot.params["referenceid"]; 
-    this.transaction = this.api.phonepe_txn()
+    this.api.phonepe_txn()
     .subscribe(res=>{
       if (res.message === "Success"){
-        this.transaction = res.records.find((item:any)=>
-          JSON.stringify(item.referenceid) === reference_id
-        )}
-      })
-    console.log(this.transaction)
-    /*
-    this.order = this.api.getOrders()
+        this.transaction = res.records.find((item:any)=>{return(item.referenceid===reference_id)})
+        }
+      });
+
+    this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
-        res.records.find((item:any)=>
-          JSON.stringify(item.referenceid) === reference_id
-        )}
+        this.order = res.records.find((item:any)=>{return(item.referenceid === reference_id)})
+        }
       })
-        */
+      this.response = { ...this.transaction, ...this.order };
   }
+
+   formatedDate = (savedTime:any) => {
+    const date = new Date(savedTime).toLocaleString(
+      "gu-IN",
+      {
+        timeStyle: "medium",
+        dateStyle: "short",
+      }
+    );
+    return date
+  }
+
 }
