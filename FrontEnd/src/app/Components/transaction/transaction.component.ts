@@ -17,6 +17,6 @@ export class TransactionComponent implements OnInit{
   ngOnInit(): void {
 
     const reference_id = this.route.snapshot.queryParams["referenceid"];
-
+    console.log(reference_id)
   }
 }

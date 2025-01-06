@@ -165,7 +165,9 @@ var phonepestatusControllerFn = async(req, res) => {
 
     // CHECK PAYMENT STATUS
     axios.request(options).then(async(response)=>{
+        let reference_id = ""
         if(response.data.success === true && response.data.code === 'PAYMENT_SUCCESS'){
+            reference_id = response.data.data.merchantTransactionId
             const options = {
                 url: 'http://localhost:8086/api/payments',
                 method: 'POST',
@@ -184,7 +186,7 @@ var phonepestatusControllerFn = async(req, res) => {
                 .then(() => {
                     console.log("payment histroy created")
                 });
-            const url = `http://localhost:4200/transaction/?referenceid=${response.data.data.referenceid}`
+            const url = `http://localhost:4200/transaction/?referenceid=${reference_id}`
             return res.redirect(url)
         } else {
             const url = 'http://localhost:4200/failure'
