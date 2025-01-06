@@ -15,6 +15,7 @@ import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { TransactionComponent } from './Components/transaction/transaction.component';
+import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-success.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TransactionComponent } from './Components/transaction/transaction.compo
     OrdersComponent,
     PaymentComponent,
     FilterPipe,
-    TransactionComponent
+    TransactionComponent,
+    PhonepeSuccessComponent
   ],
   imports: [
     BrowserModule,

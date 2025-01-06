@@ -3,13 +3,14 @@ import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-transaction',
+  selector: 'app-phonepe-success',
   standalone: false,
   
-  templateUrl: './transaction.component.html',
-  styleUrl: './transaction.component.scss'
+  templateUrl: './phonepe-success.component.html',
+  styleUrl: './phonepe-success.component.scss'
 })
-export class TransactionComponent implements OnInit{
+
+export class PhonepeSuccessComponent implements OnInit{
 
   public orderid: any; 
   constructor(private api: ApiService, private route: ActivatedRoute){}
@@ -19,4 +20,5 @@ export class TransactionComponent implements OnInit{
     const reference_id = this.route.snapshot.queryParams["referenceid"];
     console.log(reference_id)
   }
+
 }

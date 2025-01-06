@@ -98,7 +98,7 @@ var ordersSchema = new Schema({
     timestamps: true
 });
 
-var paymentsSchema = new Schema({
+var phonepeSchema = new Schema({
     referenceid: {
         type: String,
         required: true
@@ -117,6 +117,6 @@ var paymentsSchema = new Schema({
 
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
-const payments = mongoose.model("payments",paymentsSchema)
+const phonepe = mongoose.model("phonepe",phonepeSchema)
 
-module.exports = {products, orders, payments}
+module.exports = {products, orders, phonepe}

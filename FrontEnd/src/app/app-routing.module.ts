@@ -6,7 +6,7 @@ import { ProdregComponent } from './Components/prodreg/prodreg.component';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
-import { TransactionComponent } from './Components/transaction/transaction.component';
+import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-success.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'cart',component: CartComponent},
   {path:'prodreg',component: ProdregComponent},
   {path:'orders',component: OrdersComponent},
-  {path:'transaction',component:TransactionComponent},
+  {path:'phonepetxn',component:PhonepeSuccessComponent},
   {path:'product/:id',component: ViewProductComponent},
   {path:'payment/:orderid',component: PaymentComponent},
 ];

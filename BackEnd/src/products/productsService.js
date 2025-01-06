@@ -82,7 +82,7 @@ module.exports.fetchOrdersDBService = () => {
 module.exports.createpaymentsDBService = (paymentsDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){
-                        await productsModel.payments.create({
+                        await productsModel.phonepe.create({
                                 referenceid: paymentsDetails.referenceid,
                                 transactionid: paymentsDetails.transactionid,
                                 amount: paymentsDetails.amount
@@ -93,7 +93,7 @@ module.exports.createpaymentsDBService = (paymentsDetails) => {
                         if(err){
                                 reject(false)
                         } else {
-                                // updating the payment status in the orders
+                                // updating the transaction status in the orders
                                 productsModel.orders.updateOne(
                                         { referenceid: paymentsDetails.referenceid }, 
                                         { $set: { transactionstatus: paymentsDetails.transactionid }})
