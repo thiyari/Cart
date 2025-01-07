@@ -1,15 +1,15 @@
 <div class="container mt-4" >
     <ng-container>
         <div class="card" style="border: none;">
-            <div id="gen_pdf" class="row">
+            <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <h3>Transaction Acknowledgement</h3>
-                    <br>
-                    <p><b>Thank You.</b></p>
-                    <p>Your payment request has been successfully recorded. Please quote your transaction reference number for any queries relating to this request.</p>
-                    <br>
-                    <div class ="table-responsive-md">                  
+                    <div class ="table-responsive-md" id="gen_pdf">   
+                        <h3>Transaction Acknowledgement</h3>
+                        <br>
+                        <p><b>Thank You.</b></p>
+                        <p>Your payment request has been successfully recorded. Please quote your transaction reference number for any queries relating to this request.</p>
+                        <br>               
                         <table class="table table-hover">
                             <tbody class="table-group-divider">
                                 <tr>
@@ -34,7 +34,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        </div>
+                    </div>
                 </div>
                 <div class="col-md-2"></div>
             </div>

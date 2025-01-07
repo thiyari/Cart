@@ -56,7 +56,7 @@ export class PhonepeSuccessComponent implements OnInit{
       const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
       //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
       let pdf = new jspdf('p', 'cm', 'a4'); // Generates PDF in portrait mode
-      pdf.addImage(contentDataURL, 'PNG', -2.5, 2, 26, 10.5);  
+      pdf.addImage(contentDataURL, 'PNG', 2.5, 2, 16, 10.5);  
       pdf.save(Date.now()+'.pdf');   
     }); 
   }
