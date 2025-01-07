@@ -108,7 +108,7 @@ module.exports.createpaymentsDBService = (paymentsDetails) => {
                                 // updating the transaction status in the orders
                                 productsModel.orders.updateOne(
                                         { referenceid: paymentsDetails.referenceid }, 
-                                        { $set: { transactionstatus: paymentsDetails.transactionid }})
+                                        { $set: { transactionstatus: "Received: PhonePe" }})
                                 .catch( error => {
                                         console.log(error);
                                         }

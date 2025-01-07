@@ -34,7 +34,7 @@ export class PhonepeSuccessComponent implements OnInit{
         this.order = res.records.find((item:any)=>{return(item.referenceid === reference_id)})
         }
       })
-      this.response = { ...this.transaction, ...this.order };
+      this.response = { ...this.order, ...this.transaction };
   }
 
    formatedDate = (savedTime:any) => {
