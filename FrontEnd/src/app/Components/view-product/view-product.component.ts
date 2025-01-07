@@ -71,7 +71,9 @@ export class ViewProductComponent implements OnInit{
     }
   
   addtocart(item: any){
-    Object.assign(this.product,{quantity:this.optionSelected,total:parseFloat(this.product.price)*this.optionSelected})
+    const totalvalue = parseFloat(this.product.price)*this.optionSelected
+    const roundupvalue = Math.ceil(totalvalue * 100) / 100
+    Object.assign(this.product,{quantity:this.optionSelected,total:roundupvalue})
     this.cartService.addtocart(item);
   }
 
