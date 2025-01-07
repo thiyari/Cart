@@ -40,10 +40,23 @@ export class PayGoogleComponent {
       totalPrice: '100.00',
       currencyCode: 'USD',
       countryCode: 'US'
-    }
+    },
+    callbackIntents: ["PAYMENT_AUTHORIZATION"]
   }
 
-  onLoadPaymentData(event: any){
-    console.log(event, ">> Data")
+  onLoadPaymentData(event: Event): void {
+    const eventDetail = event as CustomEvent<google.payments.api.PaymentData>;
+    console.log("load payment data", eventDetail.detail);
+  }
+
+  onPaymentDataAuthorized: google.payments.api.PaymentAuthorizedHandler = (paymentData) => {
+    console.log("payment authorized", paymentData);
+    return {
+      transactionState: 'SUCCESS'
+    };
+  }
+
+  onError = (event: ErrorEvent): void => {
+    console.log("error", event.error);
   }
 }

@@ -5,5 +5,7 @@ buttonColor="black"
 buttonType="buy"
 [paymentRequest]="paymentRequest" [style.width.px]="buttonWidth"
 (loadpaymentdata)="onLoadPaymentData($event)"
+(error)="onError($event)"
+[paymentAuthorizedCallback]="onPaymentDataAuthorized"
 />
 </div>
