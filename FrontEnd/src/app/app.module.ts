@@ -15,6 +15,7 @@ import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-success.component';
+import { PayGoogleComponent } from './Components/pay-google/pay-google.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-su
     AppRoutingModule,
     FormsModule,
     SlickCarouselModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PayGoogleComponent
   ],
   providers: [
     provideClientHydration(withEventReplay()),
