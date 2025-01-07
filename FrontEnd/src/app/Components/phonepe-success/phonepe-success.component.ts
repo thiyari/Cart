@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { stringify } from 'querystring';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-phonepe-success',
@@ -16,6 +17,7 @@ export class PhonepeSuccessComponent implements OnInit{
   public transaction: any;
   public order: any; 
   public response: any;
+  pdfTable: any;
 
   constructor(private api: ApiService, private route: ActivatedRoute){}
   
@@ -46,6 +48,17 @@ export class PhonepeSuccessComponent implements OnInit{
       }
     );
     return date
+  }
+  
+  public downloadAsPDF(){
+      let data = document.getElementById('gen_pdf')!;  
+      html2canvas(data).then(canvas => {
+      const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
+      //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+      let pdf = new jspdf('p', 'cm', 'a4'); // Generates PDF in portrait mode
+      pdf.addImage(contentDataURL, 'PNG', -2.5, 2, 26, 10.5);  
+      pdf.save(Date.now()+'.pdf');   
+    }); 
   }
 
 }
