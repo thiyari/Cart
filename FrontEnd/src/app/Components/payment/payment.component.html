@@ -1,13 +1,41 @@
 <div class="container mt-4" >
- 
-    <div class="card">
-        <h1>Payment Methods</h1>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card">
+        
+        <h1 class="card-header">
+          <div class="header-font">Payment Methods</div>
+        </h1>  
         <form>
-          <div class="wrapper">
-          <app-pay-google/>
+          <div class="card-body">
+            <!--<div class="wrapper">
+                <app-pay-google/>
+            </div>-->
+            <div class="container-box">
+              <div class="box"> 
+                <div class="inner">
+                  <button type="submit" class="paypal_button"></button>
+                </div>
+              </div>
+              <div class="box"> 
+                <div class="inner">
+                  <button type="submit" class="razorpay_button"></button>
+                </div>
+              </div>
+              <div class="box"> 
+                <div class="inner">
+                  <button type="submit" class="phonepe_button" (click)="payment_method()"></button>
+                </div>
+              </div>
+            </div>
           </div>
-        <button type="submit" class="btn btn-primary mt-4" (click)="payment_method()" >Phone Pe</button>
+
+        
       </form>
     </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
 <div>
 
