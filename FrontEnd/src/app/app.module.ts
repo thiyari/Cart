@@ -16,6 +16,8 @@ import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-success.component';
 import { PayGoogleComponent } from './Components/pay-google/pay-google.component';
+import { PaypalComponent } from './Components/paypal/paypal.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { PayGoogleComponent } from './Components/pay-google/pay-google.component
     OrdersComponent,
     PaymentComponent,
     FilterPipe,
-    PhonepeSuccessComponent
+    PhonepeSuccessComponent,
+    PaypalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { PayGoogleComponent } from './Components/pay-google/pay-google.component
     FormsModule,
     SlickCarouselModule,
     ReactiveFormsModule,
-    PayGoogleComponent
+    PayGoogleComponent,
+    NgxPayPalModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
