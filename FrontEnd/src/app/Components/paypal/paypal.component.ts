@@ -35,14 +35,13 @@ export class PaypalComponent implements OnInit{
         return Math.ceil(value * 100) / 100
     }
     grandtotal(){
-        let grandTotal = 0;
         let values:number[] = [];
         this.orders.ordersplaced.map((x:any)=>{
-            values.push(this.roundup(x.total*0.012))
+            values.push(x.quantity * this.roundup(x.price*0.012))
         })
-        for (let i in values){
-            grandTotal+=values[i]
-        }
+        let grandTotal: number = values.reduce((a, b) => {  
+            return this.roundup(a + b);  
+        }, 0); 
         return grandTotal
     }    
 
