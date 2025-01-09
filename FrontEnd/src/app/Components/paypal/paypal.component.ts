@@ -14,6 +14,7 @@ export class PaypalComponent implements OnInit{
 
   public orders: any;
   public payPalConfig?: IPayPalConfig;
+  grandTotal:any;
   
   constructor(private api: ApiService, private route: ActivatedRoute){}
 
@@ -28,8 +29,24 @@ export class PaypalComponent implements OnInit{
       }
     })
     this.initConfig();
-
   }
+
+    roundup(value:any){
+        return Math.ceil(value * 100) / 100
+    }
+    grandtotal(){
+        let grandTotal = 0;
+        let values:number[] = [];
+        this.orders.ordersplaced.map((x:any)=>{
+            values.push(this.roundup(x.total*0.012))
+        })
+        for (let i in values){
+            grandTotal+=values[i]
+        }
+        return grandTotal
+    }    
+
+
   private initConfig(): void {
     const currency = "USD";
     this.payPalConfig = {
@@ -40,11 +57,11 @@ export class PaypalComponent implements OnInit{
             purchase_units: [{
                 amount: {
                     currency_code: currency,
-                    value: this.orders.grandtotal,
+                    value: this.grandtotal().toString(),
                     breakdown: {
                         item_total: {
                             currency_code: currency,
-                            value: this.orders.grandtotal
+                            value: this.grandtotal().toString()
                         }
                     }
                 },
@@ -54,7 +71,7 @@ export class PaypalComponent implements OnInit{
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
                         currency_code: currency,
-                        value: x.price,
+                        value: (this.roundup(x.price*0.012)).toString(),
                     },
                 })
             }]
@@ -77,4 +94,6 @@ export class PaypalComponent implements OnInit{
         }
     };
 }
+
+
 }
