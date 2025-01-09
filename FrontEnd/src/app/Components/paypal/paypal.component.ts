@@ -36,9 +36,9 @@ export class PaypalComponent implements OnInit{
     }
     grandtotal(){
         let values:number[] = [];
-        this.orders.ordersplaced.map((x:any)=>{
-            values.push(x.quantity * this.roundup(x.price*0.012))
-        })
+        this.orders.ordersplaced.forEach((x:any)=>{
+            values.push(x.quantity * this.roundup(x.price*0.012));
+        });
         let grandTotal: number = values.reduce((a, b) => {  
             return this.roundup(a + b);  
         }, 0); 
