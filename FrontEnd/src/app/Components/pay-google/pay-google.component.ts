@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { removeAllAppScopedEventListeners } from '@angular/core/primitives/event-dispatch';
+import { Component, OnInit } from '@angular/core';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
+import { ApiService } from '../../service/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pay-google',
@@ -8,10 +9,20 @@ import { GooglePayButtonModule } from '@google-pay/button-angular';
   templateUrl: './pay-google.component.html',
   styleUrl: './pay-google.component.scss'
 })
-export class PayGoogleComponent {
-  buttonWidth = 240
+export class PayGoogleComponent implements OnInit{
 
+  public amount: any;
+
+  constructor(private api: ApiService, private route: ActivatedRoute){}
+  
+  ngOnInit(): void {
+
+  }
+
+  buttonWidth = 240
+  
   paymentRequest: google.payments.api.PaymentDataRequest = {
+    
     apiVersion: 2,
     apiVersionMinor: 0,
     allowedPaymentMethods: [
@@ -38,8 +49,8 @@ export class PayGoogleComponent {
       totalPriceStatus: 'FINAL',
       totalPriceLabel: 'Total',
       totalPrice: '100.00',
-      currencyCode: 'USD',
-      countryCode: 'US'
+      currencyCode: 'INR',
+      countryCode: 'IN'
     },
     callbackIntents: ["PAYMENT_AUTHORIZATION"]
   }
@@ -59,4 +70,5 @@ export class PayGoogleComponent {
   onError = (event: ErrorEvent): void => {
     console.log("error", event.error);
   }
+  
 }

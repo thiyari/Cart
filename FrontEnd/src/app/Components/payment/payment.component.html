@@ -9,9 +9,6 @@
         </h1>  
         <form>
           <div class="card-body">
-            <div class="wrapper">
-                <app-pay-google/>
-            </div>
             <div class="container-box">
               <div class="box"> 
                 <div class="inner">
@@ -26,6 +23,11 @@
               <div class="box"> 
                 <div class="inner">
                   <button type="submit" class="phonepe_button" (click)="payment_method()"></button>
+                </div>
+              </div>
+              <div class="box"> 
+                <div class="inner">
+                  <button type="submit" class="googlepay_button" routerLink='/googlepay'></button>
                 </div>
               </div>
             </div>

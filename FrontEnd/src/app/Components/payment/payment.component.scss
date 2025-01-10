@@ -75,6 +75,16 @@
     background-position: center;
 }
 
+.googlepay_button {
+    width: 140px;
+    height: 35px;
+    border: none;
+    background: url("./gpay-logo.png");
+    background-repeat: no-repeat;
+    background-size: 80px 35px;
+    background-position: center;
+}
+
 @media (max-width: 360px){
 
     .container-box{
@@ -141,6 +151,15 @@
     background-position: center;
 }
 
+.googlepay_button {
+    width: 140px;
+    height: 35px;
+    border: none;
+    background: url("./gpay-logo.png");
+    background-repeat: no-repeat;
+    background-size: 80px 35px;
+    background-position: center;
+}
 
 }
 
@@ -207,6 +226,16 @@
     background: url("./phonepe-logo.png");
     background-repeat: no-repeat;
     background-size: 140px 35px;
+    background-position: center;
+}
+
+.googlepay_button {
+    width: 140px;
+    height: 35px;
+    border: none;
+    background: url("./gpay-logo.png");
+    background-repeat: no-repeat;
+    background-size: 80px 35px;
     background-position: center;
 }
 }
