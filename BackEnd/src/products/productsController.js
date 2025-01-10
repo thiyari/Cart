@@ -99,16 +99,16 @@ var phonepeControllerFn = async(req, res) => {
 
     try{
         console.log(req.body)
-        const merchantTransactionId = req.body.referenceId;
+        const merchantTransactionId = req.body.MerchantTransactionID;
         const data = {
             merchantId: merchant_id,
             merchantTransactionId: merchantTransactionId,
-            merchantUserId: req.body.MUID,
+            merchantUserId: req.body.MerchantUserID,
             name: req.body.name,
             amount: req.body.amount * 100,
             redirectUrl: `http://localhost:8086/api/phonepe/status/?id=${merchantTransactionId}`,
             redirectMode: "POST",
-            mobileNumber: req.body.number,
+            mobileNumber: req.body.phone,
             paymentInstrument: {
                 type: 'PAY_PAGE'
             }

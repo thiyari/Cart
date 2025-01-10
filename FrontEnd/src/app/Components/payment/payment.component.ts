@@ -36,9 +36,9 @@ export class PaymentComponent implements OnInit{
     let data = {
       name: this.orders.name,
       amount: this.orders.grandtotal,
-      number: this.orders.phone,
-      MUID: "MUID" + Date.now(),
-      referenceId: this.orders.referenceid
+      phone: this.orders.phone,
+      MerchantUserID: "MUID" + Date.now(),
+      MerchantTransactionID: this.orders.referenceid
     }
     this.api.phonepe(data)
   }
