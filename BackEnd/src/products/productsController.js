@@ -206,6 +206,26 @@ var phonepestatusControllerFn = async(req, res) => {
         console.log(error);
     });
 }
+
+
+var googlepayControllerFn = async(req,res)=>
+    {
+        try
+        {
+            var status = await productsService.googlepayControllerFnDBService(req.body, res)
+            if(status){
+                res.status(200).send({"status":true,"message":"Googlepay data inserted"});
+            }
+            else {
+                res.status(400).send({"status":false,"message":"Error insertng the data"});
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -214,5 +234,6 @@ module.exports = {
     phonepeControllerFn,
     phonepestatusControllerFn,
     paymentsControllerFn,
-    fetchPhonepetxnControllerFn
+    fetchPhonepetxnControllerFn,
+    googlepayControllerFn
 }

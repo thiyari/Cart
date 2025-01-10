@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
 import { LocalService } from '../../service/local.service';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-pay-google',
@@ -10,15 +11,23 @@ import { LocalService } from '../../service/local.service';
 })
 export class PayGoogleComponent implements OnInit{
 
+  public orderid: any;
+  public referenceid: any;
   public amount: any;
   paymentRequest!: google.payments.api.PaymentDataRequest;
 
   constructor(
+    private api: ApiService,
     private localStore: LocalService
   ){}
   
   ngOnInit(): void {
+    this.orderid = this.localStore.getData("orderid")
+    console.log(this.orderid)
+    this.referenceid = this.localStore.getData("referenceid")
+    console.log(this.referenceid)
     this.amount = this.localStore.getData("amount")
+    console.log(this.amount)
     this.paymentRequest = {
       apiVersion: 2,
       apiVersionMinor: 0,
@@ -62,6 +71,14 @@ export class PayGoogleComponent implements OnInit{
 
   onPaymentDataAuthorized: google.payments.api.PaymentAuthorizedHandler = (paymentData) => {
     console.log("payment authorized", paymentData);
+    let data = {
+      orderid: this.orderid,
+      referenceid: this.referenceid,
+      amount: this.amount,
+    }
+    this.api.googlepay(data)
+    
+    this.localStore.clearData()
     return {
       transactionState: 'SUCCESS'
     };

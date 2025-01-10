@@ -115,8 +115,36 @@ var phonepetxnsSchema = new Schema({
     timestamps: true
 })
 
+
+
+var googlepaytxnsSchema = new Schema({
+    orderid: {
+        type: String,
+        required: true
+    },
+    referenceid: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    }
+},{
+    timestamps: true
+})
+
+
+
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
 const phonepetxns = mongoose.model("phonepetxns",phonepetxnsSchema)
+const googlepaytxns = mongoose.model("googlepaytxns",googlepaytxnsSchema)
 
-module.exports = {products, orders, phonepetxns}
+
+module.exports = {
+    products, 
+    orders, 
+    phonepetxns,
+    googlepaytxns
+}

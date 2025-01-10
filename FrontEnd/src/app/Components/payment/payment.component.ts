@@ -29,10 +29,12 @@ export class PaymentComponent implements OnInit{
           JSON.stringify(item.orderid) === order_id
         );
       }
+      this.localStore.saveData('orderid', this.orders.orderid);
+      this.localStore.saveData('referenceid', this.orders.referenceid);
       this.localStore.saveData('amount', this.orders.grandtotal);
     })
   }
-  payment_method(){
+  phonepe_payment(){
     let data = {
       name: this.orders.name,
       amount: this.orders.grandtotal,

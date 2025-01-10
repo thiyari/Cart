@@ -23,6 +23,34 @@ module.exports.createProductsDBService = (productDetails) => {
 
 }
 
+module.exports.googlepayControllerFnDBService = (txnDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.googlepaytxns.create({
+                                orderid: txnDetails.orderid,
+                                referenceid: txnDetails.referenceid,
+                                amount: txnDetails.amount,
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                // updating the transaction status in the orders
+                                productsModel.orders.updateOne(
+                                        { referenceid: txnDetails.referenceid }, 
+                                        { $set: { transactionstatus: "Received: GooglePay" }})
+                                .catch( error => {
+                                        console.log(error);
+                                        }
+                                );
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }
 
 
 module.exports.createOrdersDBService = (orderDetails) => {
