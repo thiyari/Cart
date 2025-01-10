@@ -119,6 +119,17 @@ module.exports.fetchOrdersDBService = () => {
         })
 }
 
+module.exports.fetchGooglepayDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.googlepaytxns.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}
+
 module.exports.createpaymentsDBService = (paymentsDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){

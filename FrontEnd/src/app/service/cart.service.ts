@@ -27,7 +27,8 @@ export class CartService {
     this.cartItemList.map((a:any)=>{
       grandTotal += a.total; 
     })
-    return grandTotal
+    const roundupvalue = Math.ceil(grandTotal * 100) / 100
+    return roundupvalue
   }
   removeCartItem(product: any){
     this.cartItemList.map((a:any,index:any)=>{

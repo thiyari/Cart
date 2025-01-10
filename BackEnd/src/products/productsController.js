@@ -225,6 +225,17 @@ var googlepayControllerFn = async(req,res)=>
         }
     }
 
+var fetchGooglepaytxnControllerFn = async(req,res)=>
+    {
+        const result = await (productsService.fetchGooglepayDBService())
+        if(result.status){
+           return res.status(200).send({message:"Success",records:result.data});
+        }
+        else {
+            return res.status(400).send({message:'Failed',records:result.data});
+        }
+    }
+
 
 module.exports = {
     createProductsControllerFn,
@@ -235,5 +246,6 @@ module.exports = {
     phonepestatusControllerFn,
     paymentsControllerFn,
     fetchPhonepetxnControllerFn,
-    googlepayControllerFn
+    googlepayControllerFn,
+    fetchGooglepaytxnControllerFn
 }

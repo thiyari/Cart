@@ -23,11 +23,9 @@ export class PayGoogleComponent implements OnInit{
   
   ngOnInit(): void {
     this.orderid = this.localStore.getData("orderid")
-    console.log(this.orderid)
     this.referenceid = this.localStore.getData("referenceid")
-    console.log(this.referenceid)
     this.amount = this.localStore.getData("amount")
-    console.log(this.amount)
+    this.localStore.clearData()
     this.paymentRequest = {
       apiVersion: 2,
       apiVersionMinor: 0,
@@ -79,7 +77,6 @@ export class PayGoogleComponent implements OnInit{
     this.api.googlepay(data)
     return (
     window.location.href = `http://localhost:4200/googlepaytxn/${this.referenceid}`,
-    this.localStore.clearData(),
     {
       transactionState: 'SUCCESS'
     });

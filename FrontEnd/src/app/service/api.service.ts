@@ -51,13 +51,18 @@ export class ApiService {
 
   googlepay(data: any){
     return this.http.post<any>("http://localhost:8086/api/googlepay",data)
-    .subscribe(()=>{
-      alert("google pay histroy saved")
-    })
+    .subscribe(()=>{})
   }
 
   phonepe_txn(){
     return this.http.get<any>("http://localhost:8086/api/phonepetxn")
+    .pipe(map((res)=>{
+      return res;
+    }))
+  }
+
+  googlepay_txn(){
+    return this.http.get<any>("http://localhost:8086/api/googlepaytxn")
     .pipe(map((res)=>{
       return res;
     }))
