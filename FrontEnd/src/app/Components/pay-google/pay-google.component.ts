@@ -77,11 +77,12 @@ export class PayGoogleComponent implements OnInit{
       amount: this.amount,
     }
     this.api.googlepay(data)
-    
-    this.localStore.clearData()
-    return {
+    return (
+    window.location.href = `http://localhost:4200/googlepaytxn/${this.referenceid}`,
+    this.localStore.clearData(),
+    {
       transactionState: 'SUCCESS'
-    };
+    });
   }
 
   onError = (event: ErrorEvent): void => {
