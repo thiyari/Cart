@@ -99,7 +99,7 @@ var phonepeControllerFn = async(req, res) => {
 
     try{
         console.log(req.body)
-        const merchantTransactionId = req.body.transactionId;
+        const merchantTransactionId = req.body.referenceId;
         const data = {
             merchantId: merchant_id,
             merchantTransactionId: merchantTransactionId,
