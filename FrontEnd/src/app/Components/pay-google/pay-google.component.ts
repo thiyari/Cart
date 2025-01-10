@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
-import { ApiService } from '../../service/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-pay-google',
@@ -12,48 +11,49 @@ import { ActivatedRoute } from '@angular/router';
 export class PayGoogleComponent implements OnInit{
 
   public amount: any;
+  paymentRequest!: google.payments.api.PaymentDataRequest;
 
-  constructor(private api: ApiService, private route: ActivatedRoute){}
+  constructor(
+    private localStore: LocalService
+  ){}
   
   ngOnInit(): void {
-
+    this.amount = this.localStore.getData("amount")
+    this.paymentRequest = {
+      apiVersion: 2,
+      apiVersionMinor: 0,
+      allowedPaymentMethods: [
+        {
+          type: 'CARD',
+          parameters: {
+            allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+            allowedCardNetworks: ['AMEX', 'VISA', 'MASTERCARD']
+          },
+          tokenizationSpecification: {
+            type: 'PAYMENT_GATEWAY',
+            parameters: {
+              gateway: 'example',
+              gatewayMerchantId: 'exampleGatewayMerchantId'
+            }
+          }
+        }
+      ],
+      merchantInfo: {
+        merchantId: '12345678901234567890',
+        merchantName: 'Demo Merchant'
+      },
+      transactionInfo: {
+        totalPriceStatus: 'FINAL',
+        totalPriceLabel: 'Total',
+        totalPrice: this.amount,
+        currencyCode: 'INR',
+        countryCode: 'IN'
+      },
+      callbackIntents: ["PAYMENT_AUTHORIZATION"]
+    }
   }
 
   buttonWidth = 240
-  
-  paymentRequest: google.payments.api.PaymentDataRequest = {
-    
-    apiVersion: 2,
-    apiVersionMinor: 0,
-    allowedPaymentMethods: [
-      {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['AMEX', 'VISA', 'MASTERCARD']
-        },
-        tokenizationSpecification: {
-          type: 'PAYMENT_GATEWAY',
-          parameters: {
-            gateway: 'example',
-            gatewayMerchantId: 'exampleGatewayMerchantId'
-          }
-        }
-      }
-    ],
-    merchantInfo: {
-      merchantId: '12345678901234567890',
-      merchantName: 'Demo Merchant'
-    },
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPriceLabel: 'Total',
-      totalPrice: '100.00',
-      currencyCode: 'INR',
-      countryCode: 'IN'
-    },
-    callbackIntents: ["PAYMENT_AUTHORIZATION"]
-  }
 
   onLoadPaymentData(event: Event): void {
     const eventDetail = event as CustomEvent<google.payments.api.PaymentData>;

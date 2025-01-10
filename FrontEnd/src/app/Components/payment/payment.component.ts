@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-payment',
@@ -13,7 +14,11 @@ export class PaymentComponent implements OnInit{
 
   public orders: any;
 
-  constructor(private api: ApiService, private route: ActivatedRoute){}
+  constructor(
+    private api: ApiService, 
+    private route: ActivatedRoute,
+    private localStore: LocalService
+  ){}
 
   ngOnInit(): void {
     const order_id = this.route.snapshot.params['orderid'];
@@ -24,6 +29,7 @@ export class PaymentComponent implements OnInit{
           JSON.stringify(item.orderid) === order_id
         );
       }
+      this.localStore.saveData('amount', this.orders.grandtotal);
     })
   }
   payment_method(){
