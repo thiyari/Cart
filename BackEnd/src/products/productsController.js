@@ -99,11 +99,11 @@ var phonepeControllerFn = async(req, res) => {
 
     try{
         console.log(req.body)
-        const merchantTransactionId = req.body.MerchantTransactionID;
+        const merchantTransactionId = req.body.merchantTransactionID;
         const data = {
             merchantId: merchant_id,
             merchantTransactionId: merchantTransactionId,
-            merchantUserId: req.body.MerchantUserID,
+            merchantUserId: req.body.merchantUserID,
             name: req.body.name,
             amount: req.body.amount * 100,
             redirectUrl: `http://localhost:8086/api/phonepe/status/?id=${merchantTransactionId}`,
