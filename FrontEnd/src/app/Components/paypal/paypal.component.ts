@@ -11,7 +11,7 @@ import { ICreateOrderRequest, IPayPalConfig, ITransactionItem } from 'ngx-paypal
   styleUrl: './paypal.component.scss'
 })
 export class PaypalComponent implements OnInit{
-
+  dollar_factor:any = 0.012;
   public orders: any;
   public payPalConfig?: IPayPalConfig;
   
@@ -36,7 +36,8 @@ export class PaypalComponent implements OnInit{
     grandtotal(){
         let values:number[] = [];
         let list = this.orders.ordersplaced.forEach((x:any)=>{
-            values.push(x.quantity * this.roundup(x.price*0.012));
+            const result = x.quantity * this.roundup(x.price*this.dollar_factor)
+            values.push(this.roundup(result));
         })
         console.log(list)
         let grandTotal: number = values.reduce((a, b) => {  
@@ -70,7 +71,7 @@ export class PaypalComponent implements OnInit{
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
                         currency_code: currency,
-                        value: (this.roundup(x.price*0.012)).toString(),
+                        value: (this.roundup(x.price*this.dollar_factor)).toString(),
                     },
                 })
             }]
@@ -90,6 +91,7 @@ export class PaypalComponent implements OnInit{
                 purchase_response.items.map((item:any)=>{
                     product_items.push({
                         "product_name": item.name,
+                        "price": item.unit_amount.value,
                         "quantity": item.quantity,
                         "total_price": (this.roundup(item.unit_amount.value * item.quantity)).toString()
                     })
