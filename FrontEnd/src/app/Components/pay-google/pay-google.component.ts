@@ -70,7 +70,6 @@ export class PayGoogleComponent implements OnInit{
   onPaymentDataAuthorized: google.payments.api.PaymentAuthorizedHandler = (paymentData) => {
     console.log("payment authorized", paymentData);
     let data = {
-      orderid: this.orderid,
       referenceid: this.referenceid,
       amount: this.amount,
     }

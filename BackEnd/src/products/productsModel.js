@@ -118,10 +118,6 @@ var phonepetxnsSchema = new Schema({
 
 
 var googlepaytxnsSchema = new Schema({
-    orderid: {
-        type: String,
-        required: true
-    },
     referenceid: {
         type: String,
         required: true

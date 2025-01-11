@@ -85,6 +85,16 @@ export class PaypalComponent implements OnInit{
         onApprove: (data, actions) => {
             return actions.order.capture().then((details:any) => {
                 console.log(details);
+                if (details.status === "COMPLETED"){
+                    let body ={
+                        referenceid: this.orders.referenceid,
+                        transaction_id: details.id,
+                        transaction_dt: details.create_time,
+                        grandtotal: details.amount.value,
+                        order_items: details.purchase_units
+                    }
+                
+                }
             });
 
         },

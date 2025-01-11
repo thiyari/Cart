@@ -27,9 +27,8 @@ module.exports.googlepayControllerFnDBService = (txnDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){
                         await productsModel.googlepaytxns.create({
-                                orderid: txnDetails.orderid,
                                 referenceid: txnDetails.referenceid,
-                                amount: txnDetails.amount,
+                                amount: txnDetails.amount
                         });
                         
                 }
