@@ -236,6 +236,23 @@ var fetchGooglepaytxnControllerFn = async(req,res)=>
         }
     }
 
+var paypalControllerFn = async(req,res)=>
+        {
+            try
+            {
+                var status = await productsService.paypalControllerFnDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Paypal data inserted"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error insertng the data"});
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
+
 
 module.exports = {
     createProductsControllerFn,
@@ -247,5 +264,6 @@ module.exports = {
     paymentsControllerFn,
     fetchPhonepetxnControllerFn,
     googlepayControllerFn,
-    fetchGooglepaytxnControllerFn
+    fetchGooglepaytxnControllerFn,
+    paypalControllerFn
 }

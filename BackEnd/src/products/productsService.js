@@ -158,3 +158,35 @@ module.exports.createpaymentsDBService = (paymentsDetails) => {
     
     }
     
+    
+
+module.exports.paypalControllerFnDBService = (txnDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.paypaltxns.create({
+                                referenceid: txnDetails.referenceid,
+                                transactionid: txnDetails.transactionid,
+                                transaction_date: txnDetails.transaction_date,
+                                items: txnDetails.items,
+                                grandtotal: txnDetails.grandtotal
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                // updating the transaction status in the orders
+                                productsModel.orders.updateOne(
+                                        { referenceid: txnDetails.referenceid }, 
+                                        { $set: { transactionstatus: "Received: PayPal" }})
+                                .catch( error => {
+                                        console.log(error);
+                                        }
+                                );
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }

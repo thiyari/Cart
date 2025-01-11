@@ -132,15 +132,56 @@ var googlepaytxnsSchema = new Schema({
 
 
 
+var paypaltxnsSchema = new Schema({
+    referenceid: {
+        type: String,
+        required: true
+    },
+    transactionid: {
+        type: String,
+        required: true
+    },
+    transaction_date: {
+        type: String,
+        required: true
+    },
+    items: [{
+        product_name: {
+            type: String,
+            required: true
+        },
+        price: {
+            type: String,
+            required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
+        total_price: {
+            type: String,
+            required: true
+        }
+    }],
+    grandtotal: {
+        type: String,
+        required: true
+    }
+})
+
+
+
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
 const phonepetxns = mongoose.model("phonepetxns",phonepetxnsSchema)
 const googlepaytxns = mongoose.model("googlepaytxns",googlepaytxnsSchema)
+const paypaltxns = mongoose.model("paypaltxns",paypaltxnsSchema)
 
 
 module.exports = {
     products, 
     orders, 
     phonepetxns,
-    googlepaytxns
+    googlepaytxns,
+    paypaltxns
 }

@@ -8,6 +8,7 @@ router.route('/api/phonepetxn').get(productsController.fetchPhonepetxnController
 router.route('/api/googlepaytxn').get(productsController.fetchGooglepaytxnControllerFn)
 router.route('/api/phonepe').post(productsController.phonepeControllerFn)
 router.route('/api/googlepay').post(productsController.googlepayControllerFn)
+router.route('/api/paypal-pay').post(productsController.paypalControllerFn)
 router.route('/api/payments').post(productsController.paymentsControllerFn)
 router.route('/api/products/create').post(productsController.createProductsControllerFn)
 router.route('/api/orders/create').post(productsController.createOrdersControllerFn)

@@ -92,15 +92,15 @@ export class PaypalComponent implements OnInit{
                     product_items.push({
                         "product_name": item.name,
                         "price": item.unit_amount.value,
-                        "quantity": item.quantity,
+                        "quantity": parseInt(item.quantity),
                         "total_price": (this.roundup(item.unit_amount.value * item.quantity)).toString()
                     })
                 })
                 if (details.status === "COMPLETED"){
                     let body ={
                         referenceid: this.orders.referenceid,
-                        transaction_id: details.id,
-                        transaction_dt: details.create_time,
+                        transactionid: details.id,
+                        transaction_date: details.create_time,
                         items: product_items,
                         grandtotal: purchase_response.amount.value,
                     }
