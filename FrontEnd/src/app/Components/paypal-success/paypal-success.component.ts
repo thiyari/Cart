@@ -36,7 +36,6 @@ export class PaypalSuccessComponent implements OnInit{
         }
       })
       this.response = { ...this.order, ...this.transaction };
-      console.log(this.response)
   }
 
 
