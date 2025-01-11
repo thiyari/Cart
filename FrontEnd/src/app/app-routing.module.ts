@@ -10,6 +10,7 @@ import { PhonepeSuccessComponent } from './Components/phonepe-success/phonepe-su
 import { PaypalComponent } from './Components/paypal/paypal.component';
 import { PayGoogleComponent } from './Components/pay-google/pay-google.component';
 import { GooglepaySuccessComponent } from './Components/googlepay-success/googlepay-success.component';
+import { PaypalSuccessComponent } from './Components/paypal-success/paypal-success.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -20,9 +21,10 @@ const routes: Routes = [
   {path:'googlepay',component: PayGoogleComponent},
   {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},
   {path:'googlepaytxn/:referenceid',component:GooglepaySuccessComponent},
+  {path:'paypaltxn/:referenceid',component: PaypalSuccessComponent},
   {path:'product/:id',component: ViewProductComponent},
   {path:'payment/:orderid',component: PaymentComponent},
-  {path:'paypal/:orderid',component: PaypalComponent}
+  {path:'paypal/:orderid',component: PaypalComponent},
 
 ];
 

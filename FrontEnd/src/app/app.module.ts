@@ -19,6 +19,7 @@ import { PayGoogleComponent } from './Components/pay-google/pay-google.component
 import { PaypalComponent } from './Components/paypal/paypal.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { GooglepaySuccessComponent } from './Components/googlepay-success/googlepay-success.component';
+import { PaypalSuccessComponent } from './Components/paypal-success/paypal-success.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GooglepaySuccessComponent } from './Components/googlepay-success/google
     FilterPipe,
     PhonepeSuccessComponent,
     PaypalComponent,
-    GooglepaySuccessComponent
+    GooglepaySuccessComponent,
+    PaypalSuccessComponent
   ],
   imports: [
     BrowserModule,

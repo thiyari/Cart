@@ -104,9 +104,10 @@ export class PaypalComponent implements OnInit{
                         items: product_items,
                         grandtotal: purchase_response.amount.value,
                     }
-                    console.log(body)
                     this.api.paypal_pay(body)
                 }
+
+                window.location.href = `http://localhost:4200/paypaltxn/${this.orders.referenceid}`
             });
 
         },

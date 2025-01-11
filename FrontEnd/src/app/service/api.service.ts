@@ -73,4 +73,11 @@ export class ApiService {
     }))
   }
 
+  paypal_txn(){
+    return this.http.get<any>("http://localhost:8086/api/paypaltxn")
+    .pipe(map((res)=>{
+      return res;
+    }))
+  }
+
 }
