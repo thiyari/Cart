@@ -18,6 +18,7 @@
                 </h2>
                 <div class="card-body">  
                 <p><strong>Product ID:</strong> {{product.pid}}</p>
+                <p><strong>Product Description:</strong></p>
                 <p style="max-width: 100ch;">{{product.description}}</p>
                 <p><strong>Price: </strong> ₹{{product.price}}</p>
                 <p><strong>Quantity: </strong>
@@ -28,7 +29,7 @@
                 </p>
             </div>
                 <button class="btn btn-outline-success" (click)="addtocart(product)">Add to cart</button>
-                <button class="btn btn-outline-secondary" routerLink="/products">Shop More</button>
+                <button class="btn btn-outline-secondary" routerLink="/products">Continue Shopping</button>
             </div>
         </div>
     </div>
