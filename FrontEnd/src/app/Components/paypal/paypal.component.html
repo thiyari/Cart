@@ -26,7 +26,7 @@
                                         <td>{{item.name}}</td>
                                         <td style="width: 12%;"><b>${{roundup(item.price*0.012)}}</b></td>
                                         <td style="width: 12%;">{{item.quantity}}</td>
-                                        <td style="width: 12%;">{{roundup(item.total*0.012)}}</td>
+                                        <td style="width: 12%;">{{roundup(item.quantity * roundup(item.price*0.012))}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"></td>

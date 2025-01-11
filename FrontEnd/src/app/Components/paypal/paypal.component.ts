@@ -14,7 +14,6 @@ export class PaypalComponent implements OnInit{
 
   public orders: any;
   public payPalConfig?: IPayPalConfig;
-  grandTotal:any;
   
   constructor(private api: ApiService, private route: ActivatedRoute){}
 
