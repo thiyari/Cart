@@ -54,6 +54,11 @@ export class ApiService {
     .subscribe(()=>{})
   }
 
+  paypal_pay(data: any){
+    return this.http.post<any>("http://localhost:8086/api/paypal-pay",data)
+    .subscribe(()=>{})
+  }
+
   phonepe_txn(){
     return this.http.get<any>("http://localhost:8086/api/phonepetxn")
     .pipe(map((res)=>{

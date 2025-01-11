@@ -36,9 +36,10 @@ export class PaypalComponent implements OnInit{
     }
     grandtotal(){
         let values:number[] = [];
-        this.orders.ordersplaced.forEach((x:any)=>{
+        let list = this.orders.ordersplaced.forEach((x:any)=>{
             values.push(x.quantity * this.roundup(x.price*0.012));
-        });
+        })
+        console.log(list)
         let grandTotal: number = values.reduce((a, b) => {  
             return this.roundup(a + b);  
         }, 0); 
@@ -84,16 +85,26 @@ export class PaypalComponent implements OnInit{
         },
         onApprove: (data, actions) => {
             return actions.order.capture().then((details:any) => {
-                console.log(details);
+
+                let product_items:any[] = []
+                let purchase_response = details.purchase_units.find((x:any)=>x)
+                purchase_response.items.map((item:any)=>{
+                    product_items.push({
+                        "product_name": item.name,
+                        "quantity": item.quantity,
+                        "total_price": (this.roundup(item.unit_amount.value * item.quantity)).toString()
+                    })
+                })
                 if (details.status === "COMPLETED"){
                     let body ={
                         referenceid: this.orders.referenceid,
                         transaction_id: details.id,
                         transaction_dt: details.create_time,
-                        grandtotal: details.amount.value,
-                        order_items: details.purchase_units
+                        items: product_items,
+                        grandtotal: purchase_response.amount.value,
                     }
-                
+                    console.log(body)
+                    this.api.paypal_pay(body)
                 }
             });
 
