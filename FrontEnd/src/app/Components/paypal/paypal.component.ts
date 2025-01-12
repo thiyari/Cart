@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig, ITransactionItem } from 'ngx-paypal';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-paypal',
@@ -11,10 +12,10 @@ import { ICreateOrderRequest, IPayPalConfig, ITransactionItem } from 'ngx-paypal
   styleUrl: './paypal.component.scss'
 })
 export class PaypalComponent implements OnInit{
-  dollar_factor:any = 0.012;
+  dollar_factor:any = environment.DOLLAR_FACTOR;
   public orders: any;
   public payPalConfig?: IPayPalConfig;
-  
+
   constructor(private api: ApiService, private route: ActivatedRoute){}
 
   ngOnInit(): void {
@@ -51,7 +52,7 @@ export class PaypalComponent implements OnInit{
     const currency = "USD";
     this.payPalConfig = {
         currency: currency,
-        clientId: 'AYaJue-5Dr7hIopc-lw7y-3utpPUOJ5O_u9PW2B0Oi0QTbRiB6ov3Acu-xdJLP9FB6kiMyUut3kDh3Zo',
+        clientId: environment.PAYPAL_CLIENT_ID,
         createOrderOnClient: (data) => < ICreateOrderRequest > {
             intent: 'CAPTURE',
             purchase_units: [{
