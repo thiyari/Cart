@@ -40,15 +40,15 @@ export class PayGoogleComponent implements OnInit{
           tokenizationSpecification: {
             type: 'PAYMENT_GATEWAY',
             parameters: {
-              gateway: 'example',
-              gatewayMerchantId: 'exampleGatewayMerchantId'
+              gateway: environment.GOOGLE_PAY_GATEWAY,
+              gatewayMerchantId: environment.GOOGLE_PAY_GATEWAY_MERCHANT_ID
             }
           }
         }
       ],
       merchantInfo: {
-        merchantId: '12345678901234567890',
-        merchantName: 'Demo Merchant'
+        merchantId: environment.GOOGLE_PAY_MERCHANT_ID,
+        merchantName: environment.GOOGLE_PAY_MERCHANT_NAME
       },
       transactionInfo: {
         totalPriceStatus: 'FINAL',
