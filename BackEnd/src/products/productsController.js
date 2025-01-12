@@ -3,8 +3,8 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
-let salt_key = process.env.SALT_KEY
-let merchant_id = process.env.MERCHANT_ID
+let salt_key = process.env.PHONE_PE_SALT_KEY
+let merchant_id = process.env.PHONE_PE_MERCHANT_ID
 var productsService = require('./productsService');
 
     var createProductsControllerFn = async(req,res)=>
@@ -106,7 +106,7 @@ var phonepeControllerFn = async(req, res) => {
             merchantUserId: req.body.merchantUserID,
             name: req.body.name,
             amount: req.body.amount * 100,
-            redirectUrl: `http://localhost:8086/api/phonepe/status/?id=${merchantTransactionId}`,
+            redirectUrl: `${process.env.SERVER_URI}/api/phonepe/status/?id=${merchantTransactionId}`,
             redirectMode: "POST",
             mobileNumber: req.body.phone,
             paymentInstrument: {
@@ -120,7 +120,7 @@ var phonepeControllerFn = async(req, res) => {
         const sha256 = crypto.createHash('sha256').update(string).digest('hex');
         const checksum = sha256 + '###' + keyIndex;
 
-        const prod_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
+        const prod_URL = `${process.env.PHONE_PE_HOST_URI}/pg/v1/pay`
 
         const options = {
             method: 'POST',
@@ -164,7 +164,7 @@ var phonepestatusControllerFn = async(req, res) => {
 
     const options = {
         method: 'GET',
-        url: `https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status/${merchantId}/${merchantTransactionId}`,
+        url: `${process.env.PHONE_PE_HOST_URI}/pg/v1/status/${merchantId}/${merchantTransactionId}`,
         headers: {
             accept: 'application/json',
             'Content-Type': 'application/json',
@@ -179,7 +179,7 @@ var phonepestatusControllerFn = async(req, res) => {
         if(response.data.success === true && response.data.code === 'PAYMENT_SUCCESS'){
             reference_id = response.data.data.merchantTransactionId
             const options = {
-                url: 'http://localhost:8086/api/payments',
+                url: `${process.env.SERVER_URI}/api/payments`,
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json',
@@ -196,7 +196,7 @@ var phonepestatusControllerFn = async(req, res) => {
                 .then(() => {
                     console.log("payment histroy created")
                 });
-            const url = `http://localhost:4200/phonepetxn/${reference_id}`
+            const url = `${process.env.CLIENT_URI}/phonepetxn/${reference_id}`
             return res.redirect(url)
         } else {
             res.status(500).send({ error: 'Transaction Failed' })

@@ -4,10 +4,11 @@ var mongoose = require('mongoose')
 var routes = require('./routes/routes')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+require("dotenv").config();
 
 app.use(cors(
     {
-      origin: "http://localhost:4200"
+      origin: process.env.CLIENT_URI
     }
    
   ));
@@ -18,7 +19,7 @@ const checkDB = async()=>{
     try{
         // mongodb connection string
         // configure built-in role actions as "atlas admin" in cloud atlas mongoDB data access
-        const con = await mongoose.connect("mongodb://127.0.0.1:27017/cart",{
+        const con = await mongoose.connect(`${process.env.MONGO_DB_URI}/cart`,{
         })
         console.log(`MongoDB connected:${con.connection.host}`)
     } catch(err){
