@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GooglePayButtonModule } from '@google-pay/button-angular';
 import { LocalService } from '../../service/local.service';
 import { ApiService } from '../../service/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-pay-google',
@@ -75,7 +76,7 @@ export class PayGoogleComponent implements OnInit{
     }
     this.api.googlepay(data)
     return (
-    window.location.href = `http://localhost:4200/googlepaytxn/${this.referenceid}`,
+    window.location.href = `${environment.CLIENT_URI}/googlepaytxn/${this.referenceid}`,
     {
       transactionState: 'SUCCESS'
     });

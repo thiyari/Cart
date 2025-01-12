@@ -108,7 +108,7 @@ export class PaypalComponent implements OnInit{
                     this.api.paypal_pay(body)
                 }
 
-                window.location.href = `http://localhost:4200/paypaltxn/${this.orders.referenceid}`
+                window.location.href = `${environment.CLIENT_URI}/paypaltxn/${this.orders.referenceid}`
             });
 
         },
