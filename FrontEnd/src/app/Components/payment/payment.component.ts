@@ -50,6 +50,7 @@ export class PaymentComponent implements OnInit{
     this.api.phonepe(data)
   }
   razorpay_payment(){
+    const referenceid = this.orders.referenceid;
     const RozarpayOptions = {
       key: environment.RAZOR_PAY_KEY,
       amount: this.orders.grandtotal*100,
@@ -57,7 +58,6 @@ export class PaymentComponent implements OnInit{
       description: 'Sample Razorpay demo',
       image: 'https://4.imimg.com/data4/HS/BK/MY-146693/temporary-tattoos-en71-approved-500x500.jpg',
       name: "Mani Stores",
-      order_id: this.orders.orderid,
       prefill: {
         name: this.orders.name,
         email: this.orders.email,
@@ -65,8 +65,8 @@ export class PaymentComponent implements OnInit{
       },
       handler: function(response:any){
         alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature)
+        window.location.href = `http://localhost:4200/razorpaytxn/${referenceid}`
+        return window.location.href
       },
       notes: {
         address: 'Razorpay address'
