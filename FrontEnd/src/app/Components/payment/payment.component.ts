@@ -51,36 +51,44 @@ export class PaymentComponent implements OnInit{
   }
   razorpay_payment(){
     const RozarpayOptions = {
-      description: 'Sample Razorpay demo',
-      currency: 'INR',
-      amount: this.orders.grandtotal*100,
-      name: this.orders.name,
       key: environment.RAZOR_PAY_KEY,
-      image: 'https://i.imgur.com/FApqk3D.jpeg',
+      amount: this.orders.grandtotal*100,
+      currency: 'INR',
+      description: 'Sample Razorpay demo',
+      image: 'https://4.imimg.com/data4/HS/BK/MY-146693/temporary-tattoos-en71-approved-500x500.jpg',
+      name: "Mani Stores",
+      order_id: this.orders.orderid,
       prefill: {
-        name: 'sai kumar',
-        email: 'sai@gmail.com',
-        phone: '9898989898'
+        name: this.orders.name,
+        email: this.orders.email,
+        contact: this.orders.phone
+      },
+      handler: function(response:any){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+      },
+      notes: {
+        address: 'Razorpay address'
       },
       theme: {
         color: '#6466e3'
       },
       modal: {
-        ondismiss:  () => {
-          console.log('dismissed')
+        ondismiss:  function() {
+          console.log('Transaction Cancelled')
         }
-      }
+      },
     }
 
-    const successCallback = (paymentid: any) => {
-      console.log(paymentid);
-    }
+    
 
-    const failureCallback = (e: any) => {
-      console.log(e);
-    }
+    const rzp = new this.winRef.nativeWindow.Razorpay(RozarpayOptions);
+    
+    rzp.on('payment.failed',function(response:any){
+      alert(`Payment failed Reason: ${response.error.description}`);
+    });
 
-    const rzp = new this.winRef.nativeWindow.Razorpay(RozarpayOptions, successCallback, failureCallback);
     rzp.open();
   }
 }
