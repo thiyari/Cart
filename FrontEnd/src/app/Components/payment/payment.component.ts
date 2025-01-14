@@ -49,22 +49,36 @@ export class PaymentComponent implements OnInit{
     }
     this.api.phonepe(data)
   }
+
   razorpay_payment(){
+    const key = environment.RAZOR_PAY_KEY
     const referenceid = this.orders.referenceid;
+    const amount = this.orders.grandtotal
+    const name = this.orders.name
+    const email = this.orders.email
+    const phone = this.orders.phone
+    const razorpay_data = (body:any) => {
+      return this.api.razorpay_pay(body)
+    }
     const RozarpayOptions = {
-      key: environment.RAZOR_PAY_KEY,
-      amount: this.orders.grandtotal*100,
+      key: key,
+      amount: amount*100,
       currency: 'INR',
       description: 'Sample Razorpay demo',
       image: 'https://4.imimg.com/data4/HS/BK/MY-146693/temporary-tattoos-en71-approved-500x500.jpg',
       name: "Services",
       prefill: {
-        name: this.orders.name,
-        email: this.orders.email,
-        contact: this.orders.phone
+        name: name,
+        email: email,
+        contact: phone
       },
       handler: function(response:any){
-        alert(response.razorpay_payment_id);
+        let body = {
+          referenceid: referenceid,
+          transactionid: response.razorpay_payment_id,
+          amount: amount
+        }
+        razorpay_data(body);
         window.location.href = `${environment.CLIENT_URI}/razorpaytxn/${referenceid}`
         return window.location.href
       },
@@ -80,8 +94,6 @@ export class PaymentComponent implements OnInit{
         }
       },
     }
-
-    
 
     const rzp = new this.winRef.nativeWindow.Razorpay(RozarpayOptions);
     

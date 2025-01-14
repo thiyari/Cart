@@ -203,3 +203,33 @@ module.exports.fetchPaypalDBService = () => {
                 }
         })
 }
+
+
+module.exports.razorpayControllerFnDBService = (txnDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.razorpaytxns.create({
+                                referenceid: txnDetails.referenceid,
+                                transactionid: txnDetails.transactionid,
+                                amount: txnDetails.amount
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                // updating the transaction status in the orders
+                                productsModel.orders.updateOne(
+                                        { referenceid: txnDetails.referenceid }, 
+                                        { $set: { transactionstatus: "Received: Razorpay" }})
+                                .catch( error => {
+                                        console.log(error);
+                                        }
+                                );
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }

@@ -52,12 +52,18 @@ export class ApiService {
 
   googlepay(data: any){
     return this.http.post<any>(`${environment.SERVER_URI}/api/googlepay`,data)
-    .subscribe(()=>{})
+    .subscribe()
   }
 
   paypal_pay(data: any){
     return this.http.post<any>(`${environment.SERVER_URI}/api/paypal-pay`,data)
-    .subscribe(()=>{})
+    .subscribe()
+  }
+
+  razorpay_pay(data: any){
+    console.log(data)
+    return this.http.post<any>(`${environment.SERVER_URI}/api/razorpay-pay`,data)
+    .subscribe()
   }
 
   phonepe_txn(){

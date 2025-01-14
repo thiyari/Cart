@@ -254,6 +254,23 @@ var paypalControllerFn = async(req,res)=>
         }
 
 
+var razorpayControllerFn = async(req,res)=>
+        {
+            try
+            {
+                var status = await productsService.razorpayControllerFnDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Paypal data inserted"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error insertng the data"});
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }        
+        
         
 var fetchPaypaltxnControllerFn = async(req,res)=>
     {
@@ -278,5 +295,6 @@ module.exports = {
     googlepayControllerFn,
     fetchGooglepaytxnControllerFn,
     paypalControllerFn,
-    fetchPaypaltxnControllerFn
+    fetchPaypaltxnControllerFn,
+    razorpayControllerFn
 }

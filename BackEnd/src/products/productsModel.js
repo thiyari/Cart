@@ -131,6 +131,23 @@ var googlepaytxnsSchema = new Schema({
 })
 
 
+var razorpaytxnsSchema = new Schema({
+    referenceid: {
+        type: String,
+        required: true
+    },
+    transactionid: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: String,
+        required: true
+    }
+},{
+    timestamps: true
+})
+
 
 var paypaltxnsSchema = new Schema({
     referenceid: {
@@ -176,6 +193,7 @@ const orders = mongoose.model("orders",ordersSchema)
 const phonepetxns = mongoose.model("phonepetxns",phonepetxnsSchema)
 const googlepaytxns = mongoose.model("googlepaytxns",googlepaytxnsSchema)
 const paypaltxns = mongoose.model("paypaltxns",paypaltxnsSchema)
+const razorpaytxns = mongoose.model("razorpaytxns",razorpaytxnsSchema)
 
 
 module.exports = {
@@ -183,5 +201,6 @@ module.exports = {
     orders, 
     phonepetxns,
     googlepaytxns,
-    paypaltxns
+    paypaltxns,
+    razorpaytxns
 }
