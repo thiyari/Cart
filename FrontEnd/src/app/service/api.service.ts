@@ -87,4 +87,11 @@ export class ApiService {
     }))
   }
 
+  razorpay_txn(){
+    return this.http.get<any>(`${environment.SERVER_URI}/api/razorpaytxn`)
+    .pipe(map((res)=>{
+      return res;
+    }))
+  }
+
 }

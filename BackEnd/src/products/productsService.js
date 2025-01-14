@@ -233,3 +233,18 @@ module.exports.razorpayControllerFnDBService = (txnDetails) => {
         });
     
     }
+
+
+module.exports.fetchRazorpayDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.razorpaytxns.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}
+
+
+        
