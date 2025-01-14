@@ -57,7 +57,7 @@ export class PaymentComponent implements OnInit{
       currency: 'INR',
       description: 'Sample Razorpay demo',
       image: 'https://4.imimg.com/data4/HS/BK/MY-146693/temporary-tattoos-en71-approved-500x500.jpg',
-      name: "Mani Stores",
+      name: "Services",
       prefill: {
         name: this.orders.name,
         email: this.orders.email,
@@ -65,7 +65,7 @@ export class PaymentComponent implements OnInit{
       },
       handler: function(response:any){
         alert(response.razorpay_payment_id);
-        window.location.href = `http://localhost:4200/razorpaytxn/${referenceid}`
+        window.location.href = `${environment.CLIENT_URI}/razorpaytxn/${referenceid}`
         return window.location.href
       },
       notes: {
