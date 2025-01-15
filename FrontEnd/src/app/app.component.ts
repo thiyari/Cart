@@ -17,6 +17,9 @@ export class AppComponent {
         if(val instanceof NavigationEnd){
           if(val.url === '/prodreg'){
             this.showHeader=false
+          } 
+          else {
+            this.showHeader=true
           }
         }
       }
