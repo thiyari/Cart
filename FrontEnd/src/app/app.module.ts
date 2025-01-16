@@ -21,6 +21,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { GooglepaySuccessComponent } from './Components/googlepay-success/googlepay-success.component';
 import { PaypalSuccessComponent } from './Components/paypal-success/paypal-success.component';
 import { RazorpaySuccessComponent } from './Components/razorpay-success/razorpay-success.component';
+import { UserOrdersComponent } from './Components/user-orders/user-orders.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { RazorpaySuccessComponent } from './Components/razorpay-success/razorpay
     PaypalComponent,
     GooglepaySuccessComponent,
     PaypalSuccessComponent,
-    RazorpaySuccessComponent
+    RazorpaySuccessComponent,
+    UserOrdersComponent
   ],
   imports: [
     BrowserModule,
