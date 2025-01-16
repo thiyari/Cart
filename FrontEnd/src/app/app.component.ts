@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivationEnd, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +8,27 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  id: any;
   title = 'FrontEnd';
   showHeader=true;
   constructor(private router:Router){
-
     router.events.subscribe(
       (val:any)=>{
-        if(val instanceof NavigationEnd){
-          if(val.url === '/prodreg'){
-            this.showHeader=false
-          } 
-          else {
-            this.showHeader=true
+          if(val instanceof ActivationEnd){
+            this.id = val.snapshot.params['id']
           }
-        }
+          if(val instanceof NavigationEnd){
+            if(val.url === '/' ||
+              val.url === '/products' ||
+              val.url === `/product/${this.id}` || 
+              val.url === '/cart' || 
+              val.url === '/orders'){
+              this.showHeader=true
+            } 
+            else {
+              this.showHeader=false
+            }
+          }
       }
     )
   }
