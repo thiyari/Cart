@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit{
     }
     const RozarpayOptions = {
       key: key,
-      amount: amount*100,
+      amount: (amount*100).toFixed(2),
       currency: 'INR',
       description: 'Sample Razorpay demo',
       image: 'https://4.imimg.com/data4/HS/BK/MY-146693/temporary-tattoos-en71-approved-500x500.jpg',
