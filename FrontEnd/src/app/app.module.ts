@@ -22,6 +22,7 @@ import { GooglepaySuccessComponent } from './Components/googlepay-success/google
 import { PaypalSuccessComponent } from './Components/paypal-success/paypal-success.component';
 import { RazorpaySuccessComponent } from './Components/razorpay-success/razorpay-success.component';
 import { UserOrdersComponent } from './Components/user-orders/user-orders.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UserOrdersComponent } from './Components/user-orders/user-orders.compon
     GooglepaySuccessComponent,
     PaypalSuccessComponent,
     RazorpaySuccessComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
