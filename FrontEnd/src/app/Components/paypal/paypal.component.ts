@@ -36,11 +36,10 @@ export class PaypalComponent implements OnInit{
     }
     grandtotal(){
         let values:number[] = [];
-        let list = this.orders.ordersplaced.forEach((x:any)=>{
-            const result = x.quantity * this.roundup(x.price*this.dollar_factor)
-            values.push(this.roundup(result));
+        this.orders.ordersplaced.forEach((x:any)=>{
+            const result = (x.quantity * this.roundup(x.price*this.dollar_factor)).toFixed(2)
+            values.push(parseFloat(result));
         })
-        console.log(list)
         let grandTotal: number = values.reduce((a, b) => {  
             return this.roundup(a + b);  
         }, 0); 
@@ -72,7 +71,7 @@ export class PaypalComponent implements OnInit{
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
                         currency_code: currency,
-                        value: (this.roundup(x.price*this.dollar_factor)).toString(),
+                        value: (this.roundup(x.price*this.dollar_factor).toFixed(2)).toString(),
                     },
                 })
             }]
@@ -94,7 +93,7 @@ export class PaypalComponent implements OnInit{
                         "product_name": item.name,
                         "price": item.unit_amount.value,
                         "quantity": parseInt(item.quantity),
-                        "total_price": (this.roundup(item.unit_amount.value * item.quantity)).toString()
+                        "total_price": (item.unit_amount.value * item.quantity).toFixed(2).toString()
                     })
                 })
                 if (details.status === "COMPLETED"){
