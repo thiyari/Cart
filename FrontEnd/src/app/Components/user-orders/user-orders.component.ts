@@ -11,9 +11,13 @@ import { of } from 'rxjs';
 })
 export class UserOrdersComponent implements OnInit {
 
-  reference_ids:any[] = [];
   orders_records: any;
+  reference_ids:any[] = [];
   paypal_records:any[] = [];
+  razorpay_records: any[] = [];
+  phonepe_records: any[] = [];
+  googlepay_records: any[] = []
+
   constructor(private api: ApiService){}
 
   ngOnInit(): void {
@@ -40,12 +44,60 @@ export class UserOrdersComponent implements OnInit {
         });
 
 
+    this.api.razorpay_txn()
+        .subscribe(res=>{
+          if (res.message === "Success"){
+            for (let i = 0; i < this.reference_ids.length; i++){
+              res.records.map((item:any)=>{
+                if(item.referenceid === this.reference_ids[i]){
+                  this.razorpay_records.push(item)
+                }
+              })
+            }
+            }
+          });
 
-        let mergedArray = this.paypal_records.map((paypal:any) => {
+    this.api.phonepe_txn()
+          .subscribe(res=>{
+            if (res.message === "Success"){
+              for (let i = 0; i < this.reference_ids.length; i++){
+                res.records.map((item:any)=>{
+                  if(item.referenceid === this.reference_ids[i]){
+                    this.phonepe_records.push(item)
+                  }
+                })
+              }
+              }
+            });
+
+    this.api.googlepay_txn()
+            .subscribe(res=>{
+              if (res.message === "Success"){
+                for (let i = 0; i < this.reference_ids.length; i++){
+                  res.records.map((item:any)=>{
+                    if(item.referenceid === this.reference_ids[i]){
+                      this.googlepay_records.push(item)
+                    }
+                  })
+                }
+                }
+              });
+  
+
+      let mergedPaypal = this.paypal_records.map((paypal:any) => {
           let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === paypal.referenceid);
           return Object.assign({}, paypal, ordersArray);
       });
-        console.log(mergedArray)
+
+
+
+      
+
+      let mergedGooglepay = this.googlepay_records.map((googlepay:any) => {
+        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === googlepay.referenceid);
+        return Object.assign({}, googlepay, ordersArray);
+      });
+        console.log(mergedGooglepay)
 
   }
 }
