@@ -108,5 +108,17 @@ export class UserOrdersComponent implements OnInit {
 
 
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
+      console.log(this.aggregation)
+  }
+
+  formatedDate = (savedTime:any) => {
+    const date = new Date(savedTime).toLocaleString(
+      "gu-IN",
+      {
+        timeStyle: "medium",
+        dateStyle: "short",
+      }
+    );
+    return date
   }
 }

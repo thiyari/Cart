@@ -12,7 +12,7 @@
                     </li>
                     <li>
                         <a href="/userprofile" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Order Requests</span> </a>
+                            <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Requests</span> </a>
                     </li>
                 </ul>
                 <hr>
@@ -32,28 +32,29 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th>S.No.</th>
                                         <th>Order Id</th>
                                         <th>Total Amount</th>
                                         <th>Reference Id</th>
                                         <th>Transaction Date</th>
                                         <th>Payment Method</th>
-                                        <th>View</th>        
+                                        <th>View Order</th>        
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
+                                    <tr *ngFor="let item of aggregation; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.orderid}}</td>
+                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else rupee">$ {{item.grandtotal}}</td>
+                                        <ng-template #rupee>
+                                            <td>₹ {{item.grandtotal}}</td>
+                                        </ng-template>
+                                        <td>{{item.referenceid}}</td>
+                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else other">{{formatedDate(item.transaction_date)}}</td>
+                                        <ng-template #other>
+                                            <td>{{formatedDate(item.createdAt)}}</td>
+                                        </ng-template>                                        
+                                        <td>{{item.transactionstatus.replace('Received: ','')}}</td>
                                         <td></td>
                                     </tr>
                                 </tbody>
