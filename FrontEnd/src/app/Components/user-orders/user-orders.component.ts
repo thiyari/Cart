@@ -86,7 +86,7 @@ export class UserOrdersComponent implements OnInit {
 
       let mergedPaypal = this.paypal_records.map((paypal:any) => {
           let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === paypal.referenceid);
-          return Object.assign({}, paypal, ordersArray);
+          return Object.assign({}, ordersArray, paypal);
       });
 
 
@@ -95,9 +95,12 @@ export class UserOrdersComponent implements OnInit {
 
       let mergedGooglepay = this.googlepay_records.map((googlepay:any) => {
         let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === googlepay.referenceid);
-        return Object.assign({}, googlepay, ordersArray);
+        return Object.assign({}, ordersArray, googlepay);
       });
-        console.log(mergedGooglepay)
+
+
+
+
 
   }
 }
