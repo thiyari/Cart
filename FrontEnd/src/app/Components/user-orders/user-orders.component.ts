@@ -25,12 +25,27 @@ export class UserOrdersComponent implements OnInit {
         this.orders_records.map((x:any)=>this.reference_ids.push(x.referenceid))
         }
       })
-      /*
-      var ids = ['512d5793abb900bf3e20d012', '512d5793abb900bf3e20d011'];
-      var obj_ids = ids.map(function(id) { return ObjectId(id); });
-      db.test.find({_id: {$in: obj_ids}});
-      */
-  }
-  
 
+    this.api.paypal_txn()
+      .subscribe(res=>{
+        if (res.message === "Success"){
+          for (let i = 0; i < this.reference_ids.length; i++){
+            res.records.map((item:any)=>{
+              if(item.referenceid === this.reference_ids[i]){
+                this.paypal_records.push(item)
+              }
+            })
+          }
+          }
+        });
+
+
+
+        let mergedArray = this.paypal_records.map((paypal:any) => {
+          let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === paypal.referenceid);
+          return Object.assign({}, paypal, ordersArray);
+      });
+        console.log(mergedArray)
+
+  }
 }
