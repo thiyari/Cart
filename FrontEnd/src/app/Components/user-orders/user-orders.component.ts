@@ -16,6 +16,7 @@ export class UserOrdersComponent implements OnInit {
   razorpay_records: any[] = [];
   phonepe_records: any[] = [];
   googlepay_records: any[] = []
+  aggregation: any[] = []
 
   constructor(private api: ApiService){}
 
@@ -106,7 +107,6 @@ export class UserOrdersComponent implements OnInit {
       });
 
 
-      let aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
-      console.log(aggregation)
+      this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
   }
 }
