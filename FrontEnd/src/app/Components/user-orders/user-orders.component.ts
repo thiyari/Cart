@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-user-orders',
@@ -90,7 +89,7 @@ export class UserOrdersComponent implements OnInit {
       });
 
 
-
+      console.log(mergedPaypal)
       
 
       let mergedGooglepay = this.googlepay_records.map((googlepay:any) => {
@@ -98,9 +97,10 @@ export class UserOrdersComponent implements OnInit {
         return Object.assign({}, ordersArray, googlepay);
       });
 
+      console.log(mergedGooglepay)
 
-
-
+      let aggregation = [...mergedGooglepay,...mergedPaypal]
+      console.log(aggregation)
 
   }
 }
