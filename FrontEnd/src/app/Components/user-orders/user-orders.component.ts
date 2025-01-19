@@ -89,18 +89,24 @@ export class UserOrdersComponent implements OnInit {
       });
 
 
-      console.log(mergedPaypal)
-      
+      let mergedRazorpay = this.razorpay_records.map((razorpay:any) => {
+        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === razorpay.referenceid);
+        return Object.assign({}, ordersArray, razorpay);
+      });      
 
+      let mergedPhonepe = this.phonepe_records.map((phonepe:any) => {
+        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === phonepe.referenceid);
+        return Object.assign({}, ordersArray, phonepe);
+      });    
+
+      
       let mergedGooglepay = this.googlepay_records.map((googlepay:any) => {
         let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === googlepay.referenceid);
         return Object.assign({}, ordersArray, googlepay);
       });
 
-      console.log(mergedGooglepay)
 
-      let aggregation = [...mergedGooglepay,...mergedPaypal]
+      let aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
       console.log(aggregation)
-
   }
 }
