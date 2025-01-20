@@ -37,7 +37,6 @@
                                         <th>No. of Items</th>
                                         <th>Total Amount</th>
                                         <th>Transaction Date</th>
-                                        <th>Payment Method</th>
                                         <th>View Order</th>        
                                     </tr>
                                 </thead>
@@ -57,7 +56,6 @@
                                         <ng-template #date>
                                             <td>{{formatedDate(item.createdAt)}}</td>
                                         </ng-template>                                        
-                                        <td>{{item.transactionstatus.replace('Received: ','')}}</td>
                                         <td></td>
                                     </tr>
                                 </tbody>

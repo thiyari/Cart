@@ -16,7 +16,7 @@ export class UserRequestsComponent implements OnInit{
     this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
-        this.orders_records = res.records.filter((item:any)=>item.email===mail_id)
+        this.orders_records = res.records.filter((item:any)=>item.email===mail_id && item.transactionstatus === "pending")
         }
       })
   }
