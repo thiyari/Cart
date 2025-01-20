@@ -14,6 +14,7 @@ import { PaypalSuccessComponent } from './Components/paypal-success/paypal-succe
 import { RazorpaySuccessComponent } from './Components/razorpay-success/razorpay-success.component';
 import { UserOrdersComponent } from './Components/user-orders/user-orders.component';
 import { UserRequestsComponent } from './Components/user-requests/user-requests.component';
+import { ViewRequestComponent } from './Components/view-request/view-request.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'googlepay',component: PayGoogleComponent},
   {path:'userorders',component: UserOrdersComponent},
   {path:'userrequests',component: UserRequestsComponent},
+  {path:'viewrequest/:orderid',component: ViewRequestComponent},
   {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},
   {path:'googlepaytxn/:referenceid',component:GooglepaySuccessComponent},
   {path:'paypaltxn/:referenceid',component: PaypalSuccessComponent},
