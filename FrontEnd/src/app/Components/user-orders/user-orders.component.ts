@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-user-orders',
@@ -18,7 +19,10 @@ export class UserOrdersComponent implements OnInit {
   googlepay_records: any[] = []
   aggregation: any[] = []
 
-  constructor(private api: ApiService){}
+  constructor(
+    private api: ApiService,
+    private localStore: LocalService,
+  ){}
 
   ngOnInit(): void {
     const mail_id = "manikanth578@gmail.com"; 
@@ -108,7 +112,7 @@ export class UserOrdersComponent implements OnInit {
 
 
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
-      console.log(this.aggregation)
+      this.localStore.saveData('aggregation', JSON.stringify(this.aggregation));
   }
 
   formatedDate = (savedTime:any) => {

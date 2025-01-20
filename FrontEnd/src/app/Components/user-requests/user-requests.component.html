@@ -7,23 +7,11 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </a>
-                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                            <li class="w-100">
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
-                            </li>
-                            <li>
-                                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
                         <a href="/userorders" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Orders</span></a>
                     </li>
                     <li>
-                        <a href="/userprofile" class="nav-link px-0 align-middle">
+                        <a href="/userrequests" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Requests</span> </a>
                     </li>
                 </ul>
@@ -38,7 +26,32 @@
         </div>
         <div class="col py-3">
             <!--  Content Area Start  -->
-
+                <div class="container">
+                    <div class="table" style="border: none;">
+                            <div class ="table-responsive-md">                  
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Order Id</th>
+                                        <th>No. of Items</th>
+                                        <th>Total Amount</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr *ngFor="let item of orders_records; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.orderid}}</td>
+                                        <td>{{item.ordersplaced.length}}</td>
+                                        <td>$ {{item.grandtotal}}</td> 
+                                        <td><a>Pay Now</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> 
+                </div>
             <!--  Content Area End  -->            
         </div>
     </div>
