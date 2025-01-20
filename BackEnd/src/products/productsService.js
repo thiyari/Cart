@@ -169,7 +169,7 @@ module.exports.paypalControllerFnDBService = (txnDetails) => {
                                 transactionid: txnDetails.transactionid,
                                 transaction_date: txnDetails.transaction_date,
                                 items: txnDetails.items,
-                                grandtotal: txnDetails.grandtotal
+                                amount: txnDetails.amount
                         });
                         
                 }

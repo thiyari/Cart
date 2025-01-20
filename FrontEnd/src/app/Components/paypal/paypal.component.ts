@@ -101,7 +101,7 @@ export class PaypalComponent implements OnInit{
                         transactionid: details.id,
                         transaction_date: details.create_time,
                         items: product_items,
-                        grandtotal: purchase_response.amount.value,
+                        amount: purchase_response.amount.value,
                     }
                     this.api.paypal_pay(body)
                 }
