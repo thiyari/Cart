@@ -24,5 +24,6 @@ export class ViewRequestComponent implements OnInit{
         this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
         }
       })
+      console.log(this.order)
   }
 }

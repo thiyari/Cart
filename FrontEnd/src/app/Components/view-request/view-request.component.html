@@ -24,41 +24,76 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3">
+        <div class="col py-3 mt-5">
             <!--  Content Area Start  -->
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label class="form-label">Name: &nbsp;</label>
-                        <label class="form-label">{{order?.name}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Email: &nbsp;</label>
-                        <label class="form-label">{{order?.email}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Phone: &nbsp;</label>
-                        <label class="form-label">{{order?.phone}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Address: &nbsp;</label>
-                        <label class="form-label">{{order?.shippingaddress}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">City: &nbsp;</label>
-                        <label class="form-label">{{order?.city}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">State: &nbsp;</label>
-                        <label class="form-label">{{order?.state}}</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Pin: &nbsp;</label>
-                        <label class="form-label">{{order?.pin}}</label>
-                    </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card container">
+                        <div class="box">
+                            <div class="title">Order# {{order?.orderid}}</div>
+                            <hr>
+                            <div class="form-group">
+                                <label class="form-label"><b>Name:</b>&nbsp;</label>
+                                <label class="form-label">{{order?.name}}</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><b>Email:</b>&nbsp;</label>
+                                <label class="form-label">{{order?.email}}</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label"><b>Phone:</b>&nbsp;</label>
+                                <label class="form-label">{{order?.phone}}</label>
+                            </div>
+
+                            <div style="text-align: center; font-weight: bold; font-size:x-large;">List of Items</div>
+                            <div class ="table-responsive-md">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No</th>
+                                            <th>Product Id</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <tr *ngFor="let item of order?.ordersplaced; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.pid}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td style="width: 12%;"><b>₹ {{item.price}}</b></td>
+                                            <td style="width: 12%;">{{item.quantity}}</td>
+                                            <td style="width: 12%;">{{item.total}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td>Grand Total:</td>
+                                            <td><strong> ₹ {{order?.grandtotal}}</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="btn btn-primary">Pay Now</div>
+
+                            <div class="form-group">
+                                <label class="form-label"><b>Address:</b></label>
+                                <br>
+                                <label class="form-label">{{order?.shippingaddress}}</label>
+                                <br>
+                                <label class="form-label">{{order?.city}}</label>
+                                <br>
+                                <label class="form-label">{{order?.state}}</label>
+                                <br>
+                                <label class="form-label">Pin: {{order?.pin}}</label>
+                            </div>
+                        </div>
+                     </div>
                 </div>
-                <div class="col-md-2"></div>
+                <div class="col-md-1"></div>
             </div>
                             
                     
