@@ -36,7 +36,7 @@ export class PaypalComponent implements OnInit{
     }
     grandtotal(){
         let values:number[] = [];
-        this.orders.ordersplaced.forEach((x:any)=>{
+        this.orders.ordersplaced?.forEach((x:any)=>{
             const result = (x.quantity * this.roundup(x.price*this.dollar_factor)).toFixed(2)
             values.push(parseFloat(result));
         })
