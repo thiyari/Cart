@@ -12,7 +12,7 @@ export class UserRequestsComponent implements OnInit{
   orders_records: any;
   constructor(private api: ApiService){}
   ngOnInit(): void {
-    const mail_id = "manikanth578@gmail.com"; 
+    const mail_id = "neeharika@gmail.com"; 
     this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){

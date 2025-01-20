@@ -24,9 +24,9 @@
                                     <tr *ngFor="let item of orders.ordersplaced; let i = index">
                                         <td>{{i+1}}</td>
                                         <td>{{item.name}}</td>
-                                        <td style="width: 12%;"><b>${{roundup(item.price*dollar_factor)}}</b></td>
+                                        <td style="width: 12%;"><b>${{+(item.price*dollar_factor).toFixed(2)}}</b></td>
                                         <td style="width: 12%;">{{item.quantity}}</td>
-                                        <td style="width: 12%;">{{(item.quantity * roundup(item.price*dollar_factor)).toFixed(2)}}</td>
+                                        <td style="width: 12%;">{{(item.quantity * +(item.price*dollar_factor).toFixed(2)).toFixed(2)}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"></td>
