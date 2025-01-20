@@ -21,4 +21,17 @@ export class UserRequestsComponent implements OnInit{
       })
   }
 
+
+  formatedDate = (savedTime:any) => {
+    const date = new Date(savedTime).toLocaleString(
+      "gu-IN",
+      {
+        timeStyle: "medium",
+        dateStyle: "short",
+      }
+    );
+    return date
+  }
+
+
 }

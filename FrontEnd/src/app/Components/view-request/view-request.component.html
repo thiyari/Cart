@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="col py-3 mt-5">
+        <div class="col py-3 mt-4">
             <!--  Content Area Start  -->
             <div class="row">
                 <div class="col-md-1"></div>
@@ -77,7 +77,7 @@
                                 </table>
                             </div>
 
-                            <div class="btn btn-primary">Pay Now</div>
+                            <button class="btn btn-primary" [routerLink]="['/payment',order?.orderid]">Pay Now</button>
 
                             <div class="form-group">
                                 <label class="form-label"><b>Address:</b></label>
