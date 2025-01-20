@@ -112,6 +112,7 @@ export class UserOrdersComponent implements OnInit {
 
 
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
+      console.log(this.aggregation)
       this.localStore.saveData('aggregation', JSON.stringify(this.aggregation));
   }
 

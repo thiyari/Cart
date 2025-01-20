@@ -48,9 +48,9 @@
                                         <ng-template #total_orders>
                                             <td>{{item.ordersplaced.length}}</td>
                                         </ng-template>  
-                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else rupee">$ {{item.grandtotal}}</td>
+                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else rupee">$ {{item.amount}}</td>
                                         <ng-template #rupee>
-                                            <td>₹ {{item.grandtotal}}</td>
+                                            <td>₹ {{item.amount}}</td>
                                         </ng-template>
                                         <td *ngIf="item.transactionstatus === 'Received: PayPal';else date">{{formatedDate(item.transaction_date)}}</td>
                                         <ng-template #date>

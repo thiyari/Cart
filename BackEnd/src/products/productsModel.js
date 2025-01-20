@@ -180,7 +180,7 @@ var paypaltxnsSchema = new Schema({
             required: true
         }
     }],
-    grandtotal: {
+    amount: {
         type: String,
         required: true
     }
