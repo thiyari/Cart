@@ -29,39 +29,48 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    <div class="card container">
-                        <div class="box">
-                            <div class="title">Pending Orders</div>
-                            <hr>
-                            <div class="table" style="border: none;">
-                                    <div class ="table-responsive-md">                  
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>S.No.</th>
-                                                <th>Order Id</th>
-                                                <th>No. of Items</th>
-                                                <th>Total Amount</th>
-                                                <th>Requested On</th>
-                                                <th colspan="2">View/Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
-                                            <tr *ngFor="let item of orders_records; let i = index">
-                                                <td>{{i+1}}</td>
-                                                <td>{{item.orderid}}</td>
-                                                <td>{{item.ordersplaced.length}}</td>
-                                                <td>₹ {{item.grandtotal}}</td> 
-                                                <td>{{formatedDate(item.createdAt)}}</td>
-                                                <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
-                                                <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div> 
+                    <ng-container *ngIf="orders_records?.length !=0">
+                        <div class="card container">
+                            <div class="box">
+                                <div class="title">Pending Orders</div>
+                                <hr>
+                                <div class="table" style="border: none;">
+                                        <div class ="table-responsive-md">                  
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Order Id</th>
+                                                    <th>No. of Items</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Requested On</th>
+                                                    <th colspan="2">View/Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr *ngFor="let item of orders_records; let i = index">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{item.orderid}}</td>
+                                                    <td>{{item.ordersplaced.length}}</td>
+                                                    <td>₹ {{item.grandtotal}}</td> 
+                                                    <td>{{formatedDate(item.createdAt)}}</td>
+                                                    <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                    <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
-                    </div>
+                    </ng-container>
+                    <ng-container *ngIf="orders_records?.length === 0">
+                        <div class="container">
+                            <div>
+                                <h4>There are no pending requests</h4>
+                            </div>
+                        </div>
+                    </ng-container>
                 </div>
                 <div class="col-md-1"></div>
             </div>

@@ -34,9 +34,9 @@ export class PaymentComponent implements OnInit{
           JSON.stringify(item.orderid) === order_id
         );
       }
-      this.localStore.saveData('orderid', this.orders.orderid);
-      this.localStore.saveData('referenceid', this.orders.referenceid);
-      this.localStore.saveData('amount', this.orders.grandtotal);
+      this.localStore.saveData('orderid', this.orders?.orderid);
+      this.localStore.saveData('referenceid', this.orders?.referenceid);
+      this.localStore.saveData('amount', this.orders?.grandtotal);
     })
   }
   phonepe_payment(){
