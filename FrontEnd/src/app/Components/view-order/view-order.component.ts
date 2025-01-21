@@ -16,7 +16,10 @@ export class ViewOrderComponent implements OnInit{
   ){}
   ngOnInit(): void {
     const order_id = this.route.snapshot.params["orderid"]; 
-    var result = this.transactions.getData();
-    console.log(result)
+    var result =this.transactions.getData();
+    const data = result.find((x:any)=>{
+      return(x.orderid == parseInt(order_id))
+    })
+    console.log(data)
   }
 }
