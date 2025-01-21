@@ -37,7 +37,7 @@
                                         <th>No. of Items</th>
                                         <th>Total Amount</th>
                                         <th>Requested On</th>
-                                        <th colspan="2">Operations</th>
+                                        <th colspan="2">View/Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -47,8 +47,8 @@
                                         <td>{{item.ordersplaced.length}}</td>
                                         <td>₹ {{item.grandtotal}}</td> 
                                         <td>{{formatedDate(item.createdAt)}}</td>
-                                        <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye"></i></a></td>
-                                        <td><i class="fas fa-trash-alt"></i></td>
+                                        <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                        <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>

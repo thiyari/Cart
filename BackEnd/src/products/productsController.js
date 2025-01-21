@@ -294,6 +294,27 @@ var fetchPaypaltxnControllerFn = async(req,res)=>
             }
         }
 
+
+
+var deleteUserRequestControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.deleteUserRequestDBService(req.params.orderid)
+            if(result.status){
+                return res.send({"status": true, "message": result.msg});
+            }
+            else {
+                return res.send({"status": false, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+
+    }    
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -308,5 +329,6 @@ module.exports = {
     paypalControllerFn,
     fetchPaypaltxnControllerFn,
     razorpayControllerFn,
-    fetchRazorpaytxnControllerFn
+    fetchRazorpaytxnControllerFn,
+    deleteUserRequestControllerFn
 }

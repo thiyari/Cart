@@ -61,7 +61,6 @@ export class ApiService {
   }
 
   razorpay_pay(data: any){
-    console.log(data)
     return this.http.post<any>(`${environment.SERVER_URI}/api/razorpay-pay`,data)
     .subscribe()
   }
@@ -94,4 +93,8 @@ export class ApiService {
     }))
   }
 
+  remove_userRequest(orderid:any){
+    return this.http.delete<any>(`${environment.SERVER_URI}/api/user-request/delete/${orderid}`)
+    .subscribe()
+  }
 }

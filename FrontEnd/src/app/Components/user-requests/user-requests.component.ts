@@ -21,6 +21,10 @@ export class UserRequestsComponent implements OnInit{
       })
   }
 
+  onDelete(orderid:any){
+    this.api.remove_userRequest(orderid)
+    this.orders_records = this.orders_records.filter((item:any) => item.orderid != orderid);
+  }
 
   formatedDate = (savedTime:any) => {
     const date = new Date(savedTime).toLocaleString(

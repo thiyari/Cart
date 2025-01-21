@@ -247,4 +247,18 @@ module.exports.fetchRazorpayDBService = () => {
 }
 
 
-        
+
+module.exports.deleteUserRequestDBService = async (orderid) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.orders.findOneAndDelete({orderid:orderid})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Order Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting order failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
