@@ -4,6 +4,22 @@
     margin: 10px 0px 0px 420px;
 }
 
+.card{
+    border-width: 2px; 
+    border-color: darkblue; 
+}
+
+.box{
+    padding: 10px;
+}
+
+.title{
+    text-align: center; 
+    font-size: xx-large; 
+    font-weight: bold; 
+    color: darkblue;
+}
+
 @media (max-width: 360px){
     .btn-primary{
         background-color: darkblue;
