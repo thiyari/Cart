@@ -20,7 +20,8 @@ export class UserOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     const mail_id = "manikanth578@gmail.com"; 
-    this.aggregation = this.transactions.merge(mail_id)
+    this.aggregation = this.transactions.merge_userdata(mail_id)
+    this.transactions.setData(this.aggregation)
   }
 
   formatedDate = (savedTime:any) => {

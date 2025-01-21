@@ -6,18 +6,19 @@ import { ApiService } from './api.service';
 })
 export class AggregationService {
 
-  orders_records: any;
+  orders_records: any[] = [];
   reference_ids:any[] = [];
   paypal_records:any[] = [];
   razorpay_records: any[] = [];
   phonepe_records: any[] = [];
   googlepay_records: any[] = []
   aggregation: any[] = []
+  result: any[] = [];
 
   constructor(private api: ApiService) { }
 
 
-  merge(mail_id: any){
+  merge_userdata(mail_id: any){
 
     this.api.getOrders()
     .subscribe(res=>{
@@ -106,4 +107,17 @@ export class AggregationService {
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
       return this.aggregation
   }
+
+  setData(response: any) {
+    this.result = response
+  }
+
+  getData() {
+    return this.result
+  }
+
+  clearData() {
+    return this.result = []
+  }
 }
+

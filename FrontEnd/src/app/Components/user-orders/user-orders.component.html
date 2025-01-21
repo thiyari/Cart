@@ -63,7 +63,7 @@
                                                         <ng-template #date>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                         </ng-template>                                        
-                                                        <td><i class="fa-solid fa-eye fa-2x"></i></td>
+                                                        <td><a [routerLink]="['/view-order',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

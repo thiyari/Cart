@@ -24,6 +24,7 @@ import { RazorpaySuccessComponent } from './Components/razorpay-success/razorpay
 import { UserOrdersComponent } from './Components/user-orders/user-orders.component';
 import { UserRequestsComponent } from './Components/user-requests/user-requests.component';
 import { ViewRequestComponent } from './Components/view-request/view-request.component';
+import { ViewOrderComponent } from './Components/view-order/view-order.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ViewRequestComponent } from './Components/view-request/view-request.com
     RazorpaySuccessComponent,
     UserOrdersComponent,
     UserRequestsComponent,
-    ViewRequestComponent
+    ViewRequestComponent,
+    ViewOrderComponent
   ],
   imports: [
     BrowserModule,
