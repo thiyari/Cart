@@ -303,10 +303,10 @@ var deleteUserRequestControllerFn = async(req,res)=>
         {
             var result = await productsService.deleteUserRequestDBService(req.params.orderid)
             if(result.status){
-                return res.send({"status": true, "message": result.msg});
+                return res.send({"status": result.success, "message": result.msg});
             }
             else {
-                return res.send({"status": false, "message": result.msg});
+                return res.send({"status": result.success, "message": result.msg});
             }
         }
         catch(err){
