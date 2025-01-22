@@ -30,7 +30,7 @@
                 <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <div style="float: left; text-align: left;">
-                            <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':397, 'height.px':200}">
+                            <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':300, 'height.px':200}">
                         </div>
                         <div style="float: right; text-align: right;">
                             <h4>Invoice/Payment Bill</h4>
@@ -39,7 +39,7 @@
                         <div style="clear: both;"></div>
                         <div style="float: left; text-align: left;">
                             <p>
-                                <b>To</b><br>
+                                <b>To:</b><br>
                                 {{data?.name}}<br>
                             </p>
                             <p>
@@ -47,8 +47,7 @@
                                 <b>Phone: </b>{{data?.phone}}
                             </p>
                         </div>
-                        <div style="clear: both;"></div>
-                        <div style="float: left; text-align: left;">
+                        <div style="float: right; text-align: right;">
                             <b>Sold By:</b>
                             <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
                             Mani Stores,
@@ -58,7 +57,8 @@
                             TELANGANA,
                             IN</p>
                         </div>
-                        <div style="float: right; text-align: right;">
+                        <div style="clear: both;"></div>
+                        <div style="float: left; text-align: left;">
                             <b>Shipping Address:</b>
                             <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
                             {{data?.shippingaddress}},
@@ -66,16 +66,21 @@
                             {{data?.state}},
                             {{data?.pin}}</p>
                         </div>
-                        <div style="clear: both;"></div>
-                        <div>
-                        <div style="float: left; text-align: left;">
+                        <div style="float: right; text-align: right;">
                             <div><b>Order Number:</b> {{data?.orderid}}</div>
                             <div><b>Payment Method:</b> {{data?.transactionstatus.replace("Received: ","")}}</div>
+                            <div *ngIf="data?.transactionstatus === 'Received: GooglePay' else another"><b>Invoice Number:</b> {{data?.referenceid}}</div>
+                            <ng-template #another>
+                                <div><b>Invoice Number:</b> {{data?.referenceid}}</div>
+                                <div><b>Transaction Number:</b> {{data?.transactionid}}</div>
+                            </ng-template>
+                            <div *ngIf="data?.transactionstatus === 'Received: PayPal' else other"><b>Transaction Date:</b> {{formatedDate(data?.transaction_date)}}</div>
+                            <ng-template #other>
+                                <div><b>Transaction Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                            </ng-template>  
                         </div>
-                        <div style="float: right; text-align: right;">
-                            <div><b>Reference Number:</b> {{data?.referenceid}}</div>
-                            <div><b>Transaction Date:</b> {{formatedDate(data?.createdAt)}}</div>
-                        </div></div>
+                        <div style="clear: both;"></div>
+
                     </div>
                 <div class="col-md-1"></div>
             </div>
