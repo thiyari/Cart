@@ -82,13 +82,11 @@
                             <div class="form-group">
                                 <label class="form-label"><b>Address:</b></label>
                                 <br>
-                                <label class="form-label" style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">{{order?.shippingaddress}}</label>
-                                <br>
-                                <label class="form-label">{{order?.city}}</label>
-                                <br>
-                                <label class="form-label">{{order?.state}}</label>
-                                <br>
-                                <label class="form-label">Pin: {{order?.pin}}</label>
+                                <label class="form-label" style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
+                                {{order?.shippingaddress}},
+                                {{order?.city}},
+                                {{order?.state}},
+                                Pin: {{order?.pin}}</label>
                             </div>
                         </div>
                      </div>

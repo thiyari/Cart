@@ -34,27 +34,28 @@
                                 <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':397, 'height.px':200}">
                             </div>
                             <div style="float: right">
-                                <h2>Invoice</h2>
+                                <h4>Invoice/Bill of Payment</h4>
+                                <p>(Original for Receipt)</p>
                             </div>
                         </div>
                         <div style="clear: both;"></div>
                         <div style="float: left;">
                             <b>Sold By:</b>
-                            <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">Mani Stores
+                            <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
+                            Mani Stores,
                             Building No. B12, ESI Hyd Estates Pvt Ltd,
                             Pochampally Village, Dist: Nalgonda,
-                            Pin 558412
-                            TELANGANA
+                            Pin 558412,
+                            TELANGANA,
                             IN</p>
                         </div>
                         <div style="float: right;">
-                            <b>Sold By:</b>
-                            <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">Mani Stores
-                            Building No. B12, ESI Hyd Estates Pvt Ltd,
-                            Pochampally Village, Dist: Nalgonda,
-                            Pin 558412
-                            TELANGANA
-                            IN</p>
+                            <b>Shipping Address:</b>
+                            <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
+                            {{data?.shippingaddress}},
+                            {{data?.city}},
+                            {{data?.state}},
+                            {{data?.pin}}</p>
                         </div>
                     </div>
                 <div class="col-md-1"></div>

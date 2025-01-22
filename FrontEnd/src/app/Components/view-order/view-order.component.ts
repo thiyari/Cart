@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './view-order.component.scss'
 })
 export class ViewOrderComponent implements OnInit{
+  public data:any;
   constructor(
     private transactions: AggregationService,
     private route: ActivatedRoute
@@ -17,9 +18,9 @@ export class ViewOrderComponent implements OnInit{
   ngOnInit(): void {
     const order_id = this.route.snapshot.params["orderid"]; 
     var result =this.transactions.getData();
-    const data = result.find((x:any)=>{
+    this.data = result.find((x:any)=>{
       return(x.orderid == parseInt(order_id))
     })
-    console.log(data)
+    console.log(this.data)
   }
 }
