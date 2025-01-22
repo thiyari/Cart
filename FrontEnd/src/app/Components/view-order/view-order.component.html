@@ -33,8 +33,19 @@
                             <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':397, 'height.px':200}">
                         </div>
                         <div style="float: right; text-align: right;">
-                            <h4>Invoice/Bill of Payment</h4>
+                            <h4>Invoice/Payment Bill</h4>
                             <p>(Original for Receipt)</p>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div style="float: left; text-align: left;">
+                            <p>
+                                <b>To</b><br>
+                                {{data?.name}}<br>
+                            </p>
+                            <p>
+                                <b>Email: </b>{{data?.email}}<br>
+                                <b>Phone: </b>{{data?.phone}}
+                            </p>
                         </div>
                         <div style="clear: both;"></div>
                         <div style="float: left; text-align: left;">
@@ -59,11 +70,11 @@
                         <div>
                         <div style="float: left; text-align: left;">
                             <div><b>Order Number:</b> {{data?.orderid}}</div>
-                            <div><b>Order Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                            <div><b>Payment Method:</b> {{data?.transactionstatus.replace("Received: ","")}}</div>
                         </div>
                         <div style="float: right; text-align: right;">
-                            <div><b>Invoice Number:</b> {{data?.referenceid}}</div>
-                            <div><b>Invoice Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                            <div><b>Reference Number:</b> {{data?.referenceid}}</div>
+                            <div><b>Transaction Date:</b> {{formatedDate(data?.createdAt)}}</div>
                         </div></div>
                     </div>
                 <div class="col-md-1"></div>
