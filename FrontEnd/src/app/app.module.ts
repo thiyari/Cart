@@ -25,6 +25,7 @@ import { UserOrdersComponent } from './Components/user-orders/user-orders.compon
 import { UserRequestsComponent } from './Components/user-requests/user-requests.component';
 import { ViewRequestComponent } from './Components/view-request/view-request.component';
 import { ViewOrderComponent } from './Components/view-order/view-order.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ViewOrderComponent } from './Components/view-order/view-order.component
     SlickCarouselModule,
     ReactiveFormsModule,
     PayGoogleComponent,
-    NgxPayPalModule
+    NgxPayPalModule,
+    CommonModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
