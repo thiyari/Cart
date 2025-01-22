@@ -23,4 +23,14 @@ export class ViewOrderComponent implements OnInit{
     })
     console.log(this.data)
   }
+  formatedDate = (savedTime:any) => {
+    const date = new Date(savedTime).toLocaleString(
+      "gu-IN",
+      {
+        timeStyle: "medium",
+        dateStyle: "short",
+      }
+    );
+    return date
+  }
 }

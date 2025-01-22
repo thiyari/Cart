@@ -29,17 +29,15 @@
             <div class="row">
                 <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <div>
-                            <div style="float: left">
-                                <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':397, 'height.px':200}">
-                            </div>
-                            <div style="float: right">
-                                <h4>Invoice/Bill of Payment</h4>
-                                <p>(Original for Receipt)</p>
-                            </div>
+                        <div style="float: left; text-align: left;">
+                            <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':397, 'height.px':200}">
+                        </div>
+                        <div style="float: right; text-align: right;">
+                            <h4>Invoice/Bill of Payment</h4>
+                            <p>(Original for Receipt)</p>
                         </div>
                         <div style="clear: both;"></div>
-                        <div style="float: left;">
+                        <div style="float: left; text-align: left;">
                             <b>Sold By:</b>
                             <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
                             Mani Stores,
@@ -49,7 +47,7 @@
                             TELANGANA,
                             IN</p>
                         </div>
-                        <div style="float: right;">
+                        <div style="float: right; text-align: right;">
                             <b>Shipping Address:</b>
                             <p style="white-space: wrap; max-width: 30ch; word-wrap: break-word;">
                             {{data?.shippingaddress}},
@@ -57,6 +55,16 @@
                             {{data?.state}},
                             {{data?.pin}}</p>
                         </div>
+                        <div style="clear: both;"></div>
+                        <div>
+                        <div style="float: left; text-align: left;">
+                            <div><b>Order Number:</b> {{data?.orderid}}</div>
+                            <div><b>Order Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                        </div>
+                        <div style="float: right; text-align: right;">
+                            <div><b>Invoice Number:</b> {{data?.referenceid}}</div>
+                            <div><b>Invoice Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                        </div></div>
                     </div>
                 <div class="col-md-1"></div>
             </div>
