@@ -66,7 +66,7 @@
                             {{data?.state}},
                             {{data?.pin}}</p>
                         </div>
-                        <div style="float: right; text-align: left;">
+                        <div style="float: right; text-align: right;">
                             <div><b>Order Number:</b> {{data?.orderid}}</div>
                             <div><b>Payment Method:</b> {{data?.transactionstatus.replace("Received: ","")}}</div>
                             <div *ngIf="data?.transactionstatus === 'Received: GooglePay' else another"><b>Invoice Number:</b> {{data?.referenceid}}</div>
@@ -80,6 +80,34 @@
                             </ng-template>  
                         </div>
                         <div style="clear: both;"></div>
+                        <br>
+                        <div class ="table-responsive-md">                  
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>    
+                                        <th>Total</th>            
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr *ngFor="let item of data?.ordersplaced; let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item?.name}}</td>
+                                        <td>{{item?.price}}</td>
+                                        <td>{{item?.quantity}}</td>
+                                        <td>{{item?.total}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td><strong>Grand Total:</strong></td>
+                                        <td>{{data?.grandtotal}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 <div class="col-md-1"></div>
