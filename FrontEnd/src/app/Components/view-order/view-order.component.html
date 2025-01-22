@@ -66,7 +66,7 @@
                             {{data?.state}},
                             {{data?.pin}}</p>
                         </div>
-                        <div style="float: right; text-align: right;">
+                        <div style="float: right; text-align: left;">
                             <div><b>Order Number:</b> {{data?.orderid}}</div>
                             <div><b>Payment Method:</b> {{data?.transactionstatus.replace("Received: ","")}}</div>
                             <div *ngIf="data?.transactionstatus === 'Received: GooglePay' else another"><b>Invoice Number:</b> {{data?.referenceid}}</div>
