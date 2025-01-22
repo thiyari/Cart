@@ -95,19 +95,36 @@
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
-                                    <tr *ngFor="let item of data?.ordersplaced; let i = index">
-                                        <td>{{i+1}}</td>
-                                        <td>{{item?.pid}}</td>
-                                        <td>{{item?.name}}</td>
-                                        <td>{{item?.price}}</td>
-                                        <td>{{item?.quantity}}</td>
-                                        <td>{{item?.total}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4"></td>
-                                        <td><strong>Grand Total:</strong></td>
-                                        <td>{{data?.grandtotal}}</td>
-                                    </tr>
+                                    <ng-container *ngIf="data?.transactionstatus === 'Received: PayPal' else remaining">
+                                        <tr *ngFor="let item of data?.items; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>id</td>
+                                            <td>{{item?.product_name}}</td>
+                                            <td>$ {{item?.price}}</td>
+                                            <td>{{item?.quantity}}</td>
+                                            <td>{{item?.total_price}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td><strong>Grand Total:</strong></td>
+                                            <td>$ {{data?.amount}}</td>
+                                        </tr>    
+                                    </ng-container>
+                                    <ng-template #remaining>
+                                        <tr *ngFor="let item of data?.ordersplaced; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item?.pid}}</td>
+                                            <td>{{item?.name}}</td>
+                                            <td>₹ {{item?.price}}</td>
+                                            <td>{{item?.quantity}}</td>
+                                            <td>{{item?.total}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td><strong>Grand Total:</strong></td>
+                                            <td>₹ {{data?.amount}}</td>
+                                        </tr>    
+                                    </ng-template>
                                 </tbody>
                             </table>
                         </div>

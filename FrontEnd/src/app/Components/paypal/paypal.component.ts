@@ -87,6 +87,7 @@ export class PaypalComponent implements OnInit{
 
                 let product_items:any[] = []
                 let purchase_response = details.purchase_units.find((x:any)=>x)
+                console.log(purchase_response)
                 purchase_response.items.map((item:any)=>{
                     product_items.push({
                         "product_name": item.name,
