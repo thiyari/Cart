@@ -29,6 +29,7 @@
             <div class="row">
                 <div class="col-md-1"></div>
                     <div class="col-md-10">
+                       <div id="gen_pdf"> 
                         <div style="float: left; text-align: left;">
                             <img src="images/Sample_logo.png" alt="company_logo" [ngStyle]="{'width.px':300, 'height.px':200}">
                         </div>
@@ -110,7 +111,8 @@
                                 </tbody>
                             </table>
                         </div>
-
+                    </div>
+                    <button type="button" class="btn btn-primary" (click)="downloadAsPDF()">Download</button>
                     </div>
                 <div class="col-md-1"></div>
             </div>

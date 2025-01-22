@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AggregationService } from '../../service/aggregation.service';
 import { ActivatedRoute } from '@angular/router';
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 
 @Component({
   selector: 'app-view-order',
@@ -32,5 +34,15 @@ export class ViewOrderComponent implements OnInit{
       }
     );
     return date
+  }
+  downloadAsPDF(){
+    let data = document.getElementById('gen_pdf')!;  
+    html2canvas(data).then(canvas => {
+    const contentDataURL = canvas.toDataURL('image/png')  // 'image/jpeg' for lower quality output.
+    //let pdf = new jspdf('l', 'cm', 'a4'); //Generates PDF in landscape mode
+    let pdf = new jspdf('p', 'cm', 'a4'); // Generates PDF in portrait mode
+    pdf.addImage(contentDataURL, 'PNG', 1, 2, 19, 17);  
+    pdf.save(this.data.referenceid+'.pdf');   
+  }); 
   }
 }
