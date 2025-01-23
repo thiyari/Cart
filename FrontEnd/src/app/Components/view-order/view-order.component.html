@@ -72,12 +72,12 @@
                             <div><b>Payment Method:</b> {{data?.transactionstatus.replace("Received: ","")}}</div>
                             <div *ngIf="data?.transactionstatus === 'Received: GooglePay' else another"><b>Invoice Number:</b> {{data?.referenceid}}</div>
                             <ng-template #another>
-                                <div><b>Invoice Number:</b> {{data?.referenceid}}</div>
                                 <div><b>Transaction Number:</b> {{data?.transactionid}}</div>
+                                <div><b>Invoice Number:</b> {{data?.referenceid}}</div>
                             </ng-template>
-                            <div *ngIf="data?.transactionstatus === 'Received: PayPal' else other"><b>Transaction Date:</b> {{formatedDate(data?.transaction_date)}}</div>
+                            <div *ngIf="data?.transactionstatus === 'Received: PayPal' else other"><b>Invoice Date:</b> {{formatedDate(data?.transaction_date)}}</div>
                             <ng-template #other>
-                                <div><b>Transaction Date:</b> {{formatedDate(data?.createdAt)}}</div>
+                                <div><b>Invoice Date:</b> {{formatedDate(data?.createdAt)}}</div>
                             </ng-template>  
                         </div>
                         <div style="clear: both;"></div>
@@ -125,9 +125,25 @@
                                             <td>₹ {{data?.amount}}</td>
                                         </tr>    
                                     </ng-template>
+                                    <ng-container *ngIf="data?.transactionstatus === 'Received: PayPal' else rupees">
+                                        <tr>
+                                            <td colspan="2"><strong>Amount in Words:</strong></td>
+                                            <td colspan="4"><strong>{{amount_in_words_dollars(data?.amount)}}</strong></td>         
+                                        </tr>
+                                    </ng-container>
+                                    <ng-template #rupees>
+                                        <tr>
+                                            <td colspan="2"><strong>Amount in Words:</strong></td>
+                                            <td colspan="4"><strong>{{amount_in_words_rupees(data?.amount)}}</strong></td>
+                                        </tr>
+                                    </ng-template>
                                 </tbody>
                             </table>
                         </div>
+                        <hr>
+                            <div>For Mani Stores</div>
+                            <div>Authorized Signatory</div>
+                        <hr>
                     </div>
                     <button type="button" class="btn btn-primary" (click)="downloadAsPDF()">Download</button>
                     </div>

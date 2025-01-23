@@ -3,6 +3,7 @@ import { AggregationService } from '../../service/aggregation.service';
 import { ActivatedRoute } from '@angular/router';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
+import { ToWords } from 'to-words';
 
 @Component({
   selector: 'app-view-order',
@@ -51,4 +52,57 @@ export class ViewOrderComponent implements OnInit{
     pdf.save(this.data.referenceid+'.pdf');   
   }); 
   }
+
+  amount_in_words_rupees(amount:any){
+    const toWords = new ToWords({
+      localeCode: 'en-IN',
+      converterOptions: {
+        currency: true,
+        ignoreDecimal: false,
+        ignoreZeroCurrency: false,
+        doNotAddOnly: false,
+        currencyOptions: {
+          // can be used to override defaults for the selected locale
+          name: 'Rupee',
+          plural: 'Rupees',
+          symbol: '₹',
+          fractionalUnit: {
+            name: 'Paisa',
+            plural: 'Paise',
+            symbol: '',
+          },
+        },
+      },
+    });
+    const result = toWords.convert(amount, { currency: true })
+    return result;
+  }
+
+
+  amount_in_words_dollars(amount:any){
+    const toWords = new ToWords({
+      localeCode: 'en-US',
+      converterOptions: {
+        currency: true,
+        ignoreDecimal: false,
+        ignoreZeroCurrency: false,
+        doNotAddOnly: false,
+        currencyOptions: {
+          // can be used to override defaults for the selected locale
+          name: 'Dollar',
+          plural: 'Dollars',
+          symbol: '$',
+          fractionalUnit: {
+            name: 'Cent',
+            plural: 'Cent',
+            symbol: '',
+          },
+        },
+      },
+    });
+    const result = toWords.convert(amount, { currency: true })
+    return result;
+  }
+  
+
 }
