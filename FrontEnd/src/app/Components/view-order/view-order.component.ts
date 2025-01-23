@@ -24,6 +24,14 @@ export class ViewOrderComponent implements OnInit{
       return(x.orderid == parseInt(order_id))
     })
     console.log(this.data)
+    let myMap = new Map<string, number>();
+    
+    this.data?.ordersplaced.forEach((x:any)=>{
+        myMap.set(x.name,x.pid);
+    })
+
+        
+    console.log(myMap)
   }
   formatedDate = (savedTime:any) => {
     const date = new Date(savedTime).toLocaleString(
