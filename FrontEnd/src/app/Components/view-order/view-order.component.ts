@@ -13,6 +13,8 @@ import jspdf from 'jspdf';
 })
 export class ViewOrderComponent implements OnInit{
   public data:any;
+  public pidMap = new Map<string, number>();
+
   constructor(
     private transactions: AggregationService,
     private route: ActivatedRoute
@@ -23,15 +25,11 @@ export class ViewOrderComponent implements OnInit{
     this.data = result.find((x:any)=>{
       return(x.orderid == parseInt(order_id))
     })
-    console.log(this.data)
-    let myMap = new Map<string, number>();
     
     this.data?.ordersplaced.forEach((x:any)=>{
-        myMap.set(x.name,x.pid);
+        this.pidMap.set(x.name,x.pid);
     })
 
-        
-    console.log(myMap)
   }
   formatedDate = (savedTime:any) => {
     const date = new Date(savedTime).toLocaleString(

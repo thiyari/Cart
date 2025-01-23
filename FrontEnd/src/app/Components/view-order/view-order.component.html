@@ -98,7 +98,7 @@
                                     <ng-container *ngIf="data?.transactionstatus === 'Received: PayPal' else remaining">
                                         <tr *ngFor="let item of data?.items; let i = index">
                                             <td>{{i+1}}</td>
-                                            <td>id</td>
+                                            <td>{{pidMap.get(item.product_name)}}</td>
                                             <td>{{item?.product_name}}</td>
                                             <td>$ {{item?.price}}</td>
                                             <td>{{item?.quantity}}</td>
