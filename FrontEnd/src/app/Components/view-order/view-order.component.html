@@ -127,25 +127,34 @@
                                     </ng-template>
                                     <ng-container *ngIf="data?.transactionstatus === 'Received: PayPal' else rupees">
                                         <tr>
-                                            <td colspan="2"><strong>Amount in Words:</strong></td>
-                                            <td colspan="4"><strong>{{amount_in_words_dollars(data?.amount)}}</strong></td>         
+                                            <td colspan="6"  style="border: none;"><strong>Amount in Words:</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"><strong>{{amount_in_words_dollars(data?.amount)}}</strong></td>         
                                         </tr>
                                     </ng-container>
                                     <ng-template #rupees>
                                         <tr>
-                                            <td colspan="2"><strong>Amount in Words:</strong></td>
-                                            <td colspan="4"><strong>{{amount_in_words_rupees(data?.amount)}}</strong></td>
+                                            <td colspan="6" style="border: none;"><strong>Amount in Words:</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"><strong>{{amount_in_words_rupees(data?.amount)}}</strong></td>
                                         </tr>
                                     </ng-template>
                                 </tbody>
                             </table>
                         </div>
-                        <hr>
-                            <div>For Mani Stores</div>
-                            <div>Authorized Signatory</div>
-                        <hr>
+                        <div style="float: right; text-align: right;">
+                            For <b>Mani Stores</b>
+                            <br>
+                            <img src="images/Sample_sign.png" alt="company_logo" [ngStyle]="{'width.px':150, 'height.px':50}">
+                            <br>
+                            Authorized Signatory
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary" (click)="downloadAsPDF()">Download</button>
+                    <div>
+                        <button type="button" class="btn btn-primary" (click)="downloadAsPDF()">Download</button>
+                    </div>
                     </div>
                 <div class="col-md-1"></div>
             </div>
