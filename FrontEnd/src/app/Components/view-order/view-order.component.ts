@@ -94,7 +94,7 @@ export class ViewOrderComponent implements OnInit{
           symbol: '$',
           fractionalUnit: {
             name: 'Cent',
-            plural: 'Cent',
+            plural: 'Cents',
             symbol: '',
           },
         },
