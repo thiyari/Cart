@@ -24,4 +24,8 @@ export class HeaderComponent implements OnInit{
     this.searchTerm = (event.target as HTMLInputElement).value;
     this.cartService.search.next(this.searchTerm)
   }
+
+  open_window(){
+    window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
+  }
 }
