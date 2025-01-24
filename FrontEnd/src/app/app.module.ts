@@ -26,6 +26,7 @@ import { UserRequestsComponent } from './Components/user-requests/user-requests.
 import { ViewRequestComponent } from './Components/view-request/view-request.component';
 import { ViewOrderComponent } from './Components/view-order/view-order.component';
 import { CommonModule } from '@angular/common';
+import { LoginComponent } from './Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { CommonModule } from '@angular/common';
     UserOrdersComponent,
     UserRequestsComponent,
     ViewRequestComponent,
-    ViewOrderComponent
+    ViewOrderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
