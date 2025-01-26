@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +7,41 @@ import { Component, ViewChild } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit{
   
   @ViewChild('email') email: any;
   @ViewChild('verification') verfEle: any;
   @ViewChild('emailpartial') emailpartialEle: any;
   @ViewChild('success') successEle: any;
   @ViewChild('error') errorEle: any;
+  @ViewChildren('otp_num') otp_inputs!: QueryList<ElementRef>
 
+  ngAfterViewInit() {
+    this.otp_inputs.toArray();
+  }
+
+  moveNext(event:any){
+            // otp_num_4
+            let current = event.target;
+            let index = current.classList[1].slice(-1);
+            // Shifting the key focus while pressing back space key (code 8)
+            if (event.keyCode === 8 && index > 1) {
+                current.previousElementSibling.focus()
+            }
+            // Shifting the key focus to next field while entering key
+            else if (index < 4) {
+                current.nextElementSibling.focus()
+
+            }
+            var otp_check = '';
+            for (let ip of this.otp_inputs) {
+                otp_check += ip.nativeElement.value
+            }
+            if (otp_check.length === 4) {
+                //verifyOTP()
+            }
+
+  }
 
   sendOTP() {
     let emailEle = this.email.nativeElement;
@@ -39,6 +66,12 @@ export class LoginComponent {
                             verfEle.style.display = 'block';
                             emailpartialEle.innerHTML = "***" + email.slice(3)
                             emailEle.value = ''
+                            console.log(this.otp_inputs)
+                            this.otp_inputs.forEach(
+                                (ip:any) => {
+                                    ip.addEventListener('keyup', this.moveNext)
+                                }
+                            )
                         }
                         else {
                             errorEle.style.display = 'block';
