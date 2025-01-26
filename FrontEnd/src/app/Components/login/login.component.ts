@@ -31,7 +31,6 @@ export class LoginComponent implements AfterViewInit{
             // Shifting the key focus to next field while entering key
             else if (index < 4) {
                 current.nextElementSibling.focus()
-
             }
             var otp_check = '';
             for (let ip of this.otp_inputs) {
@@ -66,12 +65,10 @@ export class LoginComponent implements AfterViewInit{
                             verfEle.style.display = 'block';
                             emailpartialEle.innerHTML = "***" + email.slice(3)
                             emailEle.value = ''
-                            console.log(this.otp_inputs)
-                            this.otp_inputs.forEach(
-                                (ip:any) => {
-                                    ip.addEventListener('keyup', this.moveNext)
-                                }
-                            )
+                            
+                            this.otp_inputs.forEach((ip) => {
+                                        ip.nativeElement.addEventListener('keyup', this.moveNext)
+                                    })
                         }
                         else {
                             errorEle.style.display = 'block';
