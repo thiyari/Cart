@@ -10,10 +10,10 @@ import { Component, ViewChild } from '@angular/core';
 export class LoginComponent {
   
   @ViewChild('email') email: any;
-  @ViewChild('verfEle') verfEle: any;
-  @ViewChild('emailpartialEle') emailpartialEle: any;
-  @ViewChild('successEle') successEle: any;
-  @ViewChild('errorEle') errorEle: any;
+  @ViewChild('verification') verfEle: any;
+  @ViewChild('emailpartial') emailpartialEle: any;
+  @ViewChild('success') successEle: any;
+  @ViewChild('error') errorEle: any;
 
 
   sendOTP() {
@@ -26,7 +26,7 @@ export class LoginComponent {
     let regex = new RegExp('[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}');
     let email = emailEle.value;
     if (regex.test(email)) {
-            fetch('http://localhost:4000/sendotp', {
+            fetch('http://localhost:8086/sendotp', {
                 method: "POST",
                 body: JSON.stringify({
                     "email": `${email}`
@@ -35,7 +35,7 @@ export class LoginComponent {
             })
                 .then(
                     (res) => {
-                        if (res.status == 200) {
+                        if (res.status === 200) {
                             verfEle.style.display = 'block';
                             emailpartialEle.innerHTML = "***" + email.slice(3)
                             emailEle.value = ''
