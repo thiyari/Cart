@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+                <h3 class="text-primary center">OTP Verification</h3>
+                <div class="row form">
+                    <div class="col-auto">
+                        <input type="email" class="form-control email" #email>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" (click)="sendOTP()">Send OTP</button>
+                    </div>
+                </div>
+                <div class="success text-success" #success>
+                    OTP verified Successfully
+                </div>
+            
+                <div class="verification" #verification>
+                    <div class="title center">
+                        <p>An OTP has been sent to <span class="emailpartial" #emailpartial>***</span></p>
+                    </div>
+                    <div class="otp-input-fields">
+                        <input type="number" class="otp_num otp_num_1" maxlength="1" #otp_num>
+                        <input type="number" class="otp_num otp_num_2" maxlength="1" #otp_num>
+                        <input type="number" class="otp_num otp_num_3" maxlength="1" #otp_num>
+                        <input type="number" class="otp_num otp_num_4" maxlength="1" #otp_num>
+                    </div>
+                </div>
+                <div class="error text-danger" #error>
+                    Invalid otp
+                </div>
+                </div>
+        </div>
+        <div class="col-md-3"></div>
+</div>

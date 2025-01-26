@@ -21,6 +21,7 @@ export class AppComponent {
           }
           if(val instanceof NavigationEnd){
             if(val.url === '/' ||
+              val.url === '/login' ||
               val.url === '/products' ||
               val.url === `/product/${this.id}` || 
               val.url === '/cart' || 
