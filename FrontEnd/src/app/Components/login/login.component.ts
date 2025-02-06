@@ -12,7 +12,7 @@ export class LoginComponent {
     
   display: boolean = false;
   email: any = "";
-  otp_inputs: Array<any> = [];
+  otp_inputs: Array<string> = [];
   message: any = "";
   /*
   @ViewChild('success') successEle: any;
@@ -39,7 +39,6 @@ export class LoginComponent {
                 otp_check += num
             }
             if (otp_check.length === 4) {
-                console.log(index)
                 console.log(otp_check)
                 //verifyOTP()
             }
