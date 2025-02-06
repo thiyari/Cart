@@ -39,6 +39,7 @@ export class LoginComponent {
                 otp_check += num
             }
             if (otp_check.length === 4) {
+                console.log(index)
                 console.log(otp_check)
                 //verifyOTP()
             }
