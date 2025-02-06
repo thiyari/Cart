@@ -7,7 +7,6 @@
                 <hr>
                 <div class="row form">
                     <div class="col-auto">
-                        <!--<input type="email" class="form-control email" placeholder="provide your email" #email>-->
                         <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control email" placeholder="provide your email">
                     </div>
                     <div class="col-auto">
@@ -18,20 +17,14 @@
                     OTP verified Successfully
                 </div>
             
-                <!--<div class="verification" #verification>-->
-                <div *ngIf="display">
+                <div *ngIf="display" class="verification">
                     <div class="title center">
-                        <!--<p>An OTP has been sent to <span class="emailpartial" #emailpartial>***col-auto.com</span></p>-->
-                        <p [innerHTML]="message">An OTP has been sent to <span>***col-auto.com</span></p>
+                        <p [innerHTML]="message"></p>
                     </div>
                     <div class="otp-input-fields">
-                        <!--<input type="number" class="otp_num otp_num_1" maxlength="1" #otp_num>-->
                         <input type="number" [(ngModel)]="otp_inputs[0]" [ngModelOptions]="{standalone: true}" class="otp_num otp_num_1" maxlength="1" (keyup)="moveNext($event)">
-                        <!--<input type="number" class="otp_num otp_num_2" maxlength="1" #otp_num>-->
                         <input type="number" [(ngModel)]="otp_inputs[1]" [ngModelOptions]="{standalone: true}" class="otp_num otp_num_2" maxlength="1" (keyup)="moveNext($event)">
-                        <!--<input type="number" class="otp_num otp_num_3" maxlength="1" #otp_num>-->
                         <input type="number" [(ngModel)]="otp_inputs[2]" [ngModelOptions]="{standalone: true}" class="otp_num otp_num_3" maxlength="1" (keyup)="moveNext($event)">
-                        <!--<input type="number" class="otp_num otp_num_4" maxlength="1" #otp_num>-->
                         <input type="number" [(ngModel)]="otp_inputs[3]" [ngModelOptions]="{standalone: true}" class="otp_num otp_num_4" maxlength="1" (keyup)="moveNext($event)">
                     </div>
                 </div>
