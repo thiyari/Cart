@@ -102,14 +102,14 @@ export class LoginComponent {
                 })        
 
             } else {
-                this.error = "Email doesn't exist in our database records";
+                this.error = "Email doesn't exist in the database records";
                 this.success = "";
             }
           })
         
         }
         else {
-            this.error = "Invalid Email";
+            this.error = "Email entered is invalid";
             this.success = "";
         }
   }
