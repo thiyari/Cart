@@ -64,6 +64,7 @@ export class LoginComponent {
                     this.email = "";
                     this.success = "OTP verified Successfully";
                     this.error = "";
+                    window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
                 }
                 else {
                     this.display = false;
