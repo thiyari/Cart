@@ -5,8 +5,8 @@ require("dotenv").config();
 
 let salt_key = process.env.PHONE_PE_SALT_KEY
 let merchant_id = process.env.PHONE_PE_MERCHANT_ID
-let user = process.env.GMAIL_APP_USER_ID
-let pass = process.env.GMAIL_APP_PASSWORD
+let app_user = process.env.GMAIL_APP_USER_ID
+let app_pass = process.env.GMAIL_APP_PASSWORD
 var productsService = require('./productsService');
 
 var nm = require('nodemailer');
@@ -17,8 +17,8 @@ var transporter = nm.createTransport(
         port: 587,
         secure: false,
         auth: {
-            user: user,
-            pass: pass
+            user: app_user,
+            pass: app_pass
         }
     }
 );
@@ -344,11 +344,10 @@ var sendOtpControllerFn = async(req, res) => {
 
     }
     var options = {
-        from: 'ts.manikanth@gmail.com',
+        from: app_user,
         to: `${email}`,
-        subject: "Testing node emails",
-        html: `<p>Enter the otp: ${otp} to verify your email address</p>`
-
+        subject: "OTP for User Login",
+        html: `<p>Please use the OTP: <b>${otp}</b> for your account login valid only for 1 minute</p>`
     };
     transporter.sendMail(
         options, function (error, info) {
