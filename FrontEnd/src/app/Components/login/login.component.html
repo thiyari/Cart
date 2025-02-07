@@ -13,8 +13,8 @@
                         <button class="btn btn-primary" (click)="sendOTP()">Send OTP</button>
                     </div>
                 </div>
-                <div class="success text-success" #success>
-                    OTP verified Successfully
+                <div class="title center">
+                    <p class="success text-success" [innerHTML]="success"></p>
                 </div>
             
                 <div *ngIf="display" class="verification">
@@ -28,8 +28,8 @@
                         <input type="number" [(ngModel)]="otp_inputs[3]" [ngModelOptions]="{standalone: true}" class="otp_num otp_num_4" maxlength="1" (keyup)="moveNext($event)">
                     </div>
                 </div>
-                <div class="error text-danger" #error>
-                    Invalid otp
+                <div class="title center">
+                    <p class="error text-danger" [innerHTML]="error"></p>
                 </div>
             </div>
         </div>

@@ -14,6 +14,8 @@ export class LoginComponent {
   email: any = "";
   otp_inputs: Array<string> = [];
   message: any = "";
+  success: any = "";
+  error: any = "";
   /*
   @ViewChild('success') successEle: any;
   @ViewChild('error') errorEle: any;
@@ -61,26 +63,24 @@ export class LoginComponent {
                 console.log(res)
                 if (res.status == 200) {
                     this.display = false;
-                    console.log("verified")
-                    //verfEle.style.display = 'none';
-                    //successEle.style.display = 'block';
-                    //errorEle.style.display = 'none';
-
+                    this.email = "";
+                    this.success = "OTP verified Successfully";
+                    this.error = "";
                 }
                 else {
-                    //errorEle.style.display = 'block';
-                    //errorEle.innerHTML = "Invalid OTP";
-                    //successEle.style.display = 'none';
+                    this.display = false;
+                    this.email = "";
+                    this.error = "Invalid OTP, Please try again...";
+                    this.success = "";
                 }
             }
         )
   }
 
   sendOTP() {
-    /*
-    let successEle = this.successEle.nativeElement;
-    let errorEle = this.errorEle.nativeElement;
-    */
+    this.success = "";
+    this.error = "";
+    this.otp_inputs = [];
     let regex = new RegExp('[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}');
     if (regex.test(this.email)) {
             fetch('http://localhost:8086/sendotp', {
