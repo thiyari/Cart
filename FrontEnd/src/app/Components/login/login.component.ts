@@ -1,4 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +12,14 @@ import { Component, ViewChild } from '@angular/core';
 
 export class LoginComponent {
 
+  constructor(private http: HttpClient){}
+
   display: boolean = false;
   email: any = "";
   otp_inputs: Array<string> = [];
   message: any = "";
   success: any = "";
   error: any = "";
-  /*
-  @ViewChild('success') successEle: any;
-  @ViewChild('error') errorEle: any;
-
-    */
 
   moveNext(event:any){
             // otp_num_4
@@ -46,34 +45,26 @@ export class LoginComponent {
   }
 
   verifyOTP(otp_check:any){
-    fetch('http://localhost:8086/verify',
-        {
-            method: "POST",
-            body: JSON.stringify({
-                "email": `${this.email}`,
-                "otp": `${otp_check}`
-            }),
-            headers: { 'Content-Type': 'application/json' }
+    let body = {
+        "email": `${this.email}`,
+        "otp": `${otp_check}` 
+    }
+    this.http.post<any>(`${environment.SERVER_URI}/api/verify-otp`,body)
+    .subscribe((res)=>{
+        console.log(res)
+        if(res.status){
+            this.display = false;
+            this.email = "";
+            this.success = "OTP verified Successfully";
+            this.error = "";
+            window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
+        } else {
+            this.display = false;
+            this.email = "";
+            this.error = "Invalid OTP, Please try again...";
+            this.success = "";            
         }
-    )
-        .then(
-            (res) => {
-                console.log(res)
-                if (res.status == 200) {
-                    this.display = false;
-                    this.email = "";
-                    this.success = "OTP verified Successfully";
-                    this.error = "";
-                    window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
-                }
-                else {
-                    this.display = false;
-                    this.email = "";
-                    this.error = "Invalid OTP, Please try again...";
-                    this.success = "";
-                }
-            }
-        )
+    })
   }
 
   sendOTP() {
@@ -82,25 +73,20 @@ export class LoginComponent {
     this.otp_inputs = [];
     let regex = new RegExp('[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}');
     if (regex.test(this.email)) {
-            fetch('http://localhost:8086/sendotp', {
-                method: "POST",
-                body: JSON.stringify({
-                    "email": `${this.email}`
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-                .then(
-                    (res) => {
-                        if (res.status === 200) {
-                            this.display = true;
-                            this.message = "An email has been sent to ***" + this.email.slice(3)
-                        }
-                        else {
-                            this.error = "Email not exist";
-                            this.success = "";
-                        }
-                    }
-                )
+        let body = {
+            "email": `${this.email}`
+        }
+        this.http.post<any>(`${environment.SERVER_URI}/api/send-otp`,body)
+        .subscribe((res)=>{
+            if (res.status) {
+                this.display = true;
+                this.message = "An email has been sent to ***" + this.email.slice(3)
+            }
+            else {
+                this.error = "Email not exist";
+                this.success = "";
+            }
+        })
 
         }
         else {

@@ -5,7 +5,23 @@ require("dotenv").config();
 
 let salt_key = process.env.PHONE_PE_SALT_KEY
 let merchant_id = process.env.PHONE_PE_MERCHANT_ID
+let user = process.env.GMAIL_APP_USER_ID
+let pass = process.env.GMAIL_APP_PASSWORD
 var productsService = require('./productsService');
+
+var nm = require('nodemailer');
+let savedOTPS = {};
+var transporter = nm.createTransport(
+    {
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user: user,
+            pass: pass
+        }
+    }
+);
 
     var createProductsControllerFn = async(req,res)=>
         {
@@ -245,7 +261,7 @@ var paypalControllerFn = async(req,res)=>
                     res.status(200).send({"status":true,"message":"Paypal data inserted"});
                 }
                 else {
-                    res.status(400).send({"status":false,"message":"Error insertng the data"});
+                    res.status(400).send({"status":false,"message":"Error inserting the data"});
                 }
             }
             catch(err){
@@ -315,6 +331,57 @@ var deleteUserRequestControllerFn = async(req,res)=>
         }
 
     }    
+
+
+var sendOtpControllerFn = async(req, res) => {
+    let email = req.body.email;
+    let digits = '0123456789';
+    let limit = 6;
+    let otp = ''
+    //generating random otp
+    for (i = 0; i < limit; i++) {
+        otp += digits[Math.floor(Math.random() * 10)];
+
+    }
+    var options = {
+        from: 'ts.manikanth@gmail.com',
+        to: `${email}`,
+        subject: "Testing node emails",
+        html: `<p>Enter the otp: ${otp} to verify your email address</p>`
+
+    };
+    transporter.sendMail(
+        options, function (error, info) {
+            if (error) {
+                console.log(error);
+                res.send({"status":false,"message":"Unable to send OTP"})
+            }
+            else {
+                savedOTPS[email] = otp;
+                //Delete the saved OTP after 1 minute expiry
+                setTimeout(
+                    () => {
+                        delete savedOTPS.email
+                    }, 60000 // setting time for 1 minute 
+                )
+                res.send({"status":true,"message":"OTP was sent successfully"});
+            }
+
+        }
+    )
+}
+
+var verifyOtpControllerFn = async(req, res) => {
+    let otpreceived = req.body.otp;
+    let email = req.body.email;
+    if (savedOTPS[email] == otpreceived) {
+        res.send({"status":true,"message":"OTP verified successfully"});
+    }
+    else {
+        res.send({"status":false,"message":"Invalid OTP"})
+    }
+}
+
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -330,5 +397,7 @@ module.exports = {
     fetchPaypaltxnControllerFn,
     razorpayControllerFn,
     fetchRazorpaytxnControllerFn,
-    deleteUserRequestControllerFn
+    deleteUserRequestControllerFn,
+    sendOtpControllerFn,
+    verifyOtpControllerFn
 }
