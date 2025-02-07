@@ -51,7 +51,6 @@ export class LoginComponent {
     }
     this.http.post<any>(`${environment.SERVER_URI}/api/verify-otp`,body)
     .subscribe((res)=>{
-        console.log(res)
         if(res.status){
             this.display = false;
             this.email = "";
