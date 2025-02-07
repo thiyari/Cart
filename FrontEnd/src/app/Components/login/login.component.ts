@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { environment } from '../../../environments/environment';
 
 export class LoginComponent {
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private api: ApiService){}
 
   display: boolean = false;
   email: any = "";
@@ -67,26 +68,45 @@ export class LoginComponent {
   }
 
   sendOTP() {
+    let email_distinct = new Set<any>();
     this.success = "";
     this.error = "";
     this.otp_inputs = [];
     let regex = new RegExp('[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}');
     if (regex.test(this.email)) {
-        let body = {
-            "email": `${this.email}`
-        }
-        this.http.post<any>(`${environment.SERVER_URI}/api/send-otp`,body)
-        .subscribe((res)=>{
-            if (res.status) {
-                this.display = true;
-                this.message = "An email has been sent to ***" + this.email.slice(3)
+
+        // check email with the database
+        this.api.getOrders()
+        .subscribe(res=>{
+          if (res.message === "Success"){
+                let records = res.records.filter((item:any)=>item.email===this.email)
+                let emails = records.map((x:any)=>x.email)
+                emails.forEach((x:any)=>email_distinct.add(x))
             }
-            else {
-                this.error = "Email not exist";
+
+            if (email_distinct.values().next().value === this.email){
+
+                let body = {
+                    "email": `${this.email}`
+                }
+                this.http.post<any>(`${environment.SERVER_URI}/api/send-otp`,body)
+                .subscribe((res)=>{
+                    if (res.status) {
+                        this.display = true;
+                        this.message = "An email has been sent to ***" + this.email.slice(3)
+                    }
+                    else {
+                        this.error = "Email not exist";
+                        this.success = "";
+                    }
+                })        
+
+            } else {
+                this.error = "Email doesn't exist in our database records";
                 this.success = "";
             }
-        })
-
+          })
+        
         }
         else {
             this.error = "Invalid Email";
