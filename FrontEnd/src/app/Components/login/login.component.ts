@@ -54,8 +54,6 @@ export class LoginComponent {
                 "otp": `${otp_check}`
             }),
             headers: { 'Content-Type': 'application/json' }
-
-
         }
     )
         .then(
@@ -97,21 +95,17 @@ export class LoginComponent {
                             this.message = "An email has been sent to ***" + this.email.slice(3)
                         }
                         else {
-                            //errorEle.style.display = 'block';
-                            //errorEle.innerHTML = "Email not exist";
-                            //successEle.style.display = 'none';
+                            this.error = "Email not exist";
+                            this.success = "";
                         }
                     }
                 )
 
         }
         else {
-            //errorEle.style.display = 'block';
-            //errorEle.innerHTML = "Invalid Email";
-            //successEle.style.display = 'none';
-
+            this.error = "Invalid Email";
+            this.success = "";
         }
-
   }
 
 }
