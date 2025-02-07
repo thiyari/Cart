@@ -45,7 +45,7 @@ var transporter = nm.createTransport(
 app.post('/sendotp', (req, res) => {
     let email = req.body.email;
     let digits = '0123456789';
-    let limit = 4;
+    let limit = 6;
     let otp = ''
     //generating random otp
     for (i = 0; i < limit; i++) {

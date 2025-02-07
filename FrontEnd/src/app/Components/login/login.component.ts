@@ -32,14 +32,14 @@ export class LoginComponent {
                 current.previousElementSibling.focus()
             }
             // Shifting the key focus to next field while entering key
-            else if (index < 4) {
+            else if (index < 6) {
                 current.nextElementSibling.focus()
             }
             var otp_check = ""
             for (let num of this.otp_inputs) {
                 otp_check += num
             }
-            if (otp_check.length === 4) {
+            if (otp_check.length === 6) {
                 this.verifyOTP(otp_check)
             }
 
