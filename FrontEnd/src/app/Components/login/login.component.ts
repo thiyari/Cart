@@ -9,7 +9,7 @@ import { Component, ViewChild } from '@angular/core';
 })
 
 export class LoginComponent {
-    
+
   display: boolean = false;
   email: any = "";
   otp_inputs: Array<string> = [];
@@ -33,16 +33,47 @@ export class LoginComponent {
             else if (index < 4) {
                 current.nextElementSibling.focus()
             }
-            var otp_check = '';
-
+            var otp_check = ""
             for (let num of this.otp_inputs) {
                 otp_check += num
             }
             if (otp_check.length === 4) {
-                console.log(otp_check)
-                //verifyOTP()
+                this.verifyOTP(otp_check)
             }
 
+  }
+
+  verifyOTP(otp_check:any){
+    fetch('http://localhost:8086/verify',
+        {
+            method: "POST",
+            body: JSON.stringify({
+                "email": `${this.email}`,
+                "otp": `${otp_check}`
+            }),
+            headers: { 'Content-Type': 'application/json' }
+
+
+        }
+    )
+        .then(
+            (res) => {
+                console.log(res)
+                if (res.status == 200) {
+                    this.display = false;
+                    console.log("verified")
+                    //verfEle.style.display = 'none';
+                    //successEle.style.display = 'block';
+                    //errorEle.style.display = 'none';
+
+                }
+                else {
+                    //errorEle.style.display = 'block';
+                    //errorEle.innerHTML = "Invalid OTP";
+                    //successEle.style.display = 'none';
+                }
+            }
+        )
   }
 
   sendOTP() {
@@ -51,12 +82,11 @@ export class LoginComponent {
     let errorEle = this.errorEle.nativeElement;
     */
     let regex = new RegExp('[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,3}');
-    let email = this.email;
-    if (regex.test(email)) {
+    if (regex.test(this.email)) {
             fetch('http://localhost:8086/sendotp', {
                 method: "POST",
                 body: JSON.stringify({
-                    "email": `${email}`
+                    "email": `${this.email}`
                 }),
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -64,8 +94,7 @@ export class LoginComponent {
                     (res) => {
                         if (res.status === 200) {
                             this.display = true;
-                            this.message = "An email has been sent to ***" + email.slice(3)
-                            this.email = ""
+                            this.message = "An email has been sent to ***" + this.email.slice(3)
                         }
                         else {
                             //errorEle.style.display = 'block';

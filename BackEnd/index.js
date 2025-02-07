@@ -80,6 +80,17 @@ app.post('/sendotp', (req, res) => {
     )
 })
 
+app.post('/verify', (req, res) => {
+    let otpreceived = req.body.otp;
+    let email = req.body.email;
+    if (savedOTPS[email] == otpreceived) {
+        res.send("Verfied");
+    }
+    else {
+        res.status(500).send("Invalid OTP")
+    }
+})
+
 
 app.listen(8086, function port(error)
 {
