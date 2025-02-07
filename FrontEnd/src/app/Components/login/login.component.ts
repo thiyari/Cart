@@ -93,7 +93,7 @@ export class LoginComponent {
                 .subscribe((res)=>{
                     if (res.status) {
                         this.display = true;
-                        this.message = "An email has been sent to ***" + this.email.slice(3)
+                        this.message = "An OTP has been sent to ***" + this.email.slice(3)
                     }
                     else {
                         this.error = "Email not exist";
