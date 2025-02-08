@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { ToWords } from 'to-words';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-view-order',
@@ -18,7 +19,8 @@ export class ViewOrderComponent implements OnInit{
 
   constructor(
     private transactions: AggregationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private session: LocalService
   ){}
   ngOnInit(): void {
     const order_id = this.route.snapshot.params["orderid"]; 
@@ -104,5 +106,9 @@ export class ViewOrderComponent implements OnInit{
     return result;
   }
   
+  logout(){
+    this.session.clearData();
+    window.close();
+  }
 
 }

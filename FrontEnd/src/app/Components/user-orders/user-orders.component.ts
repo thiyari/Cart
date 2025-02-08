@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../service/api.service';
 import { LocalService } from '../../service/local.service';
 import { AggregationService } from '../../service/aggregation.service';
 
@@ -15,11 +14,12 @@ export class UserOrdersComponent implements OnInit {
   aggregation: any[] = []
 
   constructor(
-    private transactions: AggregationService
+    private transactions: AggregationService,
+    private session: LocalService
   ){}
 
   ngOnInit(): void {
-    const mail_id = "manikanth578@gmail.com"; 
+    const mail_id = this.session.getWithExpiry("user_session");
     this.aggregation = this.transactions.merge_userdata(mail_id)
     this.transactions.setData(this.aggregation)
   }
@@ -34,4 +34,10 @@ export class UserOrdersComponent implements OnInit {
     );
     return date
   }
+
+  logout(){
+    this.session.clearData();
+    window.close();
+  }
+  
 }

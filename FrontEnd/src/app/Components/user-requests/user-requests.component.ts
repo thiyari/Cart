@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-user-requests',
@@ -10,9 +11,12 @@ import { ApiService } from '../../service/api.service';
 })
 export class UserRequestsComponent implements OnInit{
   orders_records: any;
-  constructor(private api: ApiService){}
+  constructor(
+    private api: ApiService,
+    private session: LocalService
+  ){}
   ngOnInit(): void {
-    const mail_id = "manikanth578@gmail.com"; 
+    const mail_id = this.session.getWithExpiry("user_session");
     this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
@@ -39,5 +43,9 @@ export class UserRequestsComponent implements OnInit{
     return date
   }
 
+  logout(){
+    this.session.clearData();
+    window.close();
+  }
 
 }

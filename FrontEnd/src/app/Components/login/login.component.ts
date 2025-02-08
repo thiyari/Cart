@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../service/api.service';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ import { ApiService } from '../../service/api.service';
 
 export class LoginComponent {
 
-  constructor(private http: HttpClient, private api: ApiService){}
+  constructor(
+    private http: HttpClient, 
+    private api: ApiService,
+    private session: LocalService
+    ){}
 
   display: boolean = false;
   email: any = "";
@@ -53,6 +58,7 @@ export class LoginComponent {
     this.http.post<any>(`${environment.SERVER_URI}/api/verify-otp`,body)
     .subscribe((res)=>{
         if(res.status){
+            this.session.setWithExpiry("user_session", this.email, 5000)
             this.display = false;
             this.email = "";
             this.success = "OTP verified Successfully";

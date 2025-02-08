@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-view-request',
@@ -14,6 +15,7 @@ export class ViewRequestComponent implements OnInit{
   constructor(
         private api: ApiService,
         private route: ActivatedRoute,
+        private session: LocalService
   ){}
 
   ngOnInit(): void {
@@ -25,5 +27,10 @@ export class ViewRequestComponent implements OnInit{
         }
       })
       console.log(this.order)
+  }
+
+  logout(){
+    this.session.clearData();
+    window.close();
   }
 }
