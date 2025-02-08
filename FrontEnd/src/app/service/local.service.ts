@@ -23,13 +23,13 @@ export class LocalService {
     localStorage.clear();
   }
 
-  setWithExpiry(key:string, value:any, ttl:any) {
+  setWithExpiry(key:string, value:any, minutes:any) {
     const now = new Date()
     // `item` is an object which contains the original value
     // as well as the time when it's supposed to expire
     const item = {
       value: value,
-      expiry: now.getTime() + ttl,
+      expiry: now.getTime() + minutes * 60000, // in milli seconds
     }
     localStorage.setItem(key, JSON.stringify(item))
   }

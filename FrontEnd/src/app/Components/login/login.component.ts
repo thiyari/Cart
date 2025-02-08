@@ -58,7 +58,8 @@ export class LoginComponent {
     this.http.post<any>(`${environment.SERVER_URI}/api/verify-otp`,body)
     .subscribe((res)=>{
         if(res.status){
-            this.session.setWithExpiry("user_session", this.email, 5000)
+            // creating session with 5 minutes of expiry
+            this.session.setWithExpiry("user_session", this.email, 5)
             this.display = false;
             this.email = "";
             this.success = "OTP verified Successfully";

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../service/cart.service';
+import { LocalService } from '../../service/local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,11 @@ export class HeaderComponent implements OnInit{
 
   public totalItem: number = 0;
   public searchTerm: string = "";
-  constructor(private cartService: CartService){}
+  constructor(
+    private cartService: CartService,
+    private session: LocalService,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     this.cartService.getProducts()
@@ -25,4 +31,13 @@ export class HeaderComponent implements OnInit{
     this.cartService.search.next(this.searchTerm)
   }
 
+  session_verify(){
+    const mail_id = this.session.getWithExpiry("user_session");
+    console.log(mail_id)
+    if(mail_id){
+      window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
+    } else {
+      this.router.navigate(['/login'])
+    }
+  }
 }
