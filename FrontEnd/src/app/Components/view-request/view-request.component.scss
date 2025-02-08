@@ -33,3 +33,9 @@ span{
     border-radius:0%; 
     width:25%;
 }
+
+.scrollable {
+    height: 600px;      /* Set height of the div */
+    overflow-x: hidden;
+    overflow-y: scroll; /* Enable vertical scrolling */
+  }

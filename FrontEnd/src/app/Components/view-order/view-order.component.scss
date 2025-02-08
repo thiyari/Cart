@@ -25,6 +25,11 @@ span{
     margin: 10px 0px 0px 350px;
 }
 
+.scrollable {
+    height: 600px;      /* Set height of the div */
+    overflow-x: hidden;
+    overflow-y: scroll; /* Enable vertical scrolling */
+  }
 
 @media (max-width: 360px){
     .btn-primary{
