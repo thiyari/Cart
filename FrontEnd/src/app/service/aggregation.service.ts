@@ -96,7 +96,16 @@ export class AggregationService {
       });
 
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
-      return this.aggregation
+
+      // Removing duplicates if exists in the aggregation result
+      let distinct_aggregation = this.aggregation.filter((obj, index, self) =>
+        index === self.findIndex((t) => (
+            t.orderid === obj.orderid
+        ))
+      );
+      
+      //return this.aggregation
+      return distinct_aggregation
   }
 
   merge_userdata(mail_id: any){

@@ -22,6 +22,9 @@ export class UserOrdersComponent implements OnInit {
     const mail_id = this.session.getWithExpiry("login_session");
     this.aggregation = this.transactions.merge_userdata(mail_id)
     this.transactions.setData(this.aggregation)
+
+    //const result = this.transactions.merge_admindata();
+    //console.log(result)
   }
 
   formatedDate = (savedTime:any) => {
