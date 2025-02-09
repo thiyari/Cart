@@ -17,7 +17,7 @@ export class AggregationService {
 
   constructor(private api: ApiService) { }
 
-  merge_result(reference_ids: any){
+  merge_result(reference_ids: any, orders_records: any){
 
     this.api.paypal_txn()
       .subscribe(res=>{
@@ -74,24 +74,24 @@ export class AggregationService {
   
 
       let mergedPaypal = this.paypal_records.map((paypal:any) => {
-          let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === paypal.referenceid);
+          let ordersArray = orders_records.find((orders:any) => orders.referenceid === paypal.referenceid);
           return Object.assign({}, ordersArray, paypal);
       });
 
 
       let mergedRazorpay = this.razorpay_records.map((razorpay:any) => {
-        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === razorpay.referenceid);
+        let ordersArray = orders_records.find((orders:any) => orders.referenceid === razorpay.referenceid);
         return Object.assign({}, ordersArray, razorpay);
       });      
 
       let mergedPhonepe = this.phonepe_records.map((phonepe:any) => {
-        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === phonepe.referenceid);
+        let ordersArray = orders_records.find((orders:any) => orders.referenceid === phonepe.referenceid);
         return Object.assign({}, ordersArray, phonepe);
       });    
 
       
       let mergedGooglepay = this.googlepay_records.map((googlepay:any) => {
-        let ordersArray = this.orders_records.find((orders:any) => orders.referenceid === googlepay.referenceid);
+        let ordersArray = orders_records.find((orders:any) => orders.referenceid === googlepay.referenceid);
         return Object.assign({}, ordersArray, googlepay);
       });
 
@@ -109,7 +109,7 @@ export class AggregationService {
         }
       })
 
-    let user_result = this.merge_result(this.reference_ids);
+    let user_result = this.merge_result(this.reference_ids, this.orders_records);
     return user_result
   }
 
@@ -117,11 +117,12 @@ export class AggregationService {
     this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
-          res.records.map((x:any)=>this.reference_ids.push(x.referenceid))
+        this.orders_records = res.records
+        this.orders_records.map((x:any)=>this.reference_ids.push(x.referenceid))
         }
       })
 
-    let admin_result = this.merge_result(this.reference_ids);
+    let admin_result = this.merge_result(this.reference_ids, this.orders_records);
     return admin_result    
   }
 
