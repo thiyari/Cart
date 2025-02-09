@@ -23,7 +23,7 @@ export class AggregationService {
     this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
-        this.orders_records = res.records.filter((item:any)=>item.email===mail_id)
+        this.orders_records = res.records.filter((item:any)=>item.email===mail_id?.email)
         this.orders_records.map((x:any)=>this.reference_ids.push(x.referenceid))
         }
       })

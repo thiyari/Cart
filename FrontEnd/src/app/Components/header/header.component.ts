@@ -32,8 +32,7 @@ export class HeaderComponent implements OnInit{
   }
 
   session_verify(){
-    const mail_id = this.session.getWithExpiry("user_session");
-    console.log(mail_id)
+    const mail_id = this.session.getWithExpiry("login_session");
     if(mail_id){
       window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
     } else {

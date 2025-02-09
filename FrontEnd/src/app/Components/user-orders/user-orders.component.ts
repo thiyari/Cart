@@ -19,7 +19,7 @@ export class UserOrdersComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    const mail_id = this.session.getWithExpiry("user_session");
+    const mail_id = this.session.getWithExpiry("login_session");
     this.aggregation = this.transactions.merge_userdata(mail_id)
     this.transactions.setData(this.aggregation)
   }

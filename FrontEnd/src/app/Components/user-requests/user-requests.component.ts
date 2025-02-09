@@ -16,13 +16,13 @@ export class UserRequestsComponent implements OnInit{
     private session: LocalService
   ){}
   ngOnInit(): void {
-    const mail_id = this.session.getWithExpiry("user_session");
-    this.api.getOrders()
-    .subscribe(res=>{
-      if (res.message === "Success"){
-        this.orders_records = res.records.filter((item:any)=>item.email===mail_id && item.transactionstatus === "pending")
-        }
-      })
+    const mail_id = this.session.getWithExpiry("login_session");
+      this.api.getOrders()
+      .subscribe(res=>{
+        if (res.message === "Success"){
+          this.orders_records = res.records.filter((item:any)=>item.email===mail_id?.email && item.transactionstatus === "pending")
+          }
+        })
   }
 
   onDelete(orderid:any){
