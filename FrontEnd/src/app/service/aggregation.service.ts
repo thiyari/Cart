@@ -17,23 +17,14 @@ export class AggregationService {
 
   constructor(private api: ApiService) { }
 
-
-  merge_userdata(mail_id: any){
-
-    this.api.getOrders()
-    .subscribe(res=>{
-      if (res.message === "Success"){
-        this.orders_records = res.records.filter((item:any)=>item.email===mail_id?.email)
-        this.orders_records.map((x:any)=>this.reference_ids.push(x.referenceid))
-        }
-      })
+  merge_result(reference_ids: any){
 
     this.api.paypal_txn()
       .subscribe(res=>{
         if (res.message === "Success"){
-          for (let i = 0; i < this.reference_ids.length; i++){
+          for (let i = 0; i < reference_ids.length; i++){
             res.records.map((item:any)=>{
-              if(item.referenceid === this.reference_ids[i]){
+              if(item.referenceid === reference_ids[i]){
                 this.paypal_records.push(item)
               }
             })
@@ -45,9 +36,9 @@ export class AggregationService {
     this.api.razorpay_txn()
         .subscribe(res=>{
           if (res.message === "Success"){
-            for (let i = 0; i < this.reference_ids.length; i++){
+            for (let i = 0; i < reference_ids.length; i++){
               res.records.map((item:any)=>{
-                if(item.referenceid === this.reference_ids[i]){
+                if(item.referenceid === reference_ids[i]){
                   this.razorpay_records.push(item)
                 }
               })
@@ -58,9 +49,9 @@ export class AggregationService {
     this.api.phonepe_txn()
           .subscribe(res=>{
             if (res.message === "Success"){
-              for (let i = 0; i < this.reference_ids.length; i++){
+              for (let i = 0; i < reference_ids.length; i++){
                 res.records.map((item:any)=>{
-                  if(item.referenceid === this.reference_ids[i]){
+                  if(item.referenceid === reference_ids[i]){
                     this.phonepe_records.push(item)
                   }
                 })
@@ -71,9 +62,9 @@ export class AggregationService {
     this.api.googlepay_txn()
             .subscribe(res=>{
               if (res.message === "Success"){
-                for (let i = 0; i < this.reference_ids.length; i++){
+                for (let i = 0; i < reference_ids.length; i++){
                   res.records.map((item:any)=>{
-                    if(item.referenceid === this.reference_ids[i]){
+                    if(item.referenceid === reference_ids[i]){
                       this.googlepay_records.push(item)
                     }
                   })
@@ -107,6 +98,33 @@ export class AggregationService {
       this.aggregation = [...mergedPaypal,...mergedRazorpay,...mergedPhonepe,...mergedGooglepay]
       return this.aggregation
   }
+
+  merge_userdata(mail_id: any){
+
+    this.api.getOrders()
+    .subscribe(res=>{
+      if (res.message === "Success"){
+        this.orders_records = res.records.filter((item:any)=>item.email===mail_id?.email)
+        this.orders_records.map((x:any)=>this.reference_ids.push(x.referenceid))
+        }
+      })
+
+    let user_result = this.merge_result(this.reference_ids);
+    return user_result
+  }
+
+  merge_admindata(){
+    this.api.getOrders()
+    .subscribe(res=>{
+      if (res.message === "Success"){
+          res.records.map((x:any)=>this.reference_ids.push(x.referenceid))
+        }
+      })
+
+    let admin_result = this.merge_result(this.reference_ids);
+    return admin_result    
+  }
+
 
   setData(response: any) {
     this.result = response
