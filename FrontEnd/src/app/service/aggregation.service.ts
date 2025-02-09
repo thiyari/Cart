@@ -110,6 +110,9 @@ export class AggregationService {
       })
 
     let user_result = this.merge_result(this.reference_ids, this.orders_records);
+    this.reference_ids = []
+    this.orders_records = []
+    
     return user_result
   }
 
@@ -123,6 +126,9 @@ export class AggregationService {
       })
 
     let admin_result = this.merge_result(this.reference_ids, this.orders_records);
+    this.reference_ids = []
+    this.orders_records = []
+
     return admin_result    
   }
 
