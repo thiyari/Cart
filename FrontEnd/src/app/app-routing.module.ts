@@ -17,6 +17,7 @@ import { UserRequestsComponent } from './Components/user-requests/user-requests.
 import { ViewRequestComponent } from './Components/view-request/view-request.component';
 import { ViewOrderComponent } from './Components/view-order/view-order.component';
 import { LoginComponent } from './Components/login/login.component';
+import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'cart',component: CartComponent},
   {path:'prodreg',component: ProdregComponent},
   {path:'login',component: LoginComponent},
+  {path:'admin',component: AdminLoginComponent},
   {path:'orders',component: OrdersComponent},
   {path:'googlepay',component: PayGoogleComponent},
   {path:'user-orders',component: UserOrdersComponent},
