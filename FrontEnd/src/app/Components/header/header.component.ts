@@ -35,6 +35,8 @@ export class HeaderComponent implements OnInit{
     const mail_id = this.session.getWithExpiry("login_session");
     if(mail_id?.log_status === "user"){
       window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
+    } else if (mail_id?.log_status === "admin"){
+      // todo
     } else {
       this.router.navigate(['/login'])
     }
