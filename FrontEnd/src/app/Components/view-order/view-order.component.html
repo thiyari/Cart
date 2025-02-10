@@ -16,8 +16,11 @@
                     <li>
                         <a href="/user-requests" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "user"'>
                             <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Requests</span> </a>
+                        <a href="/pending-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                            <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Orders</span> </a>                    </li>
+                    <li>
                         <a href="/prodreg" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>        
+                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>  
                     </li>
                 </ul>
                 <hr>

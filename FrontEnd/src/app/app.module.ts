@@ -29,6 +29,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './Components/login/login.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';
+import { PendingOrdersComponent } from './Components/pending-orders/pending-orders.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.com
     ViewOrderComponent,
     LoginComponent,
     AdminLoginComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    PendingOrdersComponent
   ],
   imports: [
     BrowserModule,

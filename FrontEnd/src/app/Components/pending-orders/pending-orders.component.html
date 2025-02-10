@@ -31,13 +31,13 @@
         <div class="col py-3 mt-4">
             <!--  Content Area Start  -->
             <div class="scrollable">      
-            <div class="row">
-                <div class="col-md-1"></div>
+                <div class="row">
+                    <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <ng-container *ngIf="aggregation.length !=0">
+                        <ng-container *ngIf="orders_records?.length !=0">
                             <div class="card container">
                                 <div class="box">
-                                    <div class="title">Orders History</div>
+                                    <div class="title">Pending Orders</div>
                                     <hr>
                                     <div class="table" style="border: none;">
                                             <div class ="table-responsive-md">                  
@@ -48,27 +48,19 @@
                                                         <th>Order Id</th>
                                                         <th>No. of Items</th>
                                                         <th>Total Amount</th>
-                                                        <th>Transaction Date</th>
-                                                        <th>View Invoice</th>        
+                                                        <th>Requested On</th>
+                                                        <th colspan="2">View/Delete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    <tr *ngFor="let item of aggregation; let i = index">
+                                                    <tr *ngFor="let item of orders_records; let i = index">
                                                         <td>{{i+1}}</td>
                                                         <td>{{item.orderid}}</td>
-                                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else total_orders">{{item.items.length}}</td>
-                                                        <ng-template #total_orders>
-                                                            <td>{{item.ordersplaced.length}}</td>
-                                                        </ng-template>  
-                                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else rupee">$ {{item.amount}}</td>
-                                                        <ng-template #rupee>
-                                                            <td>₹ {{item.amount}}</td>
-                                                        </ng-template>
-                                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else date">{{formatedDate(item.transaction_date)}}</td>
-                                                        <ng-template #date>
-                                                            <td>{{formatedDate(item.createdAt)}}</td>
-                                                        </ng-template>                                        
-                                                        <td><a [routerLink]="['/view-order',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                        <td>{{item.ordersplaced.length}}</td>
+                                                        <td>₹ {{item.grandtotal}}</td> 
+                                                        <td>{{formatedDate(item.createdAt)}}</td>
+                                                        <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                        <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -77,17 +69,17 @@
                                 </div>
                             </div>
                         </ng-container>
-                        <ng-container *ngIf="aggregation.length === 0">
+                        <ng-container *ngIf="orders_records?.length === 0">
                             <div class="container">
                                 <div>
-                                    <h4>There is no history of orders</h4>
+                                    <h4>There are no pending requests</h4>
                                 </div>
                             </div>
                         </ng-container>
                     </div>
-                <div class="col-md-1"></div>
-            </div>
-            </div>
+                    <div class="col-md-1"></div>
+                </div>
+                </div>    
             <!--  Content Area End  -->            
         </div>
     </div>

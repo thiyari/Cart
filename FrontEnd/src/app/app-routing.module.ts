@@ -19,6 +19,7 @@ import { ViewOrderComponent } from './Components/view-order/view-order.component
 import { LoginComponent } from './Components/login/login.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';
+import { PendingOrdersComponent } from './Components/pending-orders/pending-orders.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'orders',component: OrdersComponent},
   {path:'googlepay',component: PayGoogleComponent},
   {path:'admin-orders',component: AdminOrdersComponent},
+  {path:'pending-orders',component: PendingOrdersComponent},
   {path:'user-orders',component: UserOrdersComponent},
   {path:'user-requests',component: UserRequestsComponent},
   {path:'viewrequest/:orderid',component: ViewRequestComponent},
