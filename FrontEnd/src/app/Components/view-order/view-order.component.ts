@@ -16,7 +16,7 @@ import { LocalService } from '../../service/local.service';
 export class ViewOrderComponent implements OnInit{
   public data:any;
   public pidMap = new Map<string, number>();
-
+  public mail_id:any;
   constructor(
     private transactions: AggregationService,
     private route: ActivatedRoute,
@@ -32,7 +32,7 @@ export class ViewOrderComponent implements OnInit{
     this.data?.ordersplaced.forEach((x:any)=>{
         this.pidMap.set(x.name,x.pid);
     })
-
+    this.mail_id = this.session.getWithExpiry("login_session");
   }
   formatedDate = (savedTime:any) => {
     const date = new Date(savedTime).toLocaleString(
