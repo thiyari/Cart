@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit{
     if(mail_id?.log_status === "user"){
       window.open("/user-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
     } else if (mail_id?.log_status === "admin"){
-      // todo
+      window.open("/admin-orders", '_blank', 'location=yes,height=auto,width=auto,scrollbars=yes');
     } else {
       this.router.navigate(['/login'])
     }

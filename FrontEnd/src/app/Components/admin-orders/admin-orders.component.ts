@@ -19,6 +19,7 @@ export class AdminOrdersComponent implements OnInit {
 
     ngOnInit(): void {
     const mail_id = this.session.getWithExpiry("login_session");
+    console.log(mail_id)
     this.aggregation = this.transactions.merge_admindata();
     this.transactions.setData(this.aggregation)
   }

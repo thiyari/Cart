@@ -12,10 +12,10 @@
                 <hr>
                 <div class="row form">
                     <div class="col-auto">
-                        <input type="email" class="form-control email" placeholder="provide your email">
+                        <input  [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" class="form-control email" placeholder="provide your email">
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
                     </div>
                 </div>
             </div>
