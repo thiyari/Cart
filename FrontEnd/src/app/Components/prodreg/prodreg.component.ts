@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-prodreg',
@@ -8,13 +9,20 @@ import { ApiService } from '../../service/api.service';
   templateUrl: './prodreg.component.html',
   styleUrl: './prodreg.component.scss'
 })
-export class ProdregComponent {
+export class ProdregComponent implements OnInit {
   name: string ="";
   description: string ="";
   price: string = "";
   images: string[] = [];
 
-  constructor(private api: ApiService ){ }
+  constructor(
+    private api: ApiService,
+    private session: LocalService
+   ){ }
+  ngOnInit(): void {
+    const mail_id = this.session.getWithExpiry("login_session");
+    console.log(mail_id)
+  }
 
   upload_images(event:any){
     let base64:string[] = []
@@ -52,6 +60,12 @@ export class ProdregComponent {
     this.description = '';
     this.price  = '';
     this.images = []
+  }
+
+
+  logout(){
+    this.session.clearData();
+    window.close();
   }
 }
 
