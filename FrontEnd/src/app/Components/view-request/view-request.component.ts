@@ -12,6 +12,7 @@ import { LocalService } from '../../service/local.service';
 })
 export class ViewRequestComponent implements OnInit{
   public order:any;
+  public mail_id:any;
   constructor(
         private api: ApiService,
         private route: ActivatedRoute,
@@ -26,11 +27,15 @@ export class ViewRequestComponent implements OnInit{
         this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
         }
       })
-      console.log(this.order)
+      this.mail_id = this.session.getWithExpiry("login_session");
   }
 
   logout(){
     this.session.clearData();
     window.close();
+  }
+
+  send_message(){
+    
   }
 }
