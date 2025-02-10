@@ -21,7 +21,8 @@ export class PendingOrdersComponent implements OnInit{
       this.api.getOrders()
       .subscribe(res=>{
         if (res.message === "Success"){
-          this.orders_records = res.records.filter((item:any)=>item.transactionstatus === "pending")
+            var result = res.records.filter((item:any)=>item.transactionstatus === "pending")
+            this.orders_records = result.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
           }
         })
   }

@@ -20,7 +20,8 @@ export class UserRequestsComponent implements OnInit{
       this.api.getOrders()
       .subscribe(res=>{
         if (res.message === "Success"){
-          this.orders_records = res.records.filter((item:any)=>item.email===mail_id?.email && item.transactionstatus === "pending")
+            var result = res.records.filter((item:any)=>item.email===mail_id?.email && item.transactionstatus === "pending")
+            this.orders_records = result.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
           }
         })
   }

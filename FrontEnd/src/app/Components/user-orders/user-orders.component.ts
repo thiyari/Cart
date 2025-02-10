@@ -21,7 +21,8 @@ export class UserOrdersComponent implements OnInit {
   ngOnInit(): void {
     const mail_id = this.session.getWithExpiry("login_session");
     this.aggregation = this.transactions.merge_userdata(mail_id)
-    this.transactions.setData(this.aggregation)
+    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    this.transactions.setData(result)
   }
 
   formatedDate = (savedTime:any) => {
