@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalService } from '../../service/local.service';
 import { AggregationService } from '../../service/aggregation.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-orders',
@@ -15,14 +17,24 @@ export class UserOrdersComponent implements OnInit {
 
   constructor(
     private transactions: AggregationService,
-    private session: LocalService
+    private http: HttpClient, 
+    private router: Router
   ){}
 
   ngOnInit(): void {
-    const mail_id = this.session.getWithExpiry("login_session");
-    this.aggregation = this.transactions.merge_userdata(mail_id)
-    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    this.transactions.setData(result)
+    this.http.get<any>(`${environment.SERVER_URI}/api/session`)
+    .subscribe((res)=>{
+          if(res.valid){
+              if (res.log_status === "user") {
+                console.log(res.email)
+                this.aggregation = this.transactions.merge_userdata(res.email)
+                var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                this.transactions.setData(result)               
+            }
+          } else {
+            this.router.navigate(['/login'])
+          }
+    })
   }
 
   formatedDate = (savedTime:any) => {
@@ -37,8 +49,15 @@ export class UserOrdersComponent implements OnInit {
   }
 
   logout(){
-    this.session.clearData();
-    window.close();
+    //this.session.clearData();
+    this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
+        .subscribe((res)=>{
+          if(res.valid){
+            window.close();
+          } else {
+            alert("Logout Failed");
+          }
+        })
   }
   
 }

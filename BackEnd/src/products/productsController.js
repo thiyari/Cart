@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 require("dotenv").config();
+const session = require('express-session');
 
 let salt_key = process.env.PHONE_PE_SALT_KEY
 let merchant_id = process.env.PHONE_PE_MERCHANT_ID
@@ -373,7 +374,12 @@ var sendOtpControllerFn = async(req, res) => {
 var verifyOtpControllerFn = async(req, res) => {
     let otpreceived = req.body.otp;
     let email = req.body.email;
+    let log_status = req.body.log_status;
+
     if (savedOTPS[email] == otpreceived) {
+        session.email = email;
+        session.isLoggedIn = true;
+        session.log_status = log_status;
         res.send({"status":true,"message":"OTP verified successfully"});
     }
     else {
@@ -389,6 +395,35 @@ var fetchAdminsControllerFn = async(req,res)=>
         }
         else {
             return res.status(400).send({message:'Failed',records:result.data});
+        }
+    }
+
+
+    
+var sessionControllerFn = async(req,res)=>{
+        if(session.email){
+            return res.json({
+                valid: true, 
+                email: session.email,
+                isLoggedIn: session.isLoggedIn,
+                log_status: session.log_status
+            })
+        } else {
+            return res.json({valid: false})
+        }
+}
+
+
+var logoutControllerFn = async(req,res)=>
+    {
+        if(session.email){
+            session.email = ""
+            session.isLoggedIn = false;
+            session.log_status = ""
+            res.clearCookie('connect.sid');
+            return res.json({valid: true})
+        } else {
+            return res.json({valid: false})
         }
     }
 
@@ -410,5 +445,7 @@ module.exports = {
     deleteUserRequestControllerFn,
     sendOtpControllerFn,
     verifyOtpControllerFn,
-    fetchAdminsControllerFn
+    fetchAdminsControllerFn,
+    sessionControllerFn,
+    logoutControllerFn
 }

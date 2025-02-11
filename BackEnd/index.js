@@ -5,13 +5,40 @@ var routes = require('./routes/routes')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 require("dotenv").config();
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const MemoryStore = require('memorystore')(session)
 
 app.use(cors(
     {
-      origin: process.env.CLIENT_URI
+      origin: [process.env.CLIENT_URI],
+      methods: ['POST','GET','PUT','DELETE'],
+      allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+      credentials:true,            //access-control-allow-credentials:true
+      optionSuccessStatus:200
     }
    
   ));
+
+app.use(cookieParser());
+app.use(bodyParser.json())
+app.use(session({
+    secret: 'estate',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        expires: new Date(Date.now() + 3600000),
+        maxAge: 3600000 // 1 lhour
+        // 24 * 60 * 60 * 1000 // 24 hours
+    },
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+      }),
+}
+))
+
+
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({extended: false}));

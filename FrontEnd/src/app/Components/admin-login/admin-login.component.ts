@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalService } from '../../service/local.service';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../service/api.service';
 import { environment } from '../../../environments/environment';
@@ -11,12 +10,11 @@ import { environment } from '../../../environments/environment';
   templateUrl: './admin-login.component.html',
   styleUrl: './admin-login.component.scss'
 })
-export class AdminLoginComponent implements OnInit{
+export class AdminLoginComponent {
 
   constructor(
     private http: HttpClient, 
     private api: ApiService,
-    private session: LocalService
     ){}
     
   display: boolean = false;
@@ -25,12 +23,6 @@ export class AdminLoginComponent implements OnInit{
   message: any = "";
   success: any = "";
   error: any = "";
-
-
-ngOnInit(): void {
-
-}
-
 
 moveNext(event:any){
   // otp_num_4
@@ -59,13 +51,12 @@ moveNext(event:any){
   verifyOTP(otp_check:any){
     let body = {
         "email": `${this.email}`,
-        "otp": `${otp_check}` 
+        "otp": `${otp_check}`,
+        "log_status": "admin"
     }
     this.http.post<any>(`${environment.SERVER_URI}/api/verify-otp`,body)
     .subscribe((res)=>{
         if(res.status){
-            // Setting data with an expiry of 1 hour (3600000 ms)
-            this.session.setWithExpiry("login_session", {email: this.email, log_status: "admin"}, 3600000)
             this.display = false;
             this.email = "";
             this.success = "OTP verified Successfully";

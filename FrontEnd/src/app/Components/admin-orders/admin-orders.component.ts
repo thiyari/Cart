@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AggregationService } from '../../service/aggregation.service';
-import { LocalService } from '../../service/local.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-orders',
@@ -14,17 +16,27 @@ export class AdminOrdersComponent implements OnInit {
   
     constructor(
       private transactions: AggregationService,
-      private session: LocalService
+      private http: HttpClient, 
+      private router: Router
     ){}
 
     ngOnInit(): void {
-    const mail_id = this.session.getWithExpiry("login_session");
-    this.aggregation = this.transactions.merge_admindata();
-    // sorting the result according to datetime in descending order
-    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    // Below is an Alternative method for the same
-    //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
-    this.transactions.setData(result)
+      this.http.get<any>(`${environment.SERVER_URI}/api/session`)
+      .subscribe((res)=>{
+            if(res.valid){
+                if (res.log_status === "admin") {
+                    //const mail_id = this.session.getWithExpiry("login_session");
+                    this.aggregation = this.transactions.merge_admindata();
+                    // sorting the result according to datetime in descending order
+                    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                    // Below is an Alternative method for the same
+                    //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
+                    this.transactions.setData(result)                
+              }
+            } else {
+              this.router.navigate(['/login'])
+            }
+      })
   }
 
   formatedDate = (savedTime:any) => {
@@ -39,8 +51,15 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   logout(){
-    this.session.clearData();
-    window.close();
+    //this.session.clearData();
+    this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
+        .subscribe((res)=>{
+          if(res.valid){
+            window.close();
+          } else {
+            alert("Logout Failed");
+          }
+        })
   }
 
 }
