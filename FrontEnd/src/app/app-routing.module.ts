@@ -20,6 +20,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';
 import { PendingOrdersComponent } from './Components/pending-orders/pending-orders.component';
+import { AdminsPanelComponent } from './Components/admins-panel/admins-panel.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'admin',component: AdminLoginComponent},
   {path:'orders',component: OrdersComponent},
   {path:'googlepay',component: PayGoogleComponent},
+  {path:'admins-panel',component: AdminsPanelComponent},
   {path:'admin-orders',component: AdminOrdersComponent},
   {path:'pending-orders',component: PendingOrdersComponent},
   {path:'user-orders',component: UserOrdersComponent},

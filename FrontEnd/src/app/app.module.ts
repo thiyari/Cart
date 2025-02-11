@@ -30,6 +30,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { AdminLoginComponent } from './Components/admin-login/admin-login.component';
 import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.component';
 import { PendingOrdersComponent } from './Components/pending-orders/pending-orders.component';
+import { AdminsPanelComponent } from './Components/admins-panel/admins-panel.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PendingOrdersComponent } from './Components/pending-orders/pending-orde
     LoginComponent,
     AdminLoginComponent,
     AdminOrdersComponent,
-    PendingOrdersComponent
+    PendingOrdersComponent,
+    AdminsPanelComponent
   ],
   imports: [
     BrowserModule,

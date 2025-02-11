@@ -8,6 +8,10 @@
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
+                        <a href="/admins-panel" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                            <i class="fs-4 bi-person-bounding-box"></i> <span class="ms-1 d-none d-sm-inline">Admins Panel</span></a>
+                    </li>
+                    <li>
                         <a href="/user-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "user"'>
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Orders</span></a>
                         <a href="/admin-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
