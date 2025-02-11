@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AggregationService } from '../../service/aggregation.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
 import { ToWords } from 'to-words';
-import { LocalService } from '../../service/local.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-view-order',
@@ -17,12 +18,31 @@ export class ViewOrderComponent implements OnInit{
   public data:any;
   public pidMap = new Map<string, number>();
   public mail_id:any;
+  public log_status:any;
+
   constructor(
     private transactions: AggregationService,
     private route: ActivatedRoute,
-    private session: LocalService
+    private http: HttpClient, 
+    private router: Router
   ){}
   ngOnInit(): void {
+
+
+    this.http.get<any>(`${environment.SERVER_URI}/api/session`)
+    .subscribe((res)=>{
+          if(res.valid){
+              if (res.log_status === "user") {
+                  this.log_status = "user"
+              }
+              else if (res.log_status === "admin") {
+                  this.log_status = "admin"
+              }
+          } else {
+            this.router.navigate(['/login'])
+          }
+    })
+
     const order_id = this.route.snapshot.params["orderid"]; 
     var result =this.transactions.getData();
     this.data = result.find((x:any)=>{
@@ -32,7 +52,7 @@ export class ViewOrderComponent implements OnInit{
     this.data?.ordersplaced.forEach((x:any)=>{
         this.pidMap.set(x.name,x.pid);
     })
-    this.mail_id = this.session.getWithExpiry("login_session");
+
   }
   formatedDate = (savedTime:any) => {
     const date = new Date(savedTime).toLocaleString(
@@ -107,8 +127,14 @@ export class ViewOrderComponent implements OnInit{
   }
   
   logout(){
-    this.session.clearData();
-    window.close();
+    this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
+        .subscribe((res)=>{
+          if(res.valid){
+            window.close();
+          } else {
+            alert("Logout Failed");
+          }
+        })
   }
 
 }

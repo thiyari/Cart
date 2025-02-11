@@ -51,7 +51,6 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   logout(){
-    //this.session.clearData();
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
         .subscribe((res)=>{
           if(res.valid){

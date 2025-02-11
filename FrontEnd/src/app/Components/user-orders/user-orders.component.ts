@@ -26,7 +26,6 @@ export class UserOrdersComponent implements OnInit {
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "user") {
-                console.log(res.email)
                 this.aggregation = this.transactions.merge_userdata(res.email)
                 var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
                 this.transactions.setData(result)               
@@ -49,7 +48,6 @@ export class UserOrdersComponent implements OnInit {
   }
 
   logout(){
-    //this.session.clearData();
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
         .subscribe((res)=>{
           if(res.valid){

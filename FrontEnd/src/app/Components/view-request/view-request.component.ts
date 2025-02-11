@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { ActivatedRoute } from '@angular/router';
-import { LocalService } from '../../service/local.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-view-request',
@@ -13,13 +14,30 @@ import { LocalService } from '../../service/local.service';
 export class ViewRequestComponent implements OnInit{
   public order:any;
   public mail_id:any;
+  public log_status:any;
   constructor(
         private api: ApiService,
         private route: ActivatedRoute,
-        private session: LocalService
+        private http: HttpClient, 
+        private router: Router
   ){}
 
   ngOnInit(): void {
+
+
+    this.http.get<any>(`${environment.SERVER_URI}/api/session`)
+    .subscribe((res)=>{
+          if(res.valid){
+              if (res.log_status === "user") {
+                  this.log_status = "user"
+              }
+              else if (res.log_status === "admin") {
+                  this.log_status = "admin"
+              }
+          } else {
+            this.router.navigate(['/login'])
+          }
+    })
     const order_id = this.route.snapshot.params['orderid'];
     this.api.getOrders()
     .subscribe(res=>{
@@ -27,15 +45,20 @@ export class ViewRequestComponent implements OnInit{
         this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
         }
       })
-      this.mail_id = this.session.getWithExpiry("login_session");
   }
 
   logout(){
-    this.session.clearData();
-    window.close();
+    this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
+        .subscribe((res)=>{
+          if(res.valid){
+            window.close();
+          } else {
+            alert("Logout Failed");
+          }
+        })
   }
 
-  send_message(){
+  send_mail(){
     
   }
 }

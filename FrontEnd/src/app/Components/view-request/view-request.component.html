@@ -3,12 +3,12 @@
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline" *ngIf='mail_id?.log_status === "user"'>User Profile</span>
-                    <span class="fs-5 d-none d-sm-inline" *ngIf='mail_id?.log_status === "admin"'>Admin Profile</span>
+                    <span class="fs-5 d-none d-sm-inline" *ngIf='log_status === "user"'>User Profile</span>
+                    <span class="fs-5 d-none d-sm-inline" *ngIf='log_status === "admin"'>Admin Profile</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li>
-                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle" *ngIf='log_status === "admin"'>
                             <i class="fs-4 bi-person-bounding-box"></i> <span class="ms-1 d-none d-sm-inline">Admins Panel</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                             <li class="w-100">
@@ -22,19 +22,19 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/user-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "user"'>
+                        <a href="/user-orders" class="nav-link px-0 align-middle" *ngIf='log_status === "user"'>
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">My Orders</span></a>
-                        <a href="/admin-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                        <a href="/admin-orders" class="nav-link px-0 align-middle" *ngIf='log_status === "admin"'>
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders History</span></a>                            
                     </li>
                     <li>
-                        <a href="/user-requests" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "user"'>
+                        <a href="/user-requests" class="nav-link px-0 align-middle" *ngIf='log_status === "user"'>
                             <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Requests</span> </a>
-                        <a href="/pending-orders" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                        <a href="/pending-orders" class="nav-link px-0 align-middle" *ngIf='log_status === "admin"'>
                             <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Orders</span> </a>                    </li>
                     <li>
                     <li>
-                        <a href="/prodreg" class="nav-link px-0 align-middle" *ngIf='mail_id?.log_status === "admin"'>
+                        <a href="/prodreg" class="nav-link px-0 align-middle" *ngIf='log_status === "admin"'>
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>  
                     </li>                
                 </ul>
@@ -101,8 +101,8 @@
                                 </table>
                             </div>
 
-                            <button class="btn btn-primary" [routerLink]="['/payment',order?.orderid]" *ngIf='mail_id?.log_status === "user"'>Pay Now</button>
-                            <button class="btn btn-primary" *ngIf='mail_id?.log_status === "admin"' (click)="send_message()">Send Message</button>
+                            <button class="btn btn-primary" [routerLink]="['/payment',order?.orderid]" *ngIf='log_status === "user"'>Pay Now</button>
+                            <button class="btn btn-primary" *ngIf='log_status === "admin"' (click)="send_mail()">Send Mail</button>
 
                             <div class="form-group">
                                 <label class="form-label"><b>Address:</b></label>
