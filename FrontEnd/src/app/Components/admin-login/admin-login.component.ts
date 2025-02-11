@@ -90,7 +90,7 @@ moveNext(event:any){
     if (regex.test(this.email)) {
 
         // check email with the admins database
-        this.api.getOrders()
+        this.api.getAdmins()
         .subscribe(res=>{
           if (res.message === "Success"){
                 let records = res.records.filter((item:any)=>item.email===this.email)

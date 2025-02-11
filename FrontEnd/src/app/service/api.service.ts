@@ -40,6 +40,13 @@ export class ApiService {
     }))
   }
 
+  getAdmins(){
+    return this.http.get<any>(`${environment.SERVER_URI}/api/admins`)
+    .pipe(map((res)=>{
+      return res;
+    }))
+  }
+
   phonepe(data: any){
     return this.http.post<any>(`${environment.SERVER_URI}/api/phonepe`,data)
     .subscribe((response)=>{

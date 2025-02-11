@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 var productsController = require('../src/products/productsController')
 
+router.route('/api/admins').get(productsController.fetchAdminsControllerFn)
 router.route('/api/products').get(productsController.fetchProductsControllerFn)
 router.route('/api/orders').get(productsController.fetchOrdersControllerFn)
 router.route('/api/phonepetxn').get(productsController.fetchPhonepetxnControllerFn)

@@ -262,3 +262,14 @@ module.exports.deleteUserRequestDBService = async (orderid) => {
                     });               
         })
 }
+
+module.exports.fetchAdminsDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.admins.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}

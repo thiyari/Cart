@@ -381,6 +381,17 @@ var verifyOtpControllerFn = async(req, res) => {
     }
 }
 
+var fetchAdminsControllerFn = async(req,res)=>
+    {
+        const result = await (productsService.fetchAdminsDBService())
+        if(result.status){
+           return res.status(200).send({message:"Success",records:result.data});
+        }
+        else {
+            return res.status(400).send({message:'Failed',records:result.data});
+        }
+    }
+
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -398,5 +409,6 @@ module.exports = {
     fetchRazorpaytxnControllerFn,
     deleteUserRequestControllerFn,
     sendOtpControllerFn,
-    verifyOtpControllerFn
+    verifyOtpControllerFn,
+    fetchAdminsControllerFn
 }
