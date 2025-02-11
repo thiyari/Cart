@@ -34,6 +34,38 @@ body {
     text-align: center;
   }
 
+  .verification {
+    margin-top: 20px;
+  }
+  
+  .otp-input-fields {
+    margin: auto;
+    max-width: 420px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px;
+  }
+  
+  .otp_num {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #2f8f1f;
+    font-size: 14px;
+  }
+  
+  .otp_num::-webkit-inner-spin-button,
+  .otp_num::-webkit-outer-spin-button {
+    appearance: none;
+  }
+  
+  .success,
+  .error {
+    text-align: center;
+  }
 
 
 
