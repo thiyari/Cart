@@ -48,6 +48,8 @@
                                                         <th>Order Id</th>
                                                         <th>No. of Items</th>
                                                         <th>Total Amount</th>
+                                                        <th>Transaction Reference No</th>
+                                                        <th>Payment Status</th>
                                                         <th>Transaction Date</th>
                                                         <th>View Invoice</th>        
                                                     </tr>
@@ -64,6 +66,8 @@
                                                         <ng-template #rupee>
                                                             <td>₹ {{item.amount}}</td>
                                                         </ng-template>
+                                                        <td>{{item.referenceid}}</td>
+                                                        <td>{{item.transactionstatus}}</td>
                                                         <td *ngIf="item.transactionstatus === 'Received: PayPal';else date">{{formatedDate(item.transaction_date)}}</td>
                                                         <ng-template #date>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
