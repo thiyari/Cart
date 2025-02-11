@@ -1,6 +1,21 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
+var adminsSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: Number,
+        required: true
+    }
+})
+
 var productsSchema = new Schema({
     pid:{
         type: Number,
@@ -194,7 +209,7 @@ const phonepetxns = mongoose.model("phonepetxns",phonepetxnsSchema)
 const googlepaytxns = mongoose.model("googlepaytxns",googlepaytxnsSchema)
 const paypaltxns = mongoose.model("paypaltxns",paypaltxnsSchema)
 const razorpaytxns = mongoose.model("razorpaytxns",razorpaytxnsSchema)
-
+const admins = mongoose.model("admins",adminsSchema)
 
 module.exports = {
     products, 
@@ -202,5 +217,6 @@ module.exports = {
     phonepetxns,
     googlepaytxns,
     paypaltxns,
-    razorpaytxns
+    razorpaytxns,
+    admins
 }
