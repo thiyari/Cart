@@ -347,8 +347,16 @@ var sendOtpControllerFn = async(req, res) => {
     var options = {
         from: app_user,
         to: `${email}`,
-        subject: "OTP for User Login",
-        html: `<p>Please use the OTP: <b>${otp}</b> for your account login valid only for 1 minute</p>`
+        subject: "OTP for Login Access",
+        html: `
+        <P>Dear User,</p>
+        <br>
+        <p>Please use the OTP: <b>${otp}</b> for your account login valid for 1 minute</p>
+        <br>
+        <p>Regards</p>
+        <br>
+        <p>Admin</p>
+        `
     };
     transporter.sendMail(
         options, function (error, info) {
