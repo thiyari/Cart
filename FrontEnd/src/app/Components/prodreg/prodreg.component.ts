@@ -54,6 +54,10 @@ export class ProdregComponent implements OnInit {
     this.images = base64
   }
 
+  reset_files(){
+    this.images = []
+    this.files = []
+  }
 
   prod_reg()
   {
