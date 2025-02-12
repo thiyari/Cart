@@ -91,7 +91,7 @@
                                         <label for='uploadImage'>
                                           <input type='file' multiple accept="image/*" id='uploadImage' (change)="upload_images($event)"/>
                                         </label>
-                                        <button type="submit" (click)="reset_files()">Pop File</button>
+                                        <button type="submit" (click)="reset_files()">Reset Files</button>
                                       </div>
                                       <div *ngFor="let file of files" class="success text-success">{{file}} is attached</div>
                                       
