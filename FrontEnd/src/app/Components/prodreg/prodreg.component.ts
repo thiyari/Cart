@@ -81,6 +81,7 @@ export class ProdregComponent implements OnInit {
         this.price  = '';
         this.images = []  
         this.files = []
+        window.location.reload();
       } else {
         alert("Unable to Register the product")
       }
