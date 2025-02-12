@@ -44,46 +44,66 @@
       </div>
       <div class="col py-3 mt-4">
           <!--  Content Area Start  -->
-
-          <div class="container mt-4" >
+          <div class="scrollable">      
+            <div class="row">
+                <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                      <div class="container mt-4" >
  
-            <div class="card">
-                    <h1>Adding a Product</h1>
-             
-            <form>
-                <div class="form-group">
-                  <label>Name</label>
-                  <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name">
-             
-                </div>
-             
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea class="form-control" 
-                      [(ngModel)]="description" 
-                      [ngModelOptions]="{standalone: true}"
-                      id="description" 
-                      placeholder="Provide the product description"
-                      rows="5"
-                  ></textarea>
-                </div>
-              
-                  <div class="form-group">
-                    <label>Price</label>
-                    <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="phone" placeholder="Enter Price">
-              
-                  </div>
-        
-                  <label htmlFor='uploadImage'>
-                    <div className='uploadBox'>
-                      <input type='file' multiple accept="image/*" id='uploadImage' (change)="upload_images($event)"/>
+                        <div class="card container">
+                          <div class="title">Add Product</div>
+                          <hr>
+                            <div class="box">
+                              <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                  <form>
+                                    <div class="form-group">
+                                      <label>Name</label>
+                                      <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                      <label>Description</label>
+                                      <textarea class="form-control" 
+                                          [(ngModel)]="description" 
+                                          [ngModelOptions]="{standalone: true}"
+                                          id="description" 
+                                          placeholder="Provide the product description"
+                                          rows="5"
+                                      ></textarea>
+                                    </div>
+                                  
+                                      <div class="form-group">
+                                        <label>Price</label>
+                                        <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="phone" placeholder="Enter Price">
+                                      </div>
+                                      
+                                      <br>
+                                      <label htmlFor='uploadImage'>
+                                        <div className='uploadBox'>
+                                          <input type='file' multiple accept="image/*" id='uploadImage' (change)="upload_images($event)"/>
+                                        </div>
+                                      </label>
+
+                                      
+                                      <div>
+                                        <button type="submit" class="btn btn-primary mt-4" (click)="prod_reg()">Submit</button>
+                                      </div>
+                                  </form>    
+                                </div>
+                                <div class="col-md-3"></div>
+                              </div>
+                              </div>
+                        </div>
+                        <div>
+            
                     </div>
-                  </label>
-        
-                <button type="submit" class="btn btn-primary mt-4" (click)="prod_reg()">Submit</button>
-              </form>
+                <div class="col-md-1"></div>
             </div>
-            <div>
+          </div>
+
+
           <!--  Content Area End  -->            
       </div>
   </div>
