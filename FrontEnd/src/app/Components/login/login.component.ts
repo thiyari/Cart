@@ -35,6 +35,7 @@ export class LoginComponent {
             // Shifting the key focus while pressing back space key (code 8)
             if (event.keyCode === 8 && index > 1) {
                 current.previousElementSibling.focus()
+                current.previousElementSibling.value = ""
             }
             // Shifting the key focus to next field while entering key
             else if (index < 6) {
