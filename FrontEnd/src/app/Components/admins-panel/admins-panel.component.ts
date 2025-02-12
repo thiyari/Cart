@@ -12,7 +12,7 @@ import { ApiService } from '../../service/api.service';
   styleUrl: './admins-panel.component.scss'
 })
 export class AdminsPanelComponent implements OnInit{
-
+admins: any;
   constructor(     
     private api: ApiService,
     private http: HttpClient, 
@@ -24,7 +24,12 @@ export class AdminsPanelComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
-                // to do
+                this.api.getAdmins()
+                .subscribe(res=>{
+                  if (res.message === "Success"){
+                        this.admins = res.records
+                    }
+                  })
             }
           } else {
             this.router.navigate(['/login'])
