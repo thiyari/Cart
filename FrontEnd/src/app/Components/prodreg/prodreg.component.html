@@ -57,10 +57,12 @@
                               <div class="row">
                                 <div class="col-md-3"></div>
                                 <div class="col-md-6">
-                                  <form>
+                                  <form class="was-validated">
                                     <div class="form-group">
                                       <label>Name</label>
-                                      <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name">
+                                      <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name" required/>
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                 
                                     <div class="form-group">
@@ -71,12 +73,17 @@
                                           id="description" 
                                           placeholder="Provide the product description"
                                           rows="5"
+                                          required
                                       ></textarea>
+                                      <div class="valid-feedback">Valid.</div>
+                                      <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                   
                                       <div class="form-group">
                                         <label>Price</label>
-                                        <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="phone" placeholder="Enter Price">
+                                        <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="phone" placeholder="Enter Price" required/>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
                                       </div>
                                       
                                       <br>
