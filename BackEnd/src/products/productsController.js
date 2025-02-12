@@ -350,11 +350,8 @@ var sendOtpControllerFn = async(req, res) => {
         subject: "OTP for Login Access",
         html: `
         <P>Dear User,</p>
-        <br>
         <p>Please use the OTP: <b>${otp}</b> for your account login valid for 1 minute</p>
-        <br>
-        <p>Regards</p>
-        <br>
+        <p>Regards,</p>
         <p>Admin</p>
         `
     };
