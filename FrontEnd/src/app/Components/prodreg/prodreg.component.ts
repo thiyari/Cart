@@ -57,23 +57,28 @@ export class ProdregComponent implements OnInit {
 
   prod_reg()
   {
-    const currDate = new Date().toLocaleDateString();
-    const currTime = new Date().toLocaleTimeString();
-    const datetime = currDate+currTime
-    const random_digits = datetime.replace(/[^0-9]/g, "")
-    const pid = Math.floor(10 + Math.random() * 90)+random_digits;
-    let bodyData = {
-      "pid": pid,
-      "name" : this.name,
-      "description" : this.description,
-      "price" : this.price,
-      "images": this.images
-    };
-    this.api.addProduct(bodyData)
+    if (this.name === "" || this.description === "" || this.price === "" || this.files.length === 0){
+      alert("Please the fields and upload an image")
+    }
+    else {
+      const currDate = new Date().toLocaleDateString();
+      const currTime = new Date().toLocaleTimeString();
+      const datetime = currDate+currTime
+      const random_digits = datetime.replace(/[^0-9]/g, "")
+      const pid = Math.floor(10 + Math.random() * 90)+random_digits;
+      let bodyData = {
+        "pid": pid,
+        "name" : this.name,
+        "description" : this.description,
+        "price" : this.price,
+        "images": this.images
+      };
+      this.api.addProduct(bodyData)
+    }
     this.name = '';
     this.description = '';
     this.price  = '';
-    this.images = []
+    this.images = []  
   }
 
 
