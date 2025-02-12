@@ -20,9 +20,7 @@ export class ApiService {
 
   addProduct(bodyData:any){
     return this.http.post<any>(`${environment.SERVER_URI}/api/products/create`,bodyData)
-    .subscribe((res)=>{
-      alert("Product Registered Successfully");
-    })
+    .subscribe()
   }
 
   submit_order(bodyData: any){

@@ -73,12 +73,18 @@ export class ProdregComponent implements OnInit {
         "price" : this.price,
         "images": this.images
       };
-      this.api.addProduct(bodyData)
+      const status = this.api.addProduct(bodyData)
+      if (status){
+        alert("Product Registered Successfully");
+        this.name = '';
+        this.description = '';
+        this.price  = '';
+        this.images = []  
+        this.files = []
+      } else {
+        alert("Unable to Register the product")
+      }
     }
-    this.name = '';
-    this.description = '';
-    this.price  = '';
-    this.images = []  
   }
 
 
