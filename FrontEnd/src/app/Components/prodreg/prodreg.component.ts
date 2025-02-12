@@ -16,6 +16,7 @@ export class ProdregComponent implements OnInit {
   description: string ="";
   price: string = "";
   images: string[] = [];
+  files: string[] = [];
 
   constructor(
     private api: ApiService,
@@ -37,7 +38,9 @@ export class ProdregComponent implements OnInit {
 
   upload_images(event:any){
     let base64:string[] = []
+    this.files.map((file:any)=>{console.log(file.name)})
     for (let i = 0; i < event.target.files.length; i++) {
+       this.files.push(event.target.files[i].name)
        let file = event.target.files[i];
        let reader = new FileReader();
        reader.readAsDataURL(file);
