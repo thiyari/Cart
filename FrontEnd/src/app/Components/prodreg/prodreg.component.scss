@@ -55,7 +55,7 @@ h4 {
   .pop-up{
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
+    padding: 2px 10px 2px 10px;
     border: none;
     text-align: center;
     text-decoration: none;
@@ -63,12 +63,13 @@ h4 {
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
+    margin-left: 300px;
   }
 
   .pop-up:hover {
     background-color: #45a049;
   }
-  
+
 @media (max-width: 360px){
     h4 {
         left: 25px;

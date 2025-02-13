@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -18,6 +18,9 @@ export class ProdregComponent implements OnInit {
   price: string = "";
   images: string[] = [];
   files: string[] = [];
+  display: boolean = false;
+  // Using ViewChild to access the div by its reference variable
+  @ViewChild('fileInput', { static: false }) div!: ElementRef;
 
   constructor(
     private api: ApiService,
@@ -52,16 +55,31 @@ export class ProdregComponent implements OnInit {
        };
     }
     this.images = base64
+    this.check_files();
   }
 
   pop_file(){
     this.images.splice(-1,1)
     this.files.splice(-1,1)
+    this.check_files();
+  }
+
+  check_files(){
+    if (this.files.length != 0) {
+      this.display = true
+    } else {
+      this.display = false
+      // Refresh the file input div
+      if (this.div) {
+        // Access the content of the div using nativeElement
+        this.div.nativeElement.value = "";
+      }
+    }
   }
 
   prod_reg()
   {
-    if (this.name === "" || this.description === "" || this.price === "" || this.files.length === 0){
+    if (this.name === "" || this.description === "" || this.price === "" || this.files.length === 0 || this.images.length === 0){
       alert("Please the fields and upload an image")
     }
     else {
@@ -90,7 +108,7 @@ export class ProdregComponent implements OnInit {
             this.price  = '';
             this.images = []  
             this.files = []
-            window.location.reload();
+            this.check_files();
           } else {
             alert("Unable to Register the product")
           }
