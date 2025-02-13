@@ -101,7 +101,7 @@
                                         <label for='uploadImage'>
                                           <input #fileInput type='file' multiple accept="image/*" id='uploadImage' (change)="upload_images($event)" required/>
                                           <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">Please upload atleast one file or select multiple files all at once.</div>
+                                          <div class="invalid-feedback">Select one or multiple files all at once.</div>
                                         </label>
                                         <button type="submit" class="pop-up" (click)="pop_file()" *ngIf="display">Pop Image</button>
                                       </div>
