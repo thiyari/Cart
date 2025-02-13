@@ -60,8 +60,8 @@ export class AdminOrdersComponent implements OnInit {
     this.transactions.setData(result) 
     this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
       return (
-        x.referenceid.toLowerCase() === this.searchText.toLowerCase() ||
-        x.orderid === this.searchText
+        x.referenceid.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        JSON.stringify(x.orderid).includes(this.searchText)
       )
     });
 
