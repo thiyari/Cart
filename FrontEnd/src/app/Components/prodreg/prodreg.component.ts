@@ -3,6 +3,7 @@ import { ApiService } from '../../service/api.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { Buffer } from 'buffer';
 
 @Component({
   selector: 'app-prodreg',
@@ -76,6 +77,8 @@ export class ProdregComponent implements OnInit {
         "price" : this.price,
         "images": this.images
       };
+      const payloadSize = Buffer.byteLength(JSON.stringify(bodyData), 'utf8');
+      console.log(`Payload size: ${payloadSize} bytes`);
       const status = this.api.addProduct(bodyData)
       if (status){
         alert("Product Registered Successfully");
