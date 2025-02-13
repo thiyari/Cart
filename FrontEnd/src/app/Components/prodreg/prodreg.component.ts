@@ -77,20 +77,25 @@ export class ProdregComponent implements OnInit {
         "price" : this.price,
         "images": this.images
       };
-      const payloadSize = Buffer.byteLength(JSON.stringify(bodyData), 'utf8');
-      console.log(`Payload size: ${payloadSize} bytes`);
 
-      const status = this.api.addProduct(bodyData)
-      if (status){
-        alert("Product Registered Successfully");
-        this.name = '';
-        this.description = '';
-        this.price  = '';
-        this.images = []  
-        this.files = []
-        //window.location.reload();
+      const payloadSize = Buffer.byteLength(JSON.stringify(bodyData), 'utf8');
+      //console.log(`Payload size: ${payloadSize} bytes`);
+
+      if (payloadSize < 524288000){
+        const status = this.api.addProduct(bodyData)
+        if (status){
+          alert("Product Registered Successfully");
+          this.name = '';
+          this.description = '';
+          this.price  = '';
+          this.images = []  
+          this.files = []
+          //window.location.reload();
+        } else {
+          alert("Unable to Register the product")
+        }
       } else {
-        alert("Unable to Register the product")
+        alert("Please upload the files less then 500 MB")
       }
     }
   }
