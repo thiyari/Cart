@@ -83,17 +83,17 @@ export class ProdregComponent implements OnInit {
 
       if (payloadSize < 524288000){
         const status = this.api.addProduct(bodyData)
-        if (status){
-          alert("Product Registered Successfully");
-          this.name = '';
-          this.description = '';
-          this.price  = '';
-          this.images = []  
-          this.files = []
-          //window.location.reload();
-        } else {
-          alert("Unable to Register the product")
-        }
+          if (status){
+            alert("Product Registered Successfully");
+            this.name = '';
+            this.description = '';
+            this.price  = '';
+            this.images = []  
+            this.files = []
+            window.location.reload();
+          } else {
+            alert("Unable to Register the product")
+          }
       } else {
         alert("Please upload the files less then 500 MB")
       }
