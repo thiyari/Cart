@@ -52,6 +52,23 @@ h4 {
     text-align: center;
    }
 
+  .pop-up{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .pop-up:hover {
+    background-color: #45a049;
+  }
+  
 @media (max-width: 360px){
     h4 {
         left: 25px;
