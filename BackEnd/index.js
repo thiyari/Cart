@@ -39,8 +39,8 @@ app.use(session({
 ))
 
 
-app.use(express.json({limit: "500mb"})); // setting limit to 50 MB (52428800 in bytes)
-app.use(express.urlencoded({limit: "500mb", extended: true , parameterLimit: 100000}));
+app.use(bodyParser.json({limit: "500mb"})); // setting limit to 50 MB (52428800 in bytes)
+app.use(bodyParser.urlencoded({limit: "500mb", extended: true , parameterLimit: 100000}));
 
 const checkDB = async()=>{
     try{
