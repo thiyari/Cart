@@ -13,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class AdminOrdersComponent implements OnInit {
     aggregation: any[] = []
-  
+    filteredResult: any[] = []
+    searchText: string = "";
     constructor(
       private transactions: AggregationService,
       private http: HttpClient, 
@@ -25,13 +26,7 @@ export class AdminOrdersComponent implements OnInit {
       .subscribe((res)=>{
             if(res.valid){
                 if (res.log_status === "admin") {
-                    //const mail_id = this.session.getWithExpiry("login_session");
-                    this.aggregation = this.transactions.merge_admindata();
-                    // sorting the result according to datetime in descending order
-                    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                    // Below is an Alternative method for the same
-                    //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
-                    this.transactions.setData(result)                
+                  this.search();
               }
             } else {
               this.router.navigate(['/login'])
@@ -48,6 +43,28 @@ export class AdminOrdersComponent implements OnInit {
       }
     );
     return date
+  }
+
+  searchKey(data: string) {
+    this.searchText = data;
+    this.search();
+  }
+
+  search() {
+
+    this.aggregation = this.transactions.merge_admindata();
+    // sorting the result according to datetime in descending order
+    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    // Below is an Alternative method for the same
+    //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
+    this.transactions.setData(result) 
+    this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
+      return (
+        x.referenceid.toLowerCase() === this.searchText.toLowerCase() ||
+        x.orderid === this.searchText
+      )
+    });
+
   }
 
   logout(){
