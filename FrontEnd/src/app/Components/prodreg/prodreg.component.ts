@@ -79,6 +79,7 @@ export class ProdregComponent implements OnInit {
       };
       const payloadSize = Buffer.byteLength(JSON.stringify(bodyData), 'utf8');
       console.log(`Payload size: ${payloadSize} bytes`);
+
       const status = this.api.addProduct(bodyData)
       if (status){
         alert("Product Registered Successfully");
@@ -87,7 +88,7 @@ export class ProdregComponent implements OnInit {
         this.price  = '';
         this.images = []  
         this.files = []
-        window.location.reload();
+        //window.location.reload();
       } else {
         alert("Unable to Register the product")
       }
