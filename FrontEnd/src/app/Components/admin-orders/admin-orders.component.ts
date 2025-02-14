@@ -26,6 +26,7 @@ export class AdminOrdersComponent implements OnInit {
       .subscribe((res)=>{
             if(res.valid){
                 if (res.log_status === "admin") {
+                  this.aggregation = this.transactions.merge_admindata();
                   this.search();
               }
             } else {
@@ -51,8 +52,6 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   search() {
-
-    this.aggregation = this.transactions.merge_admindata();
     // sorting the result according to datetime in descending order
     var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     // Below is an Alternative method for the same

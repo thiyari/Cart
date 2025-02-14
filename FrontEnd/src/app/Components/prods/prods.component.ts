@@ -27,6 +27,12 @@ filteredResult: any[] = []
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
+                this.api.getProducts()
+                .subscribe(res=>{
+                  if (res.message === "Success"){
+                        this.products = res.records
+                    }
+                  })
                 this.search()
             }
           } else {
@@ -41,12 +47,6 @@ filteredResult: any[] = []
   }
 
   search() {
-    this.api.getProducts()
-    .subscribe(res=>{
-      if (res.message === "Success"){
-            this.products = res.records
-        }
-      })
     // sorting the result according to datetime in descending order
     var result = this.products.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
