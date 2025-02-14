@@ -12,23 +12,22 @@ import { Router } from '@angular/router';
   styleUrl: './prods.component.scss'
 })
 export class ProdsComponent implements OnInit {
-products: any;
+products: any[] = [];
+searchText: string = "";
+filteredResult: any[] = []
+
   constructor(     
     private api: ApiService,
     private http: HttpClient, 
     private router: Router
   ){}
+
   ngOnInit(): void {
     this.http.get<any>(`${environment.SERVER_URI}/api/session`)
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
-                this.api.getProducts()
-                .subscribe(res=>{
-                  if (res.message === "Success"){
-                        this.products = res.records
-                    }
-                  })
+                this.search()
             }
           } else {
             this.router.navigate(['/login'])
@@ -36,7 +35,26 @@ products: any;
     })
   }
 
+  searchKey(data: string) {
+    this.searchText = data;
+    this.search();
+  }
 
+  search() {
+    this.api.getProducts()
+    .subscribe(res=>{
+      if (res.message === "Success"){
+            this.products = res.records
+        }
+      })
+    // sorting the result according to datetime in descending order
+    var result = this.products.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
+      return (
+        JSON.stringify(x.pid).includes(this.searchText)
+      )
+    });
+  }
 
     logout(){
       this.http.get<any>(`${environment.SERVER_URI}/api/logout`)

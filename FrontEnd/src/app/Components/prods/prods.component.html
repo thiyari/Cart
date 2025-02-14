@@ -59,11 +59,15 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <ng-container *ngIf="products?.length != 0">
+                            <ng-container *ngIf="filteredResult?.length != 0">
                                 <div class="card container">
                                     <div class="box">
                                         <div class="title">List of Products</div>
                                         <hr>
+                                        <form class="form-inline">
+                                            <input class="form-control mr-sm-2" type="search" placeholder="Type Product Id for easy Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchKey($event)">
+                                        </form>
+                                        <br>
                                         <div class="table" style="border: none;">
                                                 <div class ="table-responsive-md">                  
                                                 <table class="table table-hover">
@@ -79,7 +83,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody class="table-group-divider">
-                                                        <tr *ngFor="let item of products; let i = index">
+                                                        <tr *ngFor="let item of filteredResult; let i = index">
                                                             <td>{{i+1}}</td>
                                                             <td>{{item.pid}}</td>
                                                             <td>{{item.name}}</td>
@@ -95,7 +99,7 @@
                                     </div>
                                 </div>
                             </ng-container>
-                            <ng-container *ngIf="products?.length === 0">
+                            <ng-container *ngIf="filteredResult?.length === 0">
                                 <div class="container">
                                     <div>
                                         <h4>There are no products</h4>
