@@ -27,6 +27,11 @@ export class AdminOrdersComponent implements OnInit {
             if(res.valid){
                 if (res.log_status === "admin") {
                   this.aggregation = this.transactions.merge_admindata();
+                  // sorting the result according to datetime in descending order
+                  this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                  // Below is an Alternative method for the same
+                  //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
+                  this.transactions.setData(this.aggregation) 
                   this.search();
               }
             } else {
@@ -52,12 +57,7 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   search() {
-    // sorting the result according to datetime in descending order
-    var result = this.aggregation.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    // Below is an Alternative method for the same
-    //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
-    this.transactions.setData(result) 
-    this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
+    this.filteredResult = this.searchText === "" ? this.aggregation : this.aggregation.filter((x:any) => {
       return (
         x.referenceid.toLowerCase().includes(this.searchText.toLowerCase()) ||
         JSON.stringify(x.orderid).includes(this.searchText)

@@ -33,6 +33,8 @@ filteredResult: any[] = []
                         this.products = res.records
                     }
                   })
+                // sorting the result according to datetime in descending order
+                this.products.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
                 this.search()
             }
           } else {
@@ -47,9 +49,7 @@ filteredResult: any[] = []
   }
 
   search() {
-    // sorting the result according to datetime in descending order
-    var result = this.products.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-    this.filteredResult = this.searchText === "" ? result : result.filter((x:any) => {
+    this.filteredResult = this.searchText === "" ? this.products : this.products.filter((x:any) => {
       return (
         JSON.stringify(x.pid).includes(this.searchText)
       )
