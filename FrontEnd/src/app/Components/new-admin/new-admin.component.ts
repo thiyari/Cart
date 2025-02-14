@@ -24,6 +24,18 @@ export class NewAdminComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
+
+    this.http.get<any>(`${environment.SERVER_URI}/api/session`)
+    .subscribe((res)=>{
+          if(res.valid){
+              if (res.log_status === "admin") {
+
+            }
+          } else {
+            this.router.navigate(['/login'])
+          }
+    })
+
   }
 
   add_admin(){
