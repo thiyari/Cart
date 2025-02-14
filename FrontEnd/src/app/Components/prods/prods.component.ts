@@ -56,7 +56,19 @@ filteredResult: any[] = []
     });
   }
 
-    logout(){
+
+  formatedDate = (savedTime:any) => {
+    const date = new Date(savedTime).toLocaleString(
+      "gu-IN",
+      {
+        timeStyle: "medium",
+        dateStyle: "short",
+      }
+    );
+    return date
+  }
+
+  logout(){
       this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
           .subscribe((res)=>{
             if(res.valid){
