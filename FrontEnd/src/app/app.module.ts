@@ -32,6 +32,7 @@ import { AdminOrdersComponent } from './Components/admin-orders/admin-orders.com
 import { PendingOrdersComponent } from './Components/pending-orders/pending-orders.component';
 import { AdminsPanelComponent } from './Components/admins-panel/admins-panel.component';
 import { ProdsComponent } from './Components/prods/prods.component';
+import { NewAdminComponent } from './Components/new-admin/new-admin.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ProdsComponent } from './Components/prods/prods.component';
     AdminOrdersComponent,
     PendingOrdersComponent,
     AdminsPanelComponent,
-    ProdsComponent
+    ProdsComponent,
+    NewAdminComponent
   ],
   imports: [
     BrowserModule,
