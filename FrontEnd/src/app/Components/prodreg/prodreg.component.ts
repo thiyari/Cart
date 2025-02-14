@@ -20,7 +20,7 @@ export class ProdregComponent implements OnInit {
   files: string[] = [];
   display: boolean = false;
   // Using ViewChild to access the div by its reference variable
-  @ViewChild('fileInput', { static: false }) div!: ElementRef;
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
 
   constructor(
     private api: ApiService,
@@ -69,10 +69,10 @@ export class ProdregComponent implements OnInit {
       this.display = true
     } else {
       this.display = false
-      // Refresh the file input div
-      if (this.div) {
-        // Access the content of the div using nativeElement
-        this.div.nativeElement.value = "";
+      // Refresh the file input
+      if (this.fileInput) {
+        // Access the content of the fileInput using nativeElement
+        this.fileInput.nativeElement.value = "";
       }
     }
   }
