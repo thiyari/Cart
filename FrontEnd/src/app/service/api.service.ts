@@ -134,4 +134,17 @@ export class ApiService {
     return result
   }
 
+  delete_admin(id:any, name: any){
+    var result: any;
+    if (window.confirm(`Are you sure deleting the admin: ${name} ?`)){
+      try{
+        result = this.http.delete<any>(`${environment.SERVER_URI}/api/admins/delete/${id}`)
+        .subscribe()
+      }
+      catch (err) {
+        alert(err)
+      }
+    }
+    return result
+  }
 }

@@ -83,8 +83,8 @@
                                                             <td>{{item.name}}</td>
                                                             <td>{{item.email}}</td>
                                                             <td>{{item.phone}}</td>
-                                                            <td><a [routerLink]="['/edit-admin', item._id]"><i class="fa-solid fa-user-pen"></i></a></td>
-                                                            <td><i class="fa-solid fa-user-xmark"></i></td>
+                                                            <td><a class="btn btn-success" [routerLink]="['/edit-admin', item._id]"><i class="fa-solid fa-user-pen"></i></a></td>
+                                                            <td><a class="btn btn-danger" (click)="delete_admin(item._id, item.name)"><i class="fa-solid fa-user-xmark"></i></a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

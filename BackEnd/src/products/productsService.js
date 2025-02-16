@@ -269,6 +269,21 @@ module.exports.fetchRazorpayDBService = () => {
 }
 
 
+module.exports.deleteAdminsDBService = async (id) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.admins.findOneAndDelete({_id:id})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Admin was Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting the Admin failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
 
 module.exports.deleteUserRequestDBService = async (orderid) => {
         return new Promise(async function myFn(resolve,reject){

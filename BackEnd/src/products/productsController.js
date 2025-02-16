@@ -327,7 +327,23 @@ var fetchPaypaltxnControllerFn = async(req,res)=>
             }
         }
 
-
+var deleteAdminsControllerFn = async (req, res) => {
+    var result = null;
+    try
+    {
+        var result = await productsService.deleteAdminsDBService(req.params.id)
+        if(result.status){
+            return res.send({"status": result.success, "message": result.msg});
+        }
+        else {
+            return res.send({"status": result.success, "message": result.msg});
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.send({"status":false,"message":err.msg});
+    }
+}
 
 var deleteUserRequestControllerFn = async(req,res)=>
     {
@@ -488,5 +504,6 @@ module.exports = {
     sessionControllerFn,
     logoutControllerFn,
     createAdminsControllerFn,
-    editAdminsControllerFn
+    editAdminsControllerFn,
+    deleteAdminsControllerFn
 }

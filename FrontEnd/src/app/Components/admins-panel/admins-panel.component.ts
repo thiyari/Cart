@@ -37,6 +37,13 @@ admins: any;
     })
   }
 
+  delete_admin(id: any, name: any){
+    const status = this.api.delete_admin(id, name);
+    if(status){
+      this.admins = this.admins.filter((item:any) => item._id != id);
+    }
+  }
+
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
         .subscribe((res)=>{
