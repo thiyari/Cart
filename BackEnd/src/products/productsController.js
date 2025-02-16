@@ -32,7 +32,7 @@ var createAdminsControllerFn = async (req, res) => {
             res.status(200).send({"status":true,"message":"Added new admin successfully"});
         }
         else {
-            res.status(400).send({"status":false,"message":"Error add a new Admin"});
+            res.status(400).send({"status":false,"message":"Error while adding a new Admin"});
         }
     }
     catch(err){
