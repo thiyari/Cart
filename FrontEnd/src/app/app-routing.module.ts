@@ -24,6 +24,7 @@ import { AdminsPanelComponent } from './Components/admins-panel/admins-panel.com
 import { ProdsComponent } from './Components/prods/prods.component';
 import { NewAdminComponent } from './Components/new-admin/new-admin.component';
 import { EditAdminsComponent } from './Components/edit-admins/edit-admins.component';
+import { PaymentTransactionsComponent } from './Components/payment-transactions/payment-transactions.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -41,6 +42,7 @@ const routes: Routes = [
   {path:'pending-orders',component: PendingOrdersComponent},
   {path:'user-orders',component: UserOrdersComponent},
   {path:'user-requests',component: UserRequestsComponent},
+  {path:'payment-transaction',component: PaymentTransactionsComponent},
   {path:'edit-admin/:id',component: EditAdminsComponent},
   {path:'viewrequest/:orderid',component: ViewRequestComponent},
   {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},

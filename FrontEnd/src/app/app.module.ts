@@ -34,6 +34,7 @@ import { AdminsPanelComponent } from './Components/admins-panel/admins-panel.com
 import { ProdsComponent } from './Components/prods/prods.component';
 import { NewAdminComponent } from './Components/new-admin/new-admin.component';
 import { EditAdminsComponent } from './Components/edit-admins/edit-admins.component';
+import { PaymentTransactionsComponent } from './Components/payment-transactions/payment-transactions.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { EditAdminsComponent } from './Components/edit-admins/edit-admins.compon
     AdminsPanelComponent,
     ProdsComponent,
     NewAdminComponent,
-    EditAdminsComponent
+    EditAdminsComponent,
+    PaymentTransactionsComponent
   ],
   imports: [
     BrowserModule,
