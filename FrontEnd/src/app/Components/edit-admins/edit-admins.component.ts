@@ -16,7 +16,6 @@ export class EditAdminsComponent implements OnInit{
   name: string = "";
   email: string = "";
   phone: string = "";
-  record: any;
 
   constructor(     
     private api: ApiService,
@@ -34,10 +33,10 @@ export class EditAdminsComponent implements OnInit{
               this.api.getAdmins()
               .subscribe((res:any)=>{
                 if (res.message === "Success"){
-                    this.record = res.records.find((item:any)=>item._id === id)
-                    this.name = this.record.name;
-                    this.email = this.record.email;
-                    this.phone = JSON.stringify(this.record.phone);
+                    const record = res.records.find((item:any)=>item._id === id)
+                    this.name = record.name;
+                    this.email = record.email;
+                    this.phone = JSON.stringify(record.phone);
                 }
               }) 
             }
