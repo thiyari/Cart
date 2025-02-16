@@ -60,23 +60,23 @@
                     <div class="col-md-10">
                         <div class="card container">
                             <div class="box">
-                                <div class="title">PhonePe Transaction</div>
+                                <div class="title" *ngIf="transaction_status==='Received: PhonePe'">PhonePe Transaction</div>
                                 <hr>
                                 <div class="form-group">
                                     <label class="form-label"><b>Reference Id:</b>&nbsp;</label>
-                                    <label class="form-label"></label>
+                                    <label class="form-label">{{record.referenceid}}</label>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" *ngIf="transaction_status != 'Received: GooglePay'">
                                     <label class="form-label"><b>Transaction Id:</b>&nbsp;</label>
-                                    <label class="form-label"></label>
+                                    <label class="form-label">{{record.transactionid}}</label>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label"><b>Amount:</b>&nbsp;</label>
-                                    <label class="form-label"></label>
+                                    <label class="form-label">{{record.amount}}</label>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label"><b>Transaction Date:</b>&nbsp;</label>
-                                    <label class="form-label"></label>
+                                    <label class="form-label">{{formatedDate(record.createdAt)}}</label>
                                 </div>
                             </div>
                          </div>

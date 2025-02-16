@@ -42,7 +42,6 @@ const routes: Routes = [
   {path:'pending-orders',component: PendingOrdersComponent},
   {path:'user-orders',component: UserOrdersComponent},
   {path:'user-requests',component: UserRequestsComponent},
-  {path:'payment-transaction',component: PaymentTransactionsComponent},
   {path:'edit-admin/:id',component: EditAdminsComponent},
   {path:'viewrequest/:orderid',component: ViewRequestComponent},
   {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},
@@ -53,6 +52,7 @@ const routes: Routes = [
   {path:'payment/:orderid',component: PaymentComponent},
   {path:'paypal/:orderid',component: PaypalComponent},
   {path:'view-order/:orderid',component: ViewOrderComponent},
+  {path:'payment-transaction/:referenceid/:transactionstatus',component: PaymentTransactionsComponent},
 ];
 
 @NgModule({

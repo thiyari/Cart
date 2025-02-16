@@ -98,7 +98,7 @@
                                                         <td>
                                                             <a *ngIf="item.transactionstatus === 'Received: PayPal'">{{item.transactionstatus}}</a>
                                                             <a *ngIf="item.transactionstatus === 'Received: Razorpay'">{{item.transactionstatus}}</a>
-                                                            <a *ngIf="item.transactionstatus === 'Received: PhonePe'">{{item.transactionstatus}}</a>
+                                                            <a [routerLink]="['/payment-transaction',item.referenceid, item.transactionstatus]" *ngIf="item.transactionstatus === 'Received: PhonePe'">{{item.transactionstatus}}</a>
                                                             <a *ngIf="item.transactionstatus === 'Received: GooglePay'">{{item.transactionstatus}}</a>
                                                         </td>
                                                         <td *ngIf="item.transactionstatus === 'Received: PayPal';else date">{{formatedDate(item.transaction_date)}}</td>

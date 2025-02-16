@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 
 @Component({
@@ -13,10 +13,14 @@ import { ApiService } from '../../service/api.service';
 })
 export class PaymentTransactionsComponent implements OnInit{
 
+  record: any;
+  transaction_status: any;
+
   constructor(
     private api: ApiService,
     private http: HttpClient, 
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
@@ -24,7 +28,14 @@ export class PaymentTransactionsComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
-                // to do
+                this.transaction_status = this.route.snapshot.params["transactionstatus"]; 
+                const reference_id = this.route.snapshot.params["referenceid"]; 
+                this.api.phonepe_txn()
+                .subscribe(res=>{
+                  if (res.message === "Success"){
+                      this.record = res.records.find((item:any)=>(item.referenceid === reference_id))
+                    }
+                  });
             }
           } else {
             this.router.navigate(['/login'])
