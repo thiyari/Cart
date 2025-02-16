@@ -52,7 +52,7 @@ const routes: Routes = [
   {path:'payment/:orderid',component: PaymentComponent},
   {path:'paypal/:orderid',component: PaypalComponent},
   {path:'view-order/:orderid',component: ViewOrderComponent},
-  {path:'payment-transaction/:referenceid/:transactionstatus',component: PaymentTransactionsComponent},
+  {path:'payment-transaction/:referenceid',component: PaymentTransactionsComponent},
 ];
 
 @NgModule({
