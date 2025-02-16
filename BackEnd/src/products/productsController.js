@@ -448,6 +448,24 @@ var logoutControllerFn = async(req,res)=>
         }
     }
 
+var editAdminsControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.editAdminsDBService(req.params.id,req.body)
+            if(result.status){
+                return res.send({"status": true, "message": result.msg});
+            }
+            else {
+                return res.send({"status": false, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+    }  
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -469,5 +487,6 @@ module.exports = {
     fetchAdminsControllerFn,
     sessionControllerFn,
     logoutControllerFn,
-    createAdminsControllerFn
+    createAdminsControllerFn,
+    editAdminsControllerFn
 }

@@ -22,6 +22,7 @@ router.route('/api/admins/create').post(productsController.createAdminsControlle
 router.route('/api/products/create').post(productsController.createProductsControllerFn)
 router.route('/api/orders/create').post(productsController.createOrdersControllerFn)
 router.route('/api/phonepe/status').post(productsController.phonepestatusControllerFn)
+router.route('/api/admins/edit/:id').put(productsController.editAdminsControllerFn)
 router.route('/api/user-request/delete/:orderid').delete(productsController.deleteUserRequestControllerFn)
 
 

@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditAdminsComponent implements OnInit{
 
+  id: string = "";
   name: string = "";
   email: string = "";
   phone: string = "";
@@ -29,11 +30,11 @@ export class EditAdminsComponent implements OnInit{
       .subscribe((res)=>{
           if(res.valid){
             if (res.log_status === "admin") {
-              const id = this.route.snapshot.params['id'];
+              this.id = this.route.snapshot.params['id'];
               this.api.getAdmins()
               .subscribe((res:any)=>{
                 if (res.message === "Success"){
-                    const record = res.records.find((item:any)=>item._id === id)
+                    const record = res.records.find((item:any)=>item._id === this.id)
                     this.name = record.name;
                     this.email = record.email;
                     this.phone = JSON.stringify(record.phone);
@@ -47,7 +48,17 @@ export class EditAdminsComponent implements OnInit{
     }
 
   edit_admin(){
-
+    if (this.name === "" || this.email === "" || this.phone === "" || this.phone.length != 10){
+      alert("Please fill the fields")
+    }
+    else{
+      let bodyData = {
+        "name" : this.name,
+        "email" : this.email,
+        "phone": parseInt(this.phone),
+      }
+      this.api.edit_admin(bodyData, this.id)
+    }
   }
 
     logout(){

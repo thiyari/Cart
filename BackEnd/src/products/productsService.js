@@ -295,3 +295,25 @@ module.exports.fetchAdminsDBService = () => {
                 }
         })
 }
+
+
+module.exports.editAdminsDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.admins.findByIdAndUpdate(id,
+                {
+                        name: data.name,
+                        email: data.email,
+                        phone: data.phone
+                },{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Admin details are updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating the Admin details failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
