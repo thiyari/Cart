@@ -23,6 +23,28 @@ module.exports.createProductsDBService = (productDetails) => {
 
 }
 
+module.exports.createAdminsDBService = (productDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await productsModel.admins.create({
+                                name: productDetails.name,
+                                email: productDetails.email,
+                                phone: productDetails.phone
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                resolve(true)
+                        }
+                });
+        });
+    
+    }    
+
+
 module.exports.googlepayControllerFnDBService = (txnDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){

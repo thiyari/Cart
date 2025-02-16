@@ -31,6 +31,17 @@ export class ApiService {
     })
   }
 
+  add_admin(bodyData: any){
+    return this.http.post<any>(`${environment.SERVER_URI}/api/admins/create`,bodyData)
+    .subscribe((res:any)=>{
+      if(res.status){
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
+    });
+  }
+
   getOrders(){
     return this.http.get<any>(`${environment.SERVER_URI}/api/orders`)
     .pipe(map((res)=>{

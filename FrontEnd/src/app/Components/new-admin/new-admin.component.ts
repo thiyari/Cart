@@ -15,7 +15,7 @@ export class NewAdminComponent implements OnInit{
 
   name: string = "";
   email: string = "";
-  phone: number = 0;
+  phone: string = "";
   
     constructor(     
       private api: ApiService,
@@ -27,19 +27,32 @@ export class NewAdminComponent implements OnInit{
 
     this.http.get<any>(`${environment.SERVER_URI}/api/session`)
     .subscribe((res)=>{
-          if(res.valid){
-              if (res.log_status === "admin") {
-
-            }
-          } else {
+        if(res.valid){
+          if (res.log_status === "user") {
             this.router.navigate(['/login'])
           }
+        } else {
+            this.router.navigate(['/login'])
+        }
     })
 
   }
 
   add_admin(){
-
+    if (this.name === "" || this.email === "" || this.phone === "" || this.phone.length != 10){
+      alert("Please fill the fields")
+    }
+    else{
+      let bodyData = {
+        "name" : this.name,
+        "email" : this.email,
+        "phone": parseInt(this.phone),
+    }
+    this.api.add_admin(bodyData)
+    this.name = "";
+    this.email  = "";
+    this.phone = "";
+    }
   }
 
   logout(){

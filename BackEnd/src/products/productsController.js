@@ -24,6 +24,22 @@ var transporter = nm.createTransport(
     }
 );
 
+var createAdminsControllerFn = async (req, res) => {
+    try
+    {
+        var status = await productsService.createAdminsDBService(req.body, res)
+        if(status){
+            res.status(200).send({"status":true,"message":"Added new admin successfully"});
+        }
+        else {
+            res.status(400).send({"status":false,"message":"Error add a new Admin"});
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
     var createProductsControllerFn = async(req,res)=>
         {
             try
@@ -452,5 +468,6 @@ module.exports = {
     verifyOtpControllerFn,
     fetchAdminsControllerFn,
     sessionControllerFn,
-    logoutControllerFn
+    logoutControllerFn,
+    createAdminsControllerFn
 }
