@@ -25,6 +25,7 @@ router.route('/api/phonepe/status').post(productsController.phonepestatusControl
 router.route('/api/admins/edit/:id').put(productsController.editAdminsControllerFn)
 router.route('/api/product/edit/:id').put(productsController.editProductControllerFn)
 router.route('/api/admins/delete/:id').delete(productsController.deleteAdminsControllerFn)
+router.route('/api/product/delete/:id').delete(productsController.deleteProductControllerFn)
 router.route('/api/user-request/delete/:orderid').delete(productsController.deleteUserRequestControllerFn)
 
 

@@ -90,7 +90,7 @@
                                                             <td>₹ {{item.price}}</td>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                             <td><a [routerLink]="['/prod-edit',item.pid]" class="btn btn-success"><i class="fa-solid fa-file-pen"></i></a></td>
-                                                            <td><a class="btn btn-danger"><i class="fa-solid fa-file-circle-xmark"></i></a></td>
+                                                            <td><a class="btn btn-danger" (click)="delete_product(item._id, item.pid)"><i class="fa-solid fa-file-circle-xmark"></i></a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

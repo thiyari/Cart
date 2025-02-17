@@ -158,4 +158,19 @@ export class ApiService {
     }
     return result
   }
+
+  delete_product(id:any, pid: any){
+    var result: any;
+    if (window.confirm(`Are you sure deleting the product# ${pid} ?`)){
+      try{
+        result = this.http.delete<any>(`${environment.SERVER_URI}/api/product/delete/${id}`)
+        .subscribe()
+      }
+      catch (err) {
+        alert(err)
+      }
+    }
+    return result
+  }
+
 }

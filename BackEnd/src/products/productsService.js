@@ -284,6 +284,20 @@ module.exports.deleteAdminsDBService = async (id) => {
         })
 }
 
+module.exports.deleteProductDBService = async (id) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.products.findOneAndDelete({_id:id})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Product was Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting the Product failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
 
 module.exports.deleteUserRequestDBService = async (orderid) => {
         return new Promise(async function myFn(resolve,reject){

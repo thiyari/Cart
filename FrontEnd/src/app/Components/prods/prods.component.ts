@@ -68,6 +68,13 @@ filteredResult: any[] = []
     return date
   }
 
+  delete_product(id: any, pid: any){
+    const status = this.api.delete_product(id, pid);
+    if(status){
+      this.filteredResult = this.filteredResult.filter((item:any) => item._id != id);
+    }
+  }
+
   logout(){
       this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
           .subscribe((res)=>{
