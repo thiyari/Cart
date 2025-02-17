@@ -58,11 +58,15 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <ng-container *ngIf="orders_records?.length !=0">
+                        <ng-container *ngIf="filteredResult?.length !=0">
                             <div class="card container">
                                 <div class="box">
                                     <div class="title">Pending Orders</div>
                                     <hr>
+                                    <form class="form-inline">
+                                        <input class="form-control mr-sm-2" type="search" placeholder="Type the Order Id or Reference No for easy Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchKey($event)">
+                                    </form>
+                                    <br>
                                     <div class="table" style="border: none;">
                                             <div class ="table-responsive-md">                  
                                             <table class="table table-hover">
@@ -72,16 +76,18 @@
                                                         <th>Order Id</th>
                                                         <th>No. of Items</th>
                                                         <th>Total Amount</th>
+                                                        <th>Reference No</th>
                                                         <th>Requested On</th>
                                                         <th colspan="2">View/Delete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    <tr *ngFor="let item of orders_records; let i = index">
+                                                    <tr *ngFor="let item of filteredResult; let i = index">
                                                         <td>{{i+1}}</td>
                                                         <td>{{item.orderid}}</td>
                                                         <td>{{item.ordersplaced.length}}</td>
                                                         <td>₹ {{item.grandtotal}}</td> 
+                                                        <td>{{item.referenceid}}</td>
                                                         <td>{{formatedDate(item.createdAt)}}</td>
                                                         <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
                                                         <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
@@ -93,7 +99,7 @@
                                 </div>
                             </div>
                         </ng-container>
-                        <ng-container *ngIf="orders_records?.length === 0">
+                        <ng-container *ngIf="filteredResult?.length === 0">
                             <div class="container">
                                 <div>
                                     <h4>There are no pending requests</h4>

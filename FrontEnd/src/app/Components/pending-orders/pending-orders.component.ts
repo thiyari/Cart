@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class PendingOrdersComponent implements OnInit{
   orders_records: any;
+  filteredResult: any[] = []
+  searchText: string = "";
   constructor(
     private api: ApiService,
     private http: HttpClient, 
@@ -20,8 +22,6 @@ export class PendingOrdersComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-
-
 
     this.http.get<any>(`${environment.SERVER_URI}/api/session`)
     .subscribe((res)=>{
@@ -32,6 +32,7 @@ export class PendingOrdersComponent implements OnInit{
                   if (res.message === "Success"){
                       var result = res.records.filter((item:any)=>item.transactionstatus === "pending")
                       this.orders_records = result.sort((a:any, b:any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                      this.search();
                     }
                   })                
             }
@@ -57,6 +58,22 @@ export class PendingOrdersComponent implements OnInit{
       }
     );
     return date
+  }
+
+
+  searchKey(data: string) {
+    this.searchText = data;
+    this.search();
+  }
+
+  search() {
+    this.filteredResult = this.searchText === "" ? this.orders_records : this.orders_records.filter((x:any) => {
+      return (
+        x.referenceid.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        JSON.stringify(x.orderid).includes(this.searchText)
+      )
+    });
+
   }
 
   logout(){
