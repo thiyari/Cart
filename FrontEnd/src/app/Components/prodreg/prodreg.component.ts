@@ -80,7 +80,7 @@ export class ProdregComponent implements OnInit {
   prod_reg()
   {
     if (this.name === "" || this.description === "" || this.price === "" || this.files.length === 0 || this.images.length === 0){
-      alert("Please the fields and upload an image")
+      alert("Please fill the fields and upload an image")
     }
     else {
       const currDate = new Date().toLocaleDateString();
