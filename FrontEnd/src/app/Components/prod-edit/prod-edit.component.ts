@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,10 +13,17 @@ import { environment } from '../../../environments/environment';
 })
 export class ProdEditComponent implements OnInit{
 
+  name: string = "";
+  description: string = "";
+  price: string = "";
+  id: string = "";
+  pid: string = "";
+
   constructor(
     private api: ApiService,
     private http: HttpClient, 
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
    ){ }  
   
   ngOnInit(): void {
@@ -24,13 +31,37 @@ export class ProdEditComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
-                // to do
+                this.pid = this.route.snapshot.params['pid'];
+                this.api.getProducts().subscribe((res:any)=>{
+                  if(res.message === "Success"){
+                    const record = res.records.find((item:any)=>(JSON.stringify(item.pid) === this.pid))
+                    this.id = record._id;
+                    this.name = record.name;
+                    this.description = record.description;
+                    this.price = record.price;
+                  }
+                })
             }
           } else {
             this.router.navigate(['/login'])
           }
     })    
   }
+
+  edit_product(){
+    if (this.name === "" || this.description === "" || this.price === ""){
+      alert("Please fill the fields")
+    }
+    else{
+      let bodyData = {
+        "name" : this.name,
+        "description" : this.description,
+        "price": parseInt(this.price),
+      }
+      this.api.edit_product(bodyData, this.id)
+    }
+  }
+
 
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)

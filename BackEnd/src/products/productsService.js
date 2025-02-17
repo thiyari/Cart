@@ -332,3 +332,23 @@ module.exports.editAdminsDBService = async (id,data) => {
         })
 }
 
+
+module.exports.editProductDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.products.findByIdAndUpdate(id,
+                {
+                        name: data.name,
+                        description: data.description,
+                        price: data.price
+                },{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Product details are updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating the Product details failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}

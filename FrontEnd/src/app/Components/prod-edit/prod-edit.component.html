@@ -54,7 +54,64 @@
         </div>
         <div class="col py-3 mt-4">
             <!--  Content Area Start  -->
-
+            <div class="scrollable">      
+                <div class="row">
+                    <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                          <div class="container mt-4" >
+     
+                            <div class="card container">
+                              <div class="title">Edit Product# {{pid}}</div>
+                              <hr>
+                                <div class="box">
+                                  <div class="row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                      <form class="was-validated">
+                                        <div class="form-group">
+                                          <label>Name</label>
+                                          <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name" required/>
+                                          <div class="valid-feedback">Valid.</div>
+                                          <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                          <label>Description</label>
+                                          <textarea class="form-control" 
+                                              [(ngModel)]="description" 
+                                              [ngModelOptions]="{standalone: true}"
+                                              id="description" 
+                                              placeholder="Provide the product description"
+                                              rows="5"
+                                              required
+                                          ></textarea>
+                                          <div class="valid-feedback">Valid.</div>
+                                          <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                      
+                                          <div class="form-group">
+                                            <label>Price</label>
+                                            <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="price" placeholder="Enter Price" required/>
+                                            <div class="valid-feedback">Valid.</div>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                          </div>
+                                                                                    
+                                          <div class="block">
+                                            <button type="submit" class="btn btn-primary mt-4" (click)="edit_product()">Submit</button>
+                                          </div>
+                                      </form>    
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                  </div>
+                                  </div>
+                            </div>
+                            <div>
+                
+                        </div>
+                    <div class="col-md-1"></div>
+                </div>
+              </div>
+    
             <!--  Content Area End  -->            
         </div>
     </div>

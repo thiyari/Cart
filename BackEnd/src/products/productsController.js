@@ -482,6 +482,25 @@ var editAdminsControllerFn = async(req,res)=>
             res.send({"status":false,"message":err.msg});
         }
     }  
+
+
+var editProductControllerFn = async (req, res) => {
+    try
+    {
+        var result = await productsService.editProductDBService(req.params.id,req.body)
+        if(result.status){
+            return res.send({"status": true, "message": result.msg});
+        }
+        else {
+            return res.send({"status": false, "message": result.msg});
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.send({"status":false,"message":err.msg});
+    }    
+}
+
 module.exports = {
     createProductsControllerFn,
     fetchProductsControllerFn,
@@ -505,5 +524,6 @@ module.exports = {
     logoutControllerFn,
     createAdminsControllerFn,
     editAdminsControllerFn,
-    deleteAdminsControllerFn
+    deleteAdminsControllerFn,
+    editProductControllerFn
 }
