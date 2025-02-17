@@ -57,10 +57,10 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   search() {
-    this.filteredResult = this.searchText === "" ? this.aggregation : this.aggregation.filter((x:any) => {
+    this.filteredResult = this.searchText === "" ? this.aggregation : this.aggregation.filter((item:any) => {
       return (
-        x.referenceid.toLowerCase().includes(this.searchText.toLowerCase()) ||
-        JSON.stringify(x.orderid).includes(this.searchText)
+        item.referenceid.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        JSON.stringify(item.orderid).includes(this.searchText)
       )
     });
 
