@@ -25,6 +25,7 @@ import { ProdsComponent } from './Components/prods/prods.component';
 import { NewAdminComponent } from './Components/new-admin/new-admin.component';
 import { EditAdminsComponent } from './Components/edit-admins/edit-admins.component';
 import { PaymentTransactionsComponent } from './Components/payment-transactions/payment-transactions.component';
+import { ProdEditComponent } from './Components/prod-edit/prod-edit.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
@@ -53,6 +54,7 @@ const routes: Routes = [
   {path:'paypal/:orderid',component: PaypalComponent},
   {path:'view-order/:orderid',component: ViewOrderComponent},
   {path:'payment-transaction/:referenceid',component: PaymentTransactionsComponent},
+  {path:'prod-edit/:pid',component: ProdEditComponent},
 ];
 
 @NgModule({
