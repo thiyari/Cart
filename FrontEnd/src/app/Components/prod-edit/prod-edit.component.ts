@@ -18,6 +18,8 @@ export class ProdEditComponent implements OnInit{
   price: string = "";
   id: string = "";
   pid: string = "";
+  images: string[]= [];
+  currentPhotoIndex: number = 0;
 
   constructor(
     private api: ApiService,
@@ -31,6 +33,7 @@ export class ProdEditComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
+
                 this.pid = this.route.snapshot.params['pid'];
                 this.api.getProducts().subscribe((res:any)=>{
                   if(res.message === "Success"){
@@ -39,6 +42,7 @@ export class ProdEditComponent implements OnInit{
                     this.name = record.name;
                     this.description = record.description;
                     this.price = record.price;
+                    this.images = record.images;
                   }
                 })
             }
@@ -73,5 +77,24 @@ export class ProdEditComponent implements OnInit{
           }
         })
   }  
+
+                          
+  handlePrevClick(e:any){
+    e.preventDefault()
+    if (this.currentPhotoIndex > 0) {
+      this.currentPhotoIndex = this.currentPhotoIndex - 1;
+    }
+  };
+  
+  handleNextClick(e:any){
+    e.preventDefault()
+    if (this.currentPhotoIndex < this.images.length - 1) {
+      this.currentPhotoIndex = this.currentPhotoIndex + 1;
+    }
+  };
+
+  handleDelete(){
+
+  }
 
 }
