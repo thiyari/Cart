@@ -89,8 +89,8 @@
                                                             <td>{{item.name}}</td>
                                                             <td>₹ {{item.price}}</td>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
-                                                            <td>View/Edit</td>
-                                                            <td>Delete</td>
+                                                            <td><a [routerLink]="['/prod-edit',item.pid]" class="btn btn-success"><i class="fa-solid fa-file-pen"></i></a></td>
+                                                            <td><a class="btn btn-danger"><i class="fa-solid fa-file-circle-xmark"></i></a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
