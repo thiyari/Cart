@@ -73,10 +73,18 @@ h4 {
     h4 {
         left: 25px;
     }
+    .btn-primary{
+        background-color: darkblue;
+        width: 150px;
+      }
 }
 
 @media only screen and (min-width: 361px) and (max-width: 768px){
     h4 {
         left: 25px;
     }
+    .btn-primary{
+        background-color: darkblue;
+        width: 150px;
+      }
 }

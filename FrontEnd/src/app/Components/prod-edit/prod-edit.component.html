@@ -65,71 +65,75 @@
                               <hr>
                                 <div class="box">
                                   <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-6">
-                                      <form class="was-validated">
-                                        <div class="form-group">
-                                          <label>Name</label>
-                                          <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name" required/>
-                                          <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                    
-                                        <div class="form-group">
-                                          <label>Description</label>
-                                          <textarea class="form-control" 
-                                              [(ngModel)]="description" 
-                                              [ngModelOptions]="{standalone: true}"
-                                              id="description" 
-                                              placeholder="Provide the product description"
-                                              rows="5"
-                                              required
-                                          ></textarea>
-                                          <div class="valid-feedback">Valid.</div>
-                                          <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                      
-                                          <div class="form-group">
-                                            <label>Price</label>
-                                            <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="price" placeholder="Enter Price" required/>
-                                            <div class="valid-feedback">Valid.</div>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                          </div>
-                                                                                    
-                                          <div class="block">
-                                            <button type="submit" class="btn btn-primary mt-4" (click)="edit_product()">Submit</button>
-                                          </div>
+                                    <div class="col-md-12">
+                                      <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="card" style="padding: 20px; border-width: 1px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-color: lightgrey;">
+                                            <form class="was-validated">
+                                              <div class="form-group">
+                                                <label>Name</label>
+                                                <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"  class="form-control" id="name" placeholder="Enter Name" required/>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                              </div>
                                           
-                                          <br>
-                                          
-                                          <div class ="table-responsive-md">
-                                            <table class ="table">
-                                              <thead>
-                                                <tr>
-                                                  <th scope="col" colspan="5">Images</th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td colspan="5">
-                                                        <img class="img-fluid" src="{{images[currentPhotoIndex]}}" alt="Current images" width="500px" height="300px"/>
-                                                  </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a (click)="handlePrevClick($event)"><i class="fa fa-angle-double-left" style="font-size: 18px;"></i></a></td>
-                                                    <td><p style="font-weight: lighter;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
-                                                    <td><a (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 18px;"></i></a></td>        
-                                                    <td>upload</td>
-                                                    <td><a style="width: 25" (click)="handleDelete()"><i class="fas fa-trash-alt"></i></a></td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </div>
+                                              <div class="form-group">
+                                                <label>Description</label>
+                                                <textarea class="form-control" 
+                                                    [(ngModel)]="description" 
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    id="description" 
+                                                    placeholder="Provide the product description"
+                                                    rows="5"
+                                                    required
+                                                ></textarea>
+                                                <div class="valid-feedback">Valid.</div>
+                                                <div class="invalid-feedback">Please fill out this field.</div>
+                                              </div>
                                             
+                                                <div class="form-group">
+                                                  <label>Price</label>
+                                                  <input type="text" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="form-control" id="price" placeholder="Enter Price" required/>
+                                                  <div class="valid-feedback">Valid.</div>
+                                                  <div class="invalid-feedback">Please fill out this field.</div>
+                                                </div>
+                                                                                          
+                                                <div class="block">
+                                                  <button type="submit" class="btn btn-primary mt-4" (click)="edit_product()">Submit</button>
+                                                </div>
+                                              </form>    
+                                              </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <div class="card" style="padding: 10px; border-width: 1px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); border-color: lightgray;">  
+                                            <div class ="table-responsive-md">
+                                              <table class ="table">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col" colspan="5">Images</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td colspan="5">
+                                                          <img class="img-fluid" src="{{images[currentPhotoIndex]}}" alt="Current images" width="500px" height="300px"/>
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                      <td><a (click)="handlePrevClick($event)"><i class="fa fa-angle-double-left" style="font-size: 18px;"></i></a></td>
+                                                      <td><p style="font-weight: lighter;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
+                                                      <td><a (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 18px;"></i></a></td>        
+                                                      <td>upload</td>
+                                                      <td><a style="width: 25" (click)="handleDelete()"><i class="fas fa-trash-alt"></i></a></td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
 
-                                      </form>    
                                     </div>
-                                    <div class="col-md-3"></div>
                                   </div>
                                   </div>
                             </div>
