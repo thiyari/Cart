@@ -121,7 +121,7 @@ export class ProdEditComponent implements OnInit{
       }
       this.upload_images = base64
       this.uploadToggle = true;
-      alert("Click below check mark to submit uploads")
+      alert("Click below check mark button to be displayed for submitting uploads")
   };
 
   handleSubmit(){
