@@ -99,7 +99,7 @@ export class ProdEditComponent implements OnInit{
     }
     const status = this.api.delete_image(this.id, body);
     if(status){
-      window.location.reload()
+      window.location.reload();
     }
   }
 
