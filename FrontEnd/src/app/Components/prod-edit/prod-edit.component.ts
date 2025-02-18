@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProdEditComponent implements OnInit{
 
+  upload_fileNames: string[] = [];
   upload_images: string[] = [];
   uploadToggle: boolean = false;
   name: string = "";
@@ -104,8 +105,10 @@ export class ProdEditComponent implements OnInit{
 
   handleUploadImage(event:any){
     event.preventDefault()
+      this.upload_fileNames = [];
       let base64:string[] = []
       for (let i = 0; i < event.target.files.length; i++) {
+         this.upload_fileNames.push(event.target.files[i].name)
          let file = event.target.files[i];
          let reader = new FileReader();
          reader.readAsDataURL(file);
