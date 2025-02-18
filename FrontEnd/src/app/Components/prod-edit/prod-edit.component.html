@@ -123,7 +123,19 @@
                                                       <td><a (click)="handlePrevClick($event)"><i class="fa fa-angle-double-left" style="font-size: 18px;"></i></a></td>
                                                       <td><p style="font-weight: lighter;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
                                                       <td><a (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 18px;"></i></a></td>        
-                                                      <td>upload</td>
+                                                      <td>
+                                                        <!-- Upload-->
+                                                        <div class="mb-3">
+                                                          <label for="fileUpload" class="form-label">Upload File</label>
+                                                          <div class="input-group">
+                                                              <input type="file" multiple accept="image/*" class="form-control" id="fileUpload" (change)="handleUploadImage()" aria-describedby="fileUploadAddon">
+                                                              <span class="input-group-text" id="fileUploadAddon">
+                                                                  <i class="fas fa-upload"></i> <!-- Custom Icon -->
+                                                              </span>
+                                                          </div>
+                                                        </div>
+                                                        <!-- upload-->
+                                                      </td>
                                                       <td><a style="width: 25" (click)="handleDelete(currentPhotoIndex)"><i class="fas fa-trash-alt"></i></a></td>
                                                   </tr>
                                                 </tbody>

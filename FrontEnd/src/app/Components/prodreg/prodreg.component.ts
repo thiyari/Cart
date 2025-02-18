@@ -41,6 +41,7 @@ export class ProdregComponent implements OnInit {
   }
 
   upload_images(event:any){
+    this.files = []
     let base64:string[] = []
     for (let i = 0; i < event.target.files.length; i++) {
        this.files.push(event.target.files[i].name)

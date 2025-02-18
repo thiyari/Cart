@@ -103,4 +103,12 @@ export class ProdEditComponent implements OnInit{
     }
   }
 
+  handleUploadImage(){
+    
+  }
+
+  handleSubmit(){
+
+  }
+
 }
