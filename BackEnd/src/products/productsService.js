@@ -383,3 +383,18 @@ module.exports.deleteImageDBService = async (id, data) => {
                     });               
         })
 }
+
+module.exports.uploadImagesDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.products.findOneAndUpdate({_id: id},{$push:{images:data.images}},{upsert:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Images uploaded successfully"});
+                        } else {
+                           reject({success:false,msg:"Uploading images failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}

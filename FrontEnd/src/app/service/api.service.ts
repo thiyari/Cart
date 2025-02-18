@@ -187,8 +187,8 @@ export class ApiService {
 
     if (window.confirm(`Are you sure deleting the current Image ?`)){
       try{
-        result = this.http.delete<any>(url,options)
-        .subscribe()
+        this.http.delete<any>(url,options).subscribe()
+        window.location.reload();
       }
       catch (err) {
         alert(err)
@@ -197,4 +197,17 @@ export class ApiService {
     return result
   }
 
+
+  upload_images(id:any, body:any){
+    return this.http.put<any>(`${environment.SERVER_URI}/api/images/upload/${id}`,body)
+    .subscribe((res:any)=>{
+      if(res.status){
+        alert(res.message)
+        window.location.reload();
+      } else {
+        alert(res.message)
+        window.location.reload();
+      }
+    }); 
+  }
 }

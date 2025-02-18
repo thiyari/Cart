@@ -99,10 +99,7 @@ export class ProdEditComponent implements OnInit{
     let body = {
       "image": this.images[index]
     }
-    const status = this.api.delete_image(this.id, body);
-    if(status){
-      window.location.reload();
-    }
+    this.api.delete_image(this.id, body);
   }
 
   handleUploadImage(event:any){
@@ -121,11 +118,14 @@ export class ProdEditComponent implements OnInit{
       }
       this.upload_images = base64
       this.uploadToggle = true;
-      alert("Click the below check mark displayed after to submit uploads")
+      alert("Click below check mark to submit uploads")
   };
 
   handleSubmit(){
-    console.log(true)
+    let body = {
+      "images": this.upload_images
+    }
+    this.api.upload_images(this.id, body);
   }
 
 }
