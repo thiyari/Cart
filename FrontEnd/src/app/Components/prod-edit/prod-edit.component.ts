@@ -13,12 +13,14 @@ import { environment } from '../../../environments/environment';
 })
 export class ProdEditComponent implements OnInit{
 
+  upload_images: string[] = [];
+  uploadToggle: boolean = false;
   name: string = "";
   description: string = "";
   price: string = "";
   id: string = "";
   pid: string = "";
-  images: string[]= [];
+  images: string[] = [];
   currentPhotoIndex: number = 0;
 
   constructor(
@@ -103,12 +105,27 @@ export class ProdEditComponent implements OnInit{
     }
   }
 
-  handleUploadImage(){
-    
-  }
+  handleUploadImage(event:any){
+    event.preventDefault()
+      let base64:string[] = []
+      for (let i = 0; i < event.target.files.length; i++) {
+         let file = event.target.files[i];
+         let reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function () {
+          base64.push(reader.result as string)
+         };
+         reader.onerror = function (error) {
+           console.log('Error: ', error);
+         };
+      }
+      this.upload_images = base64
+      this.uploadToggle = true;
+      alert("Click the below check mark displayed after to submit uploads")
+  };
 
   handleSubmit(){
-
+    console.log(true)
   }
 
 }

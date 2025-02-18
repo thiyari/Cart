@@ -120,19 +120,24 @@
                                                     </td>
                                                   </tr>
                                                   <tr>
-                                                      <td><a (click)="handlePrevClick($event)"><i class="fa fa-angle-double-left" style="font-size: 1.5em; cursor: pointer;"></i></a></td>
-                                                      <td><p style="font-weight: lighter;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
-                                                      <td><a (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 1.5em; cursor: pointer;"></i></a></td>        
+                                                      <td><a class="btn" (click)="handlePrevClick($event)"><i class="fa fa-angle-double-left" style="font-size: 1.5em; cursor: pointer;"></i></a></td>
+                                                      <td><p style="font-weight: lighter; padding-top: 7px;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
+                                                      <td><a class="btn" (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 1.5em; cursor: pointer;"></i></a></td>        
                                                       <td>
                                                         <!-- Upload -->
+                                                        <div *ngIf="uploadToggle">
+                                                          <a class="btn" (click)="handleSubmit()"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                        </div>
+                                                        <div *ngIf="!uploadToggle">
                                                           <label for="fileUpload" class="form-label">
                                                             <div class="input-group">
-                                                                <input type="file" multiple accept="image/*" class="form-control" id="fileUpload" (change)="handleUploadImage()" aria-describedby="fileUploadAddon">
+                                                                <input type="file" multiple accept="image/*" class="form-control" id="fileUpload" (change)="handleUploadImage($event)" aria-describedby="fileUploadAddon">
                                                                 <span class="input-group-text" id="fileUploadAddon">
                                                                     <i class="fas fa-upload" aria-hidden="true"></i>
                                                                 </span>
                                                             </div>
                                                           </label>
+                                                        </div>
                                                         <!-- upload -->
                                                       </td>
                                                       <td><a class="delete-btn" (click)="handleDelete(currentPhotoIndex)"><i class="fas fa-trash-alt"></i></a></td>
