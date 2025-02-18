@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../service/api.service';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './prods.component.html',
   styleUrl: './prods.component.scss'
 })
-export class ProdsComponent implements OnInit {
+export class ProdsComponent implements OnInit, AfterViewInit  {
 products: any[] = [];
 searchText: string = "";
 filteredResult: any[] = []
@@ -21,6 +21,21 @@ filteredResult: any[] = []
     private http: HttpClient, 
     private router: Router
   ){}
+  
+  @ViewChildren('switch') switches!: QueryList<ElementRef>;
+  ngAfterViewInit() {
+
+    // After the view is initialized, loop through the switches and add event listeners
+    this.switches.toArray().forEach(switchElement => {
+      switchElement.nativeElement.addEventListener('change', (event:any) => this.handleSwitchChange(event));
+    });
+
+  }
+
+  handleSwitchChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    console.log(`${target.id} is now ${target.checked ? 'ON' : 'OFF'}`);
+  }
 
   ngOnInit(): void {
     this.http.get<any>(`${environment.SERVER_URI}/api/session`)

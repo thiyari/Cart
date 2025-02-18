@@ -78,6 +78,7 @@
                                                             <th>Product Name</th>
                                                             <th>Price</th>  
                                                             <th>Created On</th>  
+                                                            <th>Show</th>
                                                             <th colspan="2">Edit & Delete</th> 
                                                         </tr>
                                                     </thead>
@@ -88,6 +89,13 @@
                                                             <td>{{item.name}}</td>
                                                             <td>₹ {{item.price}}</td>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
+                                                            <td>
+                                                                <!-- Bootstrap Toggle Switch -->
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="switch" #switch>
+                                                                    <label class="form-check-label" for="switch">Switch</label>
+                                                                </div>
+                                                            </td>
                                                             <td><a [routerLink]="['/prod-edit',item.pid]" class="btn btn-success"><i class="fa-solid fa-file-pen"></i></a></td>
                                                             <td><a class="btn btn-danger" (click)="delete_product(item._id, item.pid)"><i class="fa-solid fa-file-circle-xmark"></i></a></td>
                                                         </tr>
@@ -113,3 +121,4 @@
         </div>
     </div>
 </div>
+
