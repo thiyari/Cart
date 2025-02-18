@@ -366,3 +366,20 @@ module.exports.editProductDBService = async (id,data) => {
                     });               
         })
 }
+
+
+
+module.exports.deleteImageDBService = async (id, data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.products.findOneAndUpdate({_id: id},{$pull:{images: data.image}})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Image Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting image failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}

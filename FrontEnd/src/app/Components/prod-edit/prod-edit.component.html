@@ -124,7 +124,7 @@
                                                       <td><p style="font-weight: lighter;">Image [{{currentPhotoIndex+1}}/{{images.length}}]</p></td>
                                                       <td><a (click)="handleNextClick($event)"><i class="fa fa-angle-double-right" style="font-size: 18px;"></i></a></td>        
                                                       <td>upload</td>
-                                                      <td><a style="width: 25" (click)="handleDelete()"><i class="fas fa-trash-alt"></i></a></td>
+                                                      <td><a style="width: 25" (click)="handleDelete(currentPhotoIndex)"><i class="fas fa-trash-alt"></i></a></td>
                                                   </tr>
                                                 </tbody>
                                               </table>

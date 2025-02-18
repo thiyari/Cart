@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -164,6 +164,30 @@ export class ApiService {
     if (window.confirm(`Are you sure deleting the product# ${pid} ?`)){
       try{
         result = this.http.delete<any>(`${environment.SERVER_URI}/api/product/delete/${id}`)
+        .subscribe()
+      }
+      catch (err) {
+        alert(err)
+      }
+    }
+    return result
+  }
+
+  
+  delete_image(id:any, body: any){
+
+    var result: any;
+    const url = `${environment.SERVER_URI}/api/image/delete/${id}`;
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: body
+    };
+
+    if (window.confirm(`Are you sure deleting the current Image ?`)){
+      try{
+        result = this.http.delete<any>(url,options)
         .subscribe()
       }
       catch (err) {

@@ -93,8 +93,14 @@ export class ProdEditComponent implements OnInit{
     }
   };
 
-  handleDelete(){
-
+  handleDelete(index:any){
+    let body = {
+      "image": this.images[index]
+    }
+    const status = this.api.delete_image(this.id, body);
+    if(status){
+      window.location.reload()
+    }
   }
 
 }
