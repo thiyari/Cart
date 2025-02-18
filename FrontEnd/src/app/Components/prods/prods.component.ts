@@ -22,11 +22,11 @@ filteredResult: any[] = []
     private router: Router
   ){}
   
-  @ViewChildren('switch') switches!: QueryList<ElementRef>;
+  @ViewChildren('switch') switch!: QueryList<ElementRef>;
   ngAfterViewInit() {
 
     // After the view is initialized, loop through the switches and add event listeners
-    this.switches.toArray().forEach(switchElement => {
+    this.switch.toArray().forEach(switchElement => {
       switchElement.nativeElement.addEventListener('change', (event:any) => this.handleSwitchChange(event));
     });
 
