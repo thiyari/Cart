@@ -36,6 +36,10 @@ var productsSchema = new Schema({
     price: {
         type: String,
         required: true
+    },
+    display: {
+        type: Boolean,
+        required: true
     }
 },{
     timestamps: true

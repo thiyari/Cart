@@ -94,7 +94,8 @@ export class ProdregComponent implements OnInit {
         "name" : this.name,
         "description" : this.description,
         "price" : this.price,
-        "images": this.images
+        "images": this.images,
+        "display": false
       };
 
       const payloadSize = Buffer.byteLength(JSON.stringify(bodyData), 'utf8');

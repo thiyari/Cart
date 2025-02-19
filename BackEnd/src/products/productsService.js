@@ -8,7 +8,8 @@ module.exports.createProductsDBService = (productDetails) => {
                             name: productDetails.name,
                             description: productDetails.description,
                             images: productDetails.images,
-                            price: productDetails.price
+                            price: productDetails.price,
+                            display: productDetails.display
                     });
                     
             }
