@@ -74,38 +74,23 @@
                                                     <tr>
                                                         <th>S.No.</th>
                                                         <th>Order Id</th>
-                                                        <th>No. of Items</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Invoice/ Reference No.</th>
-                                                        <th>Payment Status</th>
-                                                        <th>Transaction Date</th>
-                                                        <th>View Invoice</th>        
+                                                        <th>Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Date of Order</th>
+                                                        <th>Delivery Status</th> 
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
                                                     <tr *ngFor="let item of aggregation; let i = index">
                                                         <td>{{i+1}}</td>
                                                         <td>{{item.orderid}}</td>
-                                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else total_orders">{{item.items.length}}</td>
-                                                        <ng-template #total_orders>
-                                                            <td>{{item.ordersplaced.length}}</td>
-                                                        </ng-template>  
-                                                        <td *ngIf="item.transactionstatus === 'Received: PayPal';else rupee">$ {{item.amount}}</td>
-                                                        <ng-template #rupee>
-                                                            <td>₹ {{item.amount}}</td>
-                                                        </ng-template>
-                                                        <td>{{item.referenceid}}</td>
-                                                        <td>
-                                                            <a [routerLink]="['/payment-transaction',item.referenceid]" *ngIf="item.transactionstatus === 'Received: PayPal'">{{item.transactionstatus}}</a>
-                                                            <a [routerLink]="['/payment-transaction',item.referenceid]" *ngIf="item.transactionstatus === 'Received: Razorpay'">{{item.transactionstatus}}</a>
-                                                            <a [routerLink]="['/payment-transaction',item.referenceid]" *ngIf="item.transactionstatus === 'Received: PhonePe'">{{item.transactionstatus}}</a>
-                                                            <a [routerLink]="['/payment-transaction',item.referenceid]" *ngIf="item.transactionstatus === 'Received: GooglePay'">{{item.transactionstatus}}</a>
-                                                        </td>
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.phone}}</td>
                                                         <td *ngIf="item.transactionstatus === 'Received: PayPal';else date">{{formatedDate(item.transaction_date)}}</td>
                                                         <ng-template #date>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                         </ng-template>                                        
-                                                        <td><a [routerLink]="['/view-order',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                        <td>Pending</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
