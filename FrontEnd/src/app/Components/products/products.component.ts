@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
     this.api.getProducts()
     .subscribe(res=>{
       if (res.message === "Success"){
-        this.productsList = res.records.filter((item:any)=>item.display === true);
+        this.productsList = res.records.filter((item:any)=>item.display);
       }
     })
 
