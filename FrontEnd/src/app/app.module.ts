@@ -37,6 +37,7 @@ import { EditAdminsComponent } from './Components/edit-admins/edit-admins.compon
 import { PaymentTransactionsComponent } from './Components/payment-transactions/payment-transactions.component';
 import { ProdEditComponent } from './Components/prod-edit/prod-edit.component';
 import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.component';
+import { DeliveriesComponent } from './Components/deliveries/deliveries.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.
     EditAdminsComponent,
     PaymentTransactionsComponent,
     ProdEditComponent,
-    UserDeliveryComponent
+    UserDeliveryComponent,
+    DeliveriesComponent
   ],
   imports: [
     BrowserModule,
