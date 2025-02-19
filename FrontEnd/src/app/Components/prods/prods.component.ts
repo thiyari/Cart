@@ -37,7 +37,6 @@ filteredResult: any[] = []
     //console.log(`${target.id} is now ${target.checked ? 'ON' : 'OFF'}`);
     if (target.checked){
       let body = {
-        "pid": target.id,
         "display": true
       }
       this.api.update_show(target.id, body)
