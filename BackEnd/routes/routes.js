@@ -24,6 +24,7 @@ router.route('/api/orders/create').post(productsController.createOrdersControlle
 router.route('/api/phonepe/status').post(productsController.phonepestatusControllerFn)
 router.route('/api/admins/edit/:id').put(productsController.editAdminsControllerFn)
 router.route('/api/product/edit/:id').put(productsController.editProductControllerFn)
+router.route('/api/product/display/:id').put(productsController.editProductDisplayControllerFn)
 router.route('/api/images/upload/:id').put(productsController.uploadImagesControllerFn)
 router.route('/api/image/delete/:id').delete(productsController.deleteImageControllerFn)
 router.route('/api/admins/delete/:id').delete(productsController.deleteAdminsControllerFn)

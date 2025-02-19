@@ -370,6 +370,24 @@ module.exports.editProductDBService = async (id,data) => {
 
 
 
+module.exports.editProductDisplayDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.products.findByIdAndUpdate(id,
+                {
+                        display: data.display,
+                },{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Product show status updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating the Product show status failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
 module.exports.deleteImageDBService = async (id, data) => {
         return new Promise(async function myFn(resolve,reject){
         await productsModel.products.findOneAndUpdate({_id: id},{$pull:{images: data.image}})

@@ -210,4 +210,15 @@ export class ApiService {
       }
     }); 
   }
+
+  update_show(id: any, bodyData: any){
+    return this.http.put<any>(`${environment.SERVER_URI}/api/product/display/${id}`,bodyData)
+    .subscribe((res:any)=>{
+      if(res.status){
+        console.log(res.message)
+      } else {
+        console.log(res.message)
+      }
+    });    
+  }
 }

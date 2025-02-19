@@ -34,7 +34,19 @@ filteredResult: any[] = []
 
   handleSwitchChange(event: Event): void {
     const target = event.target as HTMLInputElement;
-    console.log(`${target.id} is now ${target.checked ? 'ON' : 'OFF'}`);
+    //console.log(`${target.id} is now ${target.checked ? 'ON' : 'OFF'}`);
+    if (target.checked){
+      let body = {
+        "pid": target.id,
+        "display": true
+      }
+      this.api.update_show(target.id, body)
+    } else {
+      let body = {
+        "display": false
+      }
+      this.api.update_show(target.id, body)
+    }
   }
 
   ngOnInit(): void {
