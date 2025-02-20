@@ -13,6 +13,7 @@ import { environment } from '../../../environments/environment';
 })
 export class HeaderComponent implements OnInit{
 
+  public title: string = environment.COMPANY_NAME
   public totalItem: number = 0;
   public searchTerm: string = "";
   constructor(

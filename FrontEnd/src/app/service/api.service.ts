@@ -221,4 +221,15 @@ export class ApiService {
       }
     });    
   }
+
+  send_mail(bodyData: any){
+    return this.http.post<any>(`${environment.SERVER_URI}/api/send-email`,bodyData)
+    .subscribe((res:any)=>{
+      if(res.status){
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
+    });
+  }
 }

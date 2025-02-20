@@ -383,6 +383,27 @@ var deleteUserRequestControllerFn = async(req,res)=>
 
     }    
 
+var sendEmailControllerFn = async(req, res) => {
+    var options = {
+        from: app_user,
+        to: req.body.to,
+        subject: req.body.subject,
+        html: req.body.html
+    };
+    transporter.sendMail(
+        options, function (error, info) {
+            if (error) {
+                console.log(error);
+                res.send({"status":false,"message":"Unable to send an email"})
+            }
+            else {
+                console.log(info.response)
+                res.send({"status":true,"message":"Email was sent successfully"});
+            }
+
+        }
+    )
+}
 
 var sendOtpControllerFn = async(req, res) => {
     let email = req.body.email;
@@ -606,5 +627,6 @@ module.exports = {
     deleteProductControllerFn,
     deleteImageControllerFn,
     uploadImagesControllerFn,
-    editProductDisplayControllerFn
+    editProductDisplayControllerFn,
+    sendEmailControllerFn
 }

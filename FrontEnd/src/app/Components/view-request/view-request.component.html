@@ -116,7 +116,7 @@
                             </div>
 
                             <button class="btn btn-primary" [routerLink]="['/payment',order?.orderid]" *ngIf='log_status === "user"'>Pay Now</button>
-                            <button class="btn btn-primary" *ngIf='log_status === "admin"' (click)="send_mail()">Send Mail</button>
+                            <button class="btn btn-primary" *ngIf='log_status === "admin"' (click)="send_mail(order.orderid, order.name, order.email)">Send Mail</button>
 
                             <div class="form-group">
                                 <label class="form-label"><b>Address:</b></label>

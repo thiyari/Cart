@@ -13,6 +13,7 @@ router.route('/api/paypaltxn').get(productsController.fetchPaypaltxnControllerFn
 router.route('/api/razorpaytxn').get(productsController.fetchRazorpaytxnControllerFn)
 router.route('/api/send-otp').post(productsController.sendOtpControllerFn)
 router.route('/api/verify-otp').post(productsController.verifyOtpControllerFn)
+router.route('/api/send-email').post(productsController.sendEmailControllerFn)
 router.route('/api/phonepe').post(productsController.phonepeControllerFn)
 router.route('/api/googlepay').post(productsController.googlepayControllerFn)
 router.route('/api/paypal-pay').post(productsController.paypalControllerFn)

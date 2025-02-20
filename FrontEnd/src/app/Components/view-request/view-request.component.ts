@@ -13,7 +13,6 @@ import { environment } from '../../../environments/environment';
 })
 export class ViewRequestComponent implements OnInit{
   public order:any;
-  public mail_id:any;
   public log_status:any;
   constructor(
         private api: ApiService,
@@ -58,7 +57,18 @@ export class ViewRequestComponent implements OnInit{
         })
   }
 
-  send_mail(){
-    
+  send_mail(order_id: any, name: any, email: any){
+    const url = environment.CLIENT_URI+"/payment/"+order_id
+    let body = {
+      to: email,
+      subject: `Reg: Pending Request Order# ${order_id}`,
+      html: `        
+        <P>Dear ${name},</p>
+        <p>We are very glad for choosing our ${environment.COMPANY_NAME} Services, we found you have a pending request placed with an order# ${order_id} in our records. You may please visit this 
+        <a href=${url} target="_blank">Payment Url</a> for further payment process. For any details, you may please login to our website with your registered email.</p>
+        <p>Regards,</p>
+        <p>Admin</p>`
+    }
+    this.api.send_mail(body);
   }
 }
