@@ -90,7 +90,7 @@
                                                         <ng-template #date>
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                         </ng-template>                                        
-                                                        <td>Pending</td>
+                                                        <td>{{item.delivery.status}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

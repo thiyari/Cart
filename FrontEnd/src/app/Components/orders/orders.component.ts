@@ -53,11 +53,11 @@ order_submit(){
       "grandtotal":this.grandTotal,
       "referenceid": 'T' + Date.now(),
       "transactionstatus":"pending",
-      "delivery": [{
+      "delivery": {
         "status": "order confirmed",
         "date": "",
         "trackingid": ""
-      }]
+      }
     };
     this.api.submit_order(bodyData)
     this.name = "";

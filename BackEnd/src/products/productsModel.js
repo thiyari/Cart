@@ -113,7 +113,7 @@ var ordersSchema = new Schema({
         type: String,
         required: true
     },
-    delivery: [{
+    delivery: {
         status: {
             type: String,
             required: false
@@ -126,7 +126,7 @@ var ordersSchema = new Schema({
             type: String,
             required: false
         }
-    }]
+    }
 },{
     timestamps: true
 });
