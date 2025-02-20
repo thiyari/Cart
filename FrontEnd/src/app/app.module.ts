@@ -38,6 +38,7 @@ import { PaymentTransactionsComponent } from './Components/payment-transactions/
 import { ProdEditComponent } from './Components/prod-edit/prod-edit.component';
 import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.component';
 import { DeliveriesComponent } from './Components/deliveries/deliveries.component';
+import { ViewOrderDeliveryComponent } from './Components/view-order-delivery/view-order-delivery.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { DeliveriesComponent } from './Components/deliveries/deliveries.componen
     PaymentTransactionsComponent,
     ProdEditComponent,
     UserDeliveryComponent,
-    DeliveriesComponent
+    DeliveriesComponent,
+    ViewOrderDeliveryComponent
   ],
   imports: [
     BrowserModule,
