@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit{
-  products: any[] = [];
+  product: any;
 
   constructor(     
     private api: ApiService,
@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit{
                 this.api.getProducts()
                 .subscribe(res=>{
                   if (res.message === "Success"){
-                        this.products = res.records.find((item:any)=>JSON.stringify(item.pid)===pid)
+                        this.product = res.records.find((item:any)=>JSON.stringify(item.pid)===pid)
                     }
                   })
             }
@@ -40,6 +40,42 @@ export class ProductDetailsComponent implements OnInit{
     })
 
   }
+
+
+  slideConfig = {
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "dots":true,
+    "autoplay": true,
+    "autoplaySpeed": 5000,
+    "pauseOnHover": true,
+    "infinite": true,
+    "draggable": true,
+    "swipe	":true,
+    "arrows": true,
+    "responsive": [
+      {
+      "breakpoint": 992,
+      "settings": {
+        "arrows": true,
+        "infinite": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1
+      },
+      },
+      {
+        "breakpoint": 768,
+        "settings": {
+          "arrows": true,
+          "infinite": true,
+          "slidesToShow": 1,
+          "slidesToScroll": 1
+        },
+        }
+    ]
+
+  }
+
 
     logout(){
         this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
