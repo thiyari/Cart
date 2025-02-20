@@ -94,7 +94,7 @@
                                                         </ng-template>                                        
                                                         <td>{{item.delivery.status}}</td>
                                                         <td>{{item.delivery.delivery_date}}</td>
-                                                        <td><a [routerLink]="['/view-order-delivery',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                        <td><a class="btn btn-success" [routerLink]="['/view-order-delivery',item.orderid]"><i class="fa-solid fa-file-pen"></i></a></td>
                                                         <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
                                                 </tbody>

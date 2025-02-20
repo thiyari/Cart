@@ -60,8 +60,8 @@
             <!--  Content Area Start  -->
             <div class="scrollable">      
             <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <div class="card container">
                         <div class="box">
                             <div class="title">Order# {{order?.orderid}}</div>
@@ -88,28 +88,35 @@
                                 <label class="form-label"><b>Phone:</b>&nbsp;</label>
                                 <label class="form-label">{{order?.phone}}</label>
                             </div>
-                            <div style="text-align: center; font-weight: bold; font-size:x-large;">List of Items</div>
-                            <div class ="table-responsive-md">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Sr. No</th>
-                                            <th>Product Id</th>
-                                            <th>Product Name</th>
-                                            <th>Quantity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-group-divider">
-                                        <tr *ngFor="let item of order?.ordersplaced; let i = index">
-                                            <td>{{i+1}}</td>
-                                            <td>{{item.pid}}</td>
-                                            <td>{{item.name}}</td>
-                                            <td style="width: 12%;">{{item.quantity}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                            <!--
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">-->
+                                    <div style="text-align: center; font-weight: bold; font-size:x-large;">List of Items</div>
+                                    <div class ="table-responsive-md">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr. No</th>
+                                                    <th>Product Id</th>
+                                                    <th>Product Name</th>
+                                                    <th>Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-group-divider">
+                                                <tr *ngFor="let item of order?.ordersplaced; let i = index">
+                                                    <td>{{i+1}}</td>
+                                                    <td><a [routerLink]="['/product-details', item.pid]">{{item.pid}}</a></td>
+                                                    <td>{{item.name}}</td>
+                                                    <td style="width: 12%;">{{item.quantity}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <!--</div>
+                                <div class="col-md-2"></div>
+                            </div> -->
+                            
                             <div class="form-group">
                                 <label class="form-label"><b>Address:</b></label>
                                 <br>
@@ -122,7 +129,7 @@
                         </div>
                      </div>
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-2"></div>
             </div>
             </div>
             <!--  Content Area End  -->            
