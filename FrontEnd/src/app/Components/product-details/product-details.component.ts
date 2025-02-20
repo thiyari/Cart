@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ApiService } from '../../service/api.service';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +17,8 @@ export class ProductDetailsComponent implements OnInit{
   constructor(     
     private api: ApiService,
     private http: HttpClient, 
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ){}
 
   ngOnInit(): void {
@@ -25,10 +26,11 @@ export class ProductDetailsComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
+                const pid = this.route.snapshot.params['pid'];
                 this.api.getProducts()
                 .subscribe(res=>{
                   if (res.message === "Success"){
-                        this.products = res.records
+                        this.products = res.records.find((item:any)=>JSON.stringify(item.pid)===pid)
                     }
                   })
             }

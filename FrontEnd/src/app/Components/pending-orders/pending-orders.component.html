@@ -65,7 +65,7 @@
                         <ng-container *ngIf="filteredResult?.length !=0">
                             <div class="card container">
                                 <div class="box">
-                                    <div class="title">Pending Orders</div>
+                                    <div class="title">Pending Payment Orders</div>
                                     <hr>
                                     <form class="form-inline">
                                         <input class="form-control mr-sm-2" type="search" placeholder="Type the Order Id or Reference No for easy Search" aria-label="Search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" (ngModelChange)="searchKey($event)">
