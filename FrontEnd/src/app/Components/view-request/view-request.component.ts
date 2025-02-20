@@ -64,8 +64,8 @@ export class ViewRequestComponent implements OnInit{
       subject: `Reg: Pending Request Order# ${order_id}`,
       html: `        
         <P>Dear ${name},</p>
-        <p>We are very glad for choosing our ${environment.COMPANY_NAME} Services, we found you have a pending request placed with an order# ${order_id} in our records. You may please visit this 
-        <a href=${url} target="_blank">Payment Url</a> for further payment process. For any details, you may please login to our website with your registered email.</p>
+        <p>We are very glad that you have choosen our ${environment.COMPANY_NAME} Services, we hereby inform you that there was a pending request placed with an order# ${order_id} in our records. You may please visit this 
+        <a href=${url} target="_blank">${url}</a> for further payment process. For any details, you may please login to our website with your registered email.</p>
         <p>Regards,</p>
         <p>Admin</p>`
     }
