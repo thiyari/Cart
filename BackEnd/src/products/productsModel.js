@@ -112,7 +112,21 @@ var ordersSchema = new Schema({
     transactionstatus: {
         type: String,
         required: true
-    }
+    },
+    delivery: [{
+        status: {
+            type: String,
+            required: false
+        },
+        date: {
+            type: String,
+            required: false
+        },
+        trackingid: {
+            type: String,
+            required: false
+        }
+    }]
 },{
     timestamps: true
 });

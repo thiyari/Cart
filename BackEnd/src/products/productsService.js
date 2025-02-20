@@ -90,7 +90,8 @@ module.exports.createOrdersDBService = (orderDetails) => {
                                 ordersplaced: orderDetails.ordersplaced,
                                 grandtotal: orderDetails.grandtotal,
                                 referenceid: orderDetails.referenceid,
-                                transactionstatus: orderDetails.transactionstatus
+                                transactionstatus: orderDetails.transactionstatus,
+                                delivery: orderDetails.delivery
                         });
                         
                 }
