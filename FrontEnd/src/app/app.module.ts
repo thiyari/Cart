@@ -39,6 +39,7 @@ import { ProdEditComponent } from './Components/prod-edit/prod-edit.component';
 import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.component';
 import { DeliveriesComponent } from './Components/deliveries/deliveries.component';
 import { ViewOrderDeliveryComponent } from './Components/view-order-delivery/view-order-delivery.component';
+import { ProductDetailsComponent } from './Components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ViewOrderDeliveryComponent } from './Components/view-order-delivery/vie
     ProdEditComponent,
     UserDeliveryComponent,
     DeliveriesComponent,
-    ViewOrderDeliveryComponent
+    ViewOrderDeliveryComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
