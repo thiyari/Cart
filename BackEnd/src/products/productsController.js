@@ -6,16 +6,18 @@ const session = require('express-session');
 
 let salt_key = process.env.PHONE_PE_SALT_KEY
 let merchant_id = process.env.PHONE_PE_MERCHANT_ID
-let app_user = process.env.GMAIL_APP_USER_ID
-let app_pass = process.env.GMAIL_APP_PASSWORD
+let mail_host = process.env.APP_MAIL_HOST
+let mail_port = process.env.APP_MAIL_PORT
+let app_user = process.env.APP_MAIL_USER_ID
+let app_pass = process.env.APP_MAIL_PASSWORD
 var productsService = require('./productsService');
 
 var nm = require('nodemailer');
 let savedOTPS = {};
 var transporter = nm.createTransport(
     {
-        host: "smtp.gmail.com",
-        port: 587,
+        host: mail_host,
+        port: mail_port,
         secure: false,
         auth: {
             user: app_user,
