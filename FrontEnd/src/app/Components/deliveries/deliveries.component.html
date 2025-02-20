@@ -78,6 +78,7 @@
                                                         <th>Phone</th>
                                                         <th>Date of Order</th>
                                                         <th>Delivery Status</th> 
+                                                        <th colspan="2">Update & Delete</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
@@ -91,6 +92,8 @@
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                         </ng-template>                                        
                                                         <td>{{item.delivery.status}}</td>
+                                                        <td><a [routerLink]="['/viewrequest',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
+                                                        <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

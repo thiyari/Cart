@@ -49,6 +49,10 @@ export class DeliveriesComponent implements OnInit{
     return date
   }
 
+  onDelete(orderid: any){
+
+  }
+
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
         .subscribe((res)=>{
