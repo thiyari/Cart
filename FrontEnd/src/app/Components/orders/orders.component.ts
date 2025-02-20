@@ -54,7 +54,7 @@ order_submit(){
       "referenceid": 'T' + Date.now(),
       "transactionstatus":"pending",
       "delivery": [{
-        "status": "order placed",
+        "status": "order confirmed",
         "date": "",
         "trackingid": ""
       }]
