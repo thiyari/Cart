@@ -12,7 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './view-order-delivery.component.scss'
 })
 export class ViewOrderDeliveryComponent implements OnInit{
-  public order:any;
+    order:any;
+    status: string = "";
     constructor(
           private api: ApiService,
           private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ViewOrderDeliveryComponent implements OnInit{
                 .subscribe(res=>{
                   if (res.message === "Success"){
                       this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
+                      this.status = this.order.delivery.status
                     }
                   })  
               }

@@ -66,11 +66,16 @@
                         <div class="box">
                             <div class="title">Order# {{order?.orderid}}</div>
                             <hr>
-                            <div class="form-group" style="float: right;">
+                            <div class="form-group" style="float: right;" *ngIf="status === 'out for delivery'">
                                 <label for="datepicker" class="form-label">Expected Date of Delivery:</label>
                                 <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
+                            <div class="form-group" style="float: right;" *ngIf="status === 'delivered'">
+                                <label for="datepicker" class="form-label">Delivered Date:</label>
+                                <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
+                            </div>
                             <div style="clear: both;"></div>
+                            <br>
                             <div class="form-group">
                                 <label class="form-label"><b>Name:</b>&nbsp;</label>
                                 <label class="form-label">{{order?.name}}</label>

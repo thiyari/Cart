@@ -116,15 +116,19 @@ var ordersSchema = new Schema({
     delivery: {
         status: {
             type: String,
-            required: false
+            required: true
         },
-        date: {
+        expected_date: {
             type: String,
-            required: false
+            required: true
         },
-        trackingid: {
+        delivery_date: {
             type: String,
-            required: false
+            required: true
+        },
+        tracking_id: {
+            type: String,
+            required: true
         }
     }
 },{

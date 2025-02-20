@@ -54,9 +54,10 @@ order_submit(){
       "referenceid": 'T' + Date.now(),
       "transactionstatus":"pending",
       "delivery": {
-        "status": "order confirmed",
-        "date": "",
-        "trackingid": ""
+        "status": "Order Confirmed",
+        "expected_date": "pending",
+        "delivery_date": "pending",
+        "tracking_id": "pending"
       }
     };
     this.api.submit_order(bodyData)

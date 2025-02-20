@@ -78,6 +78,7 @@
                                                         <th>Phone</th>
                                                         <th>Date of Order</th>
                                                         <th>Delivery Status</th> 
+                                                        <th>Date of Delivery</th>
                                                         <th colspan="2">Update & Delete</th>
                                                     </tr>
                                                 </thead>
@@ -92,6 +93,7 @@
                                                             <td>{{formatedDate(item.createdAt)}}</td>
                                                         </ng-template>                                        
                                                         <td>{{item.delivery.status}}</td>
+                                                        <td>{{item.delivery.delivery_date}}</td>
                                                         <td><a [routerLink]="['/view-order-delivery',item.orderid]"><i class="fa-solid fa-eye fa-2x"></i></a></td>
                                                         <td><button class="btn btn-danger" (click)="onDelete(item.orderid)"><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
