@@ -27,7 +27,7 @@ export class PaymentComponent implements OnInit{
 
   ngOnInit(): void {
     const order_id = this.route.snapshot.params['orderid'];
-    this.orders = this.api.getOrders()
+    this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){
         this.orders = res.records.find((item:any)=>
@@ -47,6 +47,7 @@ export class PaymentComponent implements OnInit{
       merchantUserID: "MUID" + Date.now(),
       merchantTransactionID: this.orders.referenceid
     }
+    console.log(data)
     this.api.phonepe(data)
   }
 

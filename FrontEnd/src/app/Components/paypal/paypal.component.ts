@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
-import { ActivatedRoute } from '@angular/router';
 import { ICreateOrderRequest, IPayPalConfig, ITransactionItem } from 'ngx-paypal';
 import { environment } from '../../../environments/environment';
+import { LocalService } from '../../service/local.service';
 
 @Component({
   selector: 'app-paypal',
@@ -16,10 +16,13 @@ export class PaypalComponent implements OnInit{
   public orders: any;
   public payPalConfig?: IPayPalConfig;
 
-  constructor(private api: ApiService, private route: ActivatedRoute){}
+  constructor(
+    private api: ApiService, 
+    private localStore: LocalService
+){}
 
   ngOnInit(): void {
-    const order_id = this.route.snapshot.params['orderid'];
+    const order_id = this.localStore.getData("orderid")
     this.orders = this.api.getOrders()
     .subscribe(res=>{
       if (res.message === "Success"){

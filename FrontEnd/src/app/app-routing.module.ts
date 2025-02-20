@@ -55,7 +55,7 @@ const routes: Routes = [
   {path:'razorpaytxn/:referenceid',component: RazorpaySuccessComponent},
   {path:'product/:id',component: ViewProductComponent},
   {path:'payment/:orderid',component: PaymentComponent},
-  {path:'paypal/:orderid',component: PaypalComponent},
+  {path:'paypal',component: PaypalComponent},
   {path:'view-order/:orderid',component: ViewOrderComponent},
   {path:'view-order-delivery/:orderid',component: ViewOrderDeliveryComponent},
   {path:'payment-transaction/:referenceid',component: PaymentTransactionsComponent},
