@@ -67,7 +67,7 @@
                             <div class="title">Order# {{order?.orderid}}</div>
                             <hr>
                             <div>
-                                <button class="btn btn-primary">Update</button>
+                                <button class="btn btn-primary" (click)="update(optionSelected)">Update</button>
                                 <label for="exampleSelect"><strong>Delivery Status</strong></label>
                                 <select class='form-select custom-select-width' required id="options"
                                 [(ngModel)]='optionSelected' (ngModelChange)='onOptionsSelected($event)'>
@@ -77,23 +77,21 @@
                             
                             <div style="float: left" class="form-group" *ngIf="optionSelected === 'Out For Delivery'">
                                 <label class="form-label"><strong>Tracking Id:</strong></label>
-                                <input type="text" class="form-control" id="trackingid" placeholder="Enter Tracking Id" required/>
-                                <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Please fill out this field.</div>
+                                <input [(ngModel)]="tracking_id" [ngModelOptions]="{standalone: true}" type="text" class="form-control" id="trackingid" placeholder="Enter Tracking Id" required/>
                             </div>
                             <div class="form-group" style="float: right;" *ngIf="optionSelected === 'Out For Delivery'">
                                 <label for="datepicker" class="form-label"><strong>Expected Date of Delivery:</strong></label>
-                                <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
+                                <input [(ngModel)]="expected_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
                             <div style="clear: both;"></div>
 
                             <div class="form-group" style="float: left" *ngIf="optionSelected === 'Delivered'">
                                 <label class="form-label"><strong>Tracking Id:</strong></label>
-                                <label class="form-label">100055525855</label>
+                                <label class="form-label">{{tracking_id}}</label>
                             </div>
                             <div class="form-group" style="float: right;" *ngIf="optionSelected === 'Delivered'">
                                 <label for="datepicker" class="form-label"><strong>Delivered Date:</strong></label>
-                                <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
+                                <input [(ngModel)]="delivery_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
                             <div style="clear: both;"></div>
                             

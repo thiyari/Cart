@@ -15,7 +15,9 @@ export class ViewOrderDeliveryComponent implements OnInit{
     order:any;
     options = ["Order Confirmed", "Out For Delivery", "Delivered"];
     optionSelected: any;
-    trackingid: any;
+    tracking_id: any;
+    expected_date: any;
+    delivery_date: any;
     constructor(
           private api: ApiService,
           private route: ActivatedRoute,
@@ -33,6 +35,9 @@ export class ViewOrderDeliveryComponent implements OnInit{
                   if (res.message === "Success"){
                       this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
                       this.optionSelected = this.order.delivery.status
+                      this.expected_date = this.order.delivery.expected_date
+                      this.delivery_date = this.order.delivery.delivery_date
+                      this.tracking_id = this.order.delivery.tracking_id
                     }
                   })  
               }
@@ -45,6 +50,47 @@ export class ViewOrderDeliveryComponent implements OnInit{
   onOptionsSelected(event: any){
     this.optionSelected = event; //option value will be sent as event
     }
+
+  update(optionSelected:any){
+
+    if (optionSelected === 'Order Confirmed'){
+      let body = {
+        "status": optionSelected,
+        "expected_date": "pending",
+        "tracking_id": "pending",
+        "delivery_date": "pending",
+      }
+      console.log(body)
+    } 
+    if (optionSelected === 'Out For Delivery'){
+      if (optionSelected === 'Out For Delivery' && this.tracking_id === 'pending'){
+        alert("please enter the tracking id")
+
+      } else if (optionSelected === 'Out For Delivery' && this.expected_date === 'pending') {
+        alert("please pick the expected date")
+      } else {
+        let body = {
+          "status": optionSelected,
+          "expected_date": this.expected_date,
+          "tracking_id": this.tracking_id,
+          "delivery_date": "pending"
+        }
+        console.log(body)
+      }
+    }  
+
+    if (optionSelected === 'Delivered' && this.delivery_date === 'pending') {
+      alert("please pick the delivery date")
+    } else {
+      let body = {
+        "status": optionSelected,
+        "expected_date": this.expected_date,
+        "tracking_id": this.tracking_id,
+        "delivery_date": this.delivery_date,
+      }
+      console.log(body)
+    }
+  }
 
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
