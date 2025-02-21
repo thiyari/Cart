@@ -60,12 +60,11 @@ export class ViewOrderDeliveryComponent implements OnInit{
         "tracking_id": "pending",
         "delivery_date": "pending",
       }
-      console.log(body)
+      this.api.update_delivery(body, this.order._id);
     } 
     if (optionSelected === 'Out For Delivery'){
       if (optionSelected === 'Out For Delivery' && this.tracking_id === 'pending'){
         alert("please enter the tracking id")
-
       } else if (optionSelected === 'Out For Delivery' && this.expected_date === 'pending') {
         alert("please pick the expected date")
       } else {
@@ -75,20 +74,24 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "tracking_id": this.tracking_id,
           "delivery_date": "pending"
         }
-        console.log(body)
+        this.api.update_delivery(body, this.order._id);
       }
     }  
 
-    if (optionSelected === 'Delivered' && this.delivery_date === 'pending') {
-      alert("please pick the delivery date")
-    } else {
-      let body = {
-        "status": optionSelected,
-        "expected_date": this.expected_date,
-        "tracking_id": this.tracking_id,
-        "delivery_date": this.delivery_date,
+    if (optionSelected === 'Delivered'){
+      if(optionSelected === 'Delivered' && this.tracking_id === 'pending') {
+        alert("Tracking id is pending, update the status 'Out For Delivery' and then try again")
+      } else if(optionSelected === 'Delivered' && this.delivery_date === 'pending') {
+        alert("please pick the delivery date")
+      } else {
+        let body = {
+          "status": optionSelected,
+          "expected_date": this.expected_date,
+          "tracking_id": this.tracking_id,
+          "delivery_date": this.delivery_date,
+        }
+        this.api.update_delivery(body, this.order._id);
       }
-      console.log(body)
     }
   }
 

@@ -369,7 +369,28 @@ module.exports.editProductDBService = async (id,data) => {
         })
 }
 
-
+module.exports.updateDeliveryDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.orders.findByIdAndUpdate(id,
+                {
+                        delivery: {
+                                status: data.status,
+                                expected_date: data.expected_date,
+                                tracking_id: data.tracking_id,
+                                delivery_date: data.delivery_date,
+                        }
+                },{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Delivery details are updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating the Delivery details failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
 
 module.exports.editProductDisplayDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){

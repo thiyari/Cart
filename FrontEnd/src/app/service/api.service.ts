@@ -61,11 +61,11 @@ export class ApiService {
       } else {
         alert(res.message)
       }
-    });    
+    });   
   }
 
   getOrders(){
-    return this.http.get<any>(`${environment.SERVER_URI}/api/orders`)
+     return this.http.get<any>(`${environment.SERVER_URI}/api/orders`)
     .pipe(map((res)=>{
       return res;
     }))
@@ -231,5 +231,16 @@ export class ApiService {
         alert(res.message)
       }
     });
+  }
+
+  update_delivery(bodyData: any, id: any){
+    return this.http.put<any>(`${environment.SERVER_URI}/api/delivery/update/${id}`,bodyData)
+    .subscribe((res:any)=>{
+      if(res.status){
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
+    }); 
   }
 }
