@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { HttpClient } from '@angular/common/http';
+import { AggregationService } from '../../service/aggregation.service';
 
 @Component({
   selector: 'app-view-order-delivery',
@@ -24,7 +25,8 @@ export class ViewOrderDeliveryComponent implements OnInit{
           private api: ApiService,
           private route: ActivatedRoute,
           private http: HttpClient, 
-          private router: Router
+          private router: Router,
+          private transactions: AggregationService,
     ){}
   ngOnInit(): void {
     this.http.get<any>(`${environment.SERVER_URI}/api/session`)
@@ -32,16 +34,11 @@ export class ViewOrderDeliveryComponent implements OnInit{
           if(res.valid){
               if (res.log_status === "admin") {
                 const order_id = this.route.snapshot.params['orderid'];
-                this.api.getOrders()
-                .subscribe(res=>{
-                  if (res.message === "Success"){
-                      this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
-                      this.optionSelected = this.order.delivery.status
-                      this.expected_date = this.order.delivery.expected_date
-                      this.delivery_date = this.order.delivery.delivery_date
-                      this.tracking_id = this.order.delivery.tracking_id
-                    }
-                  })  
+                this.order = this.transactions.getData().find((item:any)=>JSON.stringify(item.orderid)===order_id)
+                this.optionSelected = this.order.delivery.status
+                this.expected_date = this.order.delivery.expected_date
+                this.delivery_date = this.order.delivery.delivery_date
+                this.tracking_id = this.order.delivery.tracking_id
               }
           } else {
             this.router.navigate(['/login'])
