@@ -66,14 +66,40 @@
                         <div class="box">
                             <div class="title">Order# {{order?.orderid}}</div>
                             <hr>
-                            <div class="form-group" style="float: right;" *ngIf="status === 'out for delivery'">
-                                <label for="datepicker" class="form-label">Expected Date of Delivery:</label>
+                            <div>
+                                <label for="exampleSelect"><strong>Delivery Status</strong></label>
+                                <select class='form-select w-25' required
+                                [(ngModel)]='optionSelected' (ngModelChange)='onOptionsSelected($event)'>
+                                    <option *ngFor='let option of options' selected [value]="option">{{option}}</option>
+                                </select>
+                            </div>
+                            
+                            <br>
+                            <div style="float: left" class="form-group" *ngIf="optionSelected === 'Out For Delivery'">
+                                <label class="form-label"><strong>Tracking Id:</strong></label>
+                                <input type="text" class="form-control" id="trackingid" placeholder="Enter Tracking Id" required/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group" style="float: right;" *ngIf="optionSelected === 'Out For Delivery'">
+                                <label for="datepicker" class="form-label"><strong>Expected Date of Delivery:</strong></label>
                                 <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
-                            <div class="form-group" style="float: right;" *ngIf="status === 'delivered'">
-                                <label for="datepicker" class="form-label">Delivered Date:</label>
+                            <div style="clear: both;"></div>
+
+                            <!--
+                            <div style="float: right">
+                                <button class="btn btn-primary">Update</button>
+                            </div> -->
+                            <div class="form-group" style="float: left" *ngIf="optionSelected === 'Delivered'">
+                                <label class="form-label"><strong>Tracking Id:</strong></label>
+                                <label class="form-label">100055525855</label>
+                            </div>
+                            <div class="form-group" style="float: right;" *ngIf="optionSelected === 'Delivered'">
+                                <label for="datepicker" class="form-label"><strong>Delivered Date:</strong></label>
                                 <input type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
+
                             <div style="clear: both;"></div>
                             <br>
                             <div class="form-group">
@@ -89,8 +115,8 @@
                                 <label class="form-label">{{order?.phone}}</label>
                             </div>
 
-                                    <div style="text-align: center; font-weight: bold; font-size:x-large;">List of Items</div>
-                                    <div class ="table-responsive-md">
+                            <div style="text-align: center; font-weight: bold; font-size:x-large;">List of Items</div>
+                            <div class ="table-responsive-md">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -109,7 +135,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                            </div>
 
                             
                             <div class="form-group">

@@ -13,7 +13,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ViewOrderDeliveryComponent implements OnInit{
     order:any;
-    status: string = "";
+    options = ["Order Confirmed", "Out For Delivery", "Delivered"];
+    optionSelected: any;
+    trackingid: any;
     constructor(
           private api: ApiService,
           private route: ActivatedRoute,
@@ -30,7 +32,7 @@ export class ViewOrderDeliveryComponent implements OnInit{
                 .subscribe(res=>{
                   if (res.message === "Success"){
                       this.order = res.records.find((item:any)=>JSON.stringify(item.orderid)===order_id)
-                      this.status = this.order.delivery.status
+                      this.optionSelected = this.order.delivery.status
                     }
                   })  
               }
@@ -39,6 +41,10 @@ export class ViewOrderDeliveryComponent implements OnInit{
           }
     })  
   }
+
+  onOptionsSelected(event: any){
+    this.optionSelected = event; //option value will be sent as event
+    }
 
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
