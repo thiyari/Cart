@@ -12,6 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './view-order-delivery.component.scss'
 })
 export class ViewOrderDeliveryComponent implements OnInit{
+    success: any;
+    error: any;
     order:any;
     options = ["Order Confirmed", "Out For Delivery", "Delivered"];
     optionSelected: any;
@@ -61,12 +63,16 @@ export class ViewOrderDeliveryComponent implements OnInit{
         "delivery_date": "pending",
       }
       this.api.update_delivery(body, this.order._id);
+      this.success = "Updated the status to Order Confirmed"
+      this.error = ""
     } 
     if (optionSelected === 'Out For Delivery'){
       if (optionSelected === 'Out For Delivery' && this.tracking_id === 'pending'){
-        alert("please enter the tracking id")
+        this.success = ""
+        this.error = "Please enter the Tracking Id"
       } else if (optionSelected === 'Out For Delivery' && this.expected_date === 'pending') {
-        alert("please pick the expected date")
+        this.success = ""
+        this.error = "Please pick the expected date of delivery"
       } else {
         let body = {
           "status": optionSelected,
@@ -75,14 +81,18 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "delivery_date": "pending"
         }
         this.api.update_delivery(body, this.order._id);
+        this.success = "Out For Delivery status is updated successfully"
+        this.error = ""
       }
     }  
 
     if (optionSelected === 'Delivered'){
       if(optionSelected === 'Delivered' && this.tracking_id === 'pending') {
-        alert("Tracking id is pending, update the status 'Out For Delivery' and then try again")
+        this.success = ""
+        this.error = "Tracking id is pending, update the status 'Out For Delivery' and then try again";
       } else if(optionSelected === 'Delivered' && this.delivery_date === 'pending') {
-        alert("please pick the delivery date")
+        this.success = ""
+        this.error = "please pick the delivery date";
       } else {
         let body = {
           "status": optionSelected,
@@ -91,6 +101,8 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "delivery_date": this.delivery_date,
         }
         this.api.update_delivery(body, this.order._id);
+        this.success =  "Successfully updated the status to Delivered"
+        this.error = ""
       }
     }
   }

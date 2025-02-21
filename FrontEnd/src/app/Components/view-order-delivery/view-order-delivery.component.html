@@ -94,7 +94,10 @@
                                 <input [(ngModel)]="delivery_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
                             </div>
                             <div style="clear: both;"></div>
-                            
+                            <div>
+                                <p class="success text-success" [innerHTML]="success"></p>
+                                <p class="error text-danger" [innerHTML]="error"></p>
+                            </div>
                             <hr>
                             <div class="form-group">
                                 <label class="form-label"><b>Name:</b>&nbsp;</label>

@@ -44,6 +44,11 @@ span{
     width: 30%;
 }
 
+.success,
+.error {
+  text-align: center;
+}
+
 @media (max-width: 360px){
     .custom-select-width{
         width: 60%;
