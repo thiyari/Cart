@@ -237,4 +237,18 @@ export class ApiService {
     return this.http.put<any>(`${environment.SERVER_URI}/api/delivery/update/${id}`,bodyData)
     .subscribe(); 
   }
+
+  delete_order(orderid:any){
+    var result: any;
+    if (window.confirm(`Deleting your requested Order# ${orderid}`)){
+      try{
+        result = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`)
+        .subscribe()
+      }
+      catch (err) {
+        alert(err)
+      }
+    }
+    return result
+  }
 }

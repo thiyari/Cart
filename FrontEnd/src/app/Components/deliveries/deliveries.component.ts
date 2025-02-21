@@ -3,6 +3,7 @@ import { AggregationService } from '../../service/aggregation.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-deliveries',
@@ -15,6 +16,7 @@ export class DeliveriesComponent implements OnInit{
   aggregation: any[] = []
 
     constructor(
+      private api: ApiService,
       private transactions: AggregationService,
       private http: HttpClient, 
       private router: Router
@@ -49,8 +51,13 @@ export class DeliveriesComponent implements OnInit{
     return date
   }
 
-  onDelete(orderid: any){
-
+  onDelete(item: any){
+    if(item.delivery.delivery_date != 'pending'){
+      this.api.delete_order(item.orderid)
+      // to do
+    } else {
+      alert("Status not updated to 'Delivered', please update and try again")
+    }
   }
 
   logout(){
