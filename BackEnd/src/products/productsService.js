@@ -370,9 +370,9 @@ module.exports.editProductDBService = async (id,data) => {
         })
 }
 
-module.exports.updateDeliveryDBService = async (id,data) => {
+module.exports.updateDeliveryDBService = async (orderid,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await productsModel.orders.findByIdAndUpdate(id,
+        await productsModel.orders.findOneAndUpdate({orderid:orderid},
                 {
                         delivery: {
                                 status: data.status,

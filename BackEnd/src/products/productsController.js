@@ -608,7 +608,7 @@ var updateDeliveryControllerFn = async(req,res)=>
         var result = null;
         try
         {
-            var result = await productsService.updateDeliveryDBService(req.params.id,req.body)
+            var result = await productsService.updateDeliveryDBService(req.params.orderid,req.body)
             if(result.status){
                 return res.send({"status": true, "message": result.msg});
             }

@@ -59,7 +59,7 @@ export class ViewOrderDeliveryComponent implements OnInit{
         "tracking_id": "pending",
         "delivery_date": "pending",
       }
-      this.api.update_delivery(body, this.order._id);
+      this.api.update_delivery(body, this.order.orderid);
       this.success = "Updated the status to Order Confirmed"
       this.error = ""
     } 
@@ -77,7 +77,7 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "tracking_id": this.tracking_id,
           "delivery_date": "pending"
         }
-        this.api.update_delivery(body, this.order._id);
+        this.api.update_delivery(body, this.order.orderid);
         this.success = "Out For Delivery status is updated successfully"
         this.error = ""
       }
@@ -97,7 +97,7 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "tracking_id": this.tracking_id,
           "delivery_date": this.delivery_date,
         }
-        this.api.update_delivery(body, this.order._id);
+        this.api.update_delivery(body, this.order.orderid);
         this.success =  "Successfully updated the status to Delivered"
         this.error = ""
       }

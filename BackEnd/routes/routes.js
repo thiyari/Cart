@@ -27,7 +27,7 @@ router.route('/api/admins/edit/:id').put(productsController.editAdminsController
 router.route('/api/product/edit/:id').put(productsController.editProductControllerFn)
 router.route('/api/product/display/:id').put(productsController.editProductDisplayControllerFn)
 router.route('/api/images/upload/:id').put(productsController.uploadImagesControllerFn)
-router.route('/api/delivery/update/:id').put(productsController.updateDeliveryControllerFn)
+router.route('/api/delivery/update/:orderid').put(productsController.updateDeliveryControllerFn)
 router.route('/api/image/delete/:id').delete(productsController.deleteImageControllerFn)
 router.route('/api/admins/delete/:id').delete(productsController.deleteAdminsControllerFn)
 router.route('/api/product/delete/:id').delete(productsController.deleteProductControllerFn)
