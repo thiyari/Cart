@@ -226,7 +226,7 @@ export class ApiService {
 
   delete_order(orderid:any){
     var result: any;
-    if (window.confirm(`Deleting your requested Order# ${orderid}`)){
+    if (window.confirm(`Are you sure deleting the Order# ${orderid}`)){
       try{
         result = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`)
         .subscribe()
