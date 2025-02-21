@@ -31,7 +31,7 @@ router.route('/api/delivery/update/:id').put(productsController.updateDeliveryCo
 router.route('/api/image/delete/:id').delete(productsController.deleteImageControllerFn)
 router.route('/api/admins/delete/:id').delete(productsController.deleteAdminsControllerFn)
 router.route('/api/product/delete/:id').delete(productsController.deleteProductControllerFn)
-router.route('/api/user-request/delete/:orderid').delete(productsController.deleteUserRequestControllerFn)
+router.route('/api/order/delete/:orderid').delete(productsController.deleteOrderControllerFn)
 
 
 module.exports = router

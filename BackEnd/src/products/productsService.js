@@ -301,7 +301,8 @@ module.exports.deleteProductDBService = async (id) => {
         })
 }
 
-module.exports.deleteUserRequestDBService = async (orderid) => {
+
+module.exports.deleteOrderDBService = async (orderid) => {
         return new Promise(async function myFn(resolve,reject){
         await productsModel.orders.findOneAndDelete({orderid:orderid})
                 .then((docs)=>{

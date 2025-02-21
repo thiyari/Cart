@@ -364,13 +364,13 @@ var deleteProductControllerFn = async (req, res) => {
         res.send({"status":false,"message":err.msg});
     }
 }
-
-var deleteUserRequestControllerFn = async(req,res)=>
+    
+var deleteOrderControllerFn = async(req,res)=>
     {
         var result = null;
         try
         {
-            var result = await productsService.deleteUserRequestDBService(req.params.orderid)
+            var result = await productsService.deleteOrderDBService(req.params.orderid)
             if(result.status){
                 return res.send({"status": result.success, "message": result.msg});
             }
@@ -384,6 +384,8 @@ var deleteUserRequestControllerFn = async(req,res)=>
         }
 
     }    
+
+
 
 var sendEmailControllerFn = async(req, res) => {
     var options = {
@@ -636,7 +638,6 @@ module.exports = {
     fetchPaypaltxnControllerFn,
     razorpayControllerFn,
     fetchRazorpaytxnControllerFn,
-    deleteUserRequestControllerFn,
     sendOtpControllerFn,
     verifyOtpControllerFn,
     fetchAdminsControllerFn,
@@ -651,5 +652,6 @@ module.exports = {
     uploadImagesControllerFn,
     editProductDisplayControllerFn,
     sendEmailControllerFn,
-    updateDeliveryControllerFn
+    updateDeliveryControllerFn,
+    deleteOrderControllerFn
 }

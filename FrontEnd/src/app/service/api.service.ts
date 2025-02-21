@@ -131,20 +131,6 @@ export class ApiService {
     }))
   }
 
-  remove_userRequest(orderid:any){
-    var result: any;
-    if (window.confirm(`Deleting your requested Order# ${orderid}`)){
-      try{
-        result = this.http.delete<any>(`${environment.SERVER_URI}/api/user-request/delete/${orderid}`)
-        .subscribe()
-      }
-      catch (err) {
-        alert(err)
-      }
-    }
-    return result
-  }
-
   delete_admin(id:any, name: any){
     var result: any;
     if (window.confirm(`Are you sure deleting the admin: ${name} ?`)){
