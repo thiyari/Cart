@@ -45,7 +45,7 @@ export class PendingOrdersComponent implements OnInit{
   onDelete(orderid:any){
     const status = this.api.delete_order(orderid)
     if(status){
-      this.orders_records = this.orders_records.filter((item:any) => item.orderid != orderid);
+      this.filteredResult = this.filteredResult.filter((item:any) => item.orderid != orderid);
     }
   }
 
