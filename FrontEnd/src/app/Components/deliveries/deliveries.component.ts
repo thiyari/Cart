@@ -54,6 +54,10 @@ export class DeliveriesComponent implements OnInit{
     return date
   }
 
+  convert_to_date(date: any){
+    return new Date(date).toLocaleDateString()
+  }
+
   onDelete(order_item: any){
     if(order_item.delivery.delivery_date != 'pending'){
       const status = this.api.delete_order(order_item.orderid)
