@@ -55,7 +55,11 @@ export class DeliveriesComponent implements OnInit{
   }
 
   convert_to_date(date: any){
-    return new Date(date).toLocaleDateString()
+    if (date === "pending") {
+      return "pending"
+    } else {
+      return new Date(date).toLocaleDateString()
+    }
   }
 
   onDelete(order_item: any){

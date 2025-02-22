@@ -117,7 +117,7 @@
                                                         <td style="color: red;" *ngIf="item.delivery.status === 'Order Confirmed'">{{item.delivery.status}}</td>
                                                         <td style="color: green;" *ngIf="item.delivery.status === 'Out For Delivery'">{{item.delivery.status}}</td>
                                                         <td style="color: blue;" *ngIf="item.delivery.status === 'Delivered'">{{item.delivery.status}}</td>
-                                                        <td >{{convert_to_date(item.delivery.delivery_date)}}</td>
+                                                        <td>{{convert_to_date(item.delivery.delivery_date)}}</td>
                                                         <td><a class="btn btn-success" [routerLink]="['/view-order-delivery',item.orderid]"><i class="fa-solid fa-file-pen"></i></a></td>
                                                         <td><button class="btn btn-danger" (click)="onDelete(item)"><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
