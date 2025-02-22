@@ -71,13 +71,13 @@
                                         <div class="col-sm-1"></div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="datepicker" class="form-label"><strong>Start Date:</strong></label>
+                                                <label for="datepicker" class="form-label"><strong>Start Date of Order:</strong></label>
                                                 <input [(ngModel)]="start_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="datepicker" class="form-label"><strong>End Date:</strong></label>
+                                                <label for="datepicker" class="form-label"><strong>End Date of Order:</strong></label>
                                                 <input [(ngModel)]="end_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    <tr *ngFor="let item of aggregation; let i = index">
+                                                    <tr *ngFor="let item of filteredResult; let i = index">
                                                         <td>{{i+1}}</td>
                                                         <td>{{item.orderid}}</td>
                                                         <td>{{item.name}}</td>

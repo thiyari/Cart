@@ -13,6 +13,7 @@ import { ApiService } from '../../service/api.service';
   styleUrl: './deliveries.component.scss'
 })
 export class DeliveriesComponent implements OnInit{
+  filteredResult: any[] = []
   aggregation: any[] = []
   start_date: any;
   end_date: any;
@@ -34,6 +35,7 @@ export class DeliveriesComponent implements OnInit{
                   // Below is an Alternative method for the descending order
                   //var result = this.aggregation.sort((a:any,b:any)=>b.createdAt < a.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0)
                   this.transactions.setData(this.aggregation) 
+                  this.search()
               }
             } else {
               this.router.navigate(['/login'])
@@ -63,9 +65,20 @@ export class DeliveriesComponent implements OnInit{
     }
   }
 
-  search(){
-    
+  convert_timestamp_to_date(date:any){
+    const day = (new Date(date).getDate()).toString().padStart(2, '0'); // month and day to always be a two-digit string 
+    const month = (new Date(date).getMonth()+1).toString().padStart(2, '0'); // (note zero index: Jan = 0, Dec = 11)
+    const year = new Date(date).getFullYear()
+    return `${year}-${month}-${day}`
   }
+
+  search(){
+    console.log(this.start_date)
+    this.filteredResult = ((this.start_date === undefined && this.end_date === undefined) || (this.start_date === "" && this.end_date === "")) ? this.aggregation : this.aggregation.filter((item:any) => {
+      const converted_date = new Date(this.convert_timestamp_to_date(item.createdAt));
+      return converted_date >= new Date(this.start_date) && converted_date <= new Date(this.end_date);
+    });
+  } 
 
   logout(){
     this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
