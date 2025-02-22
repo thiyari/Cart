@@ -73,7 +73,6 @@ export class DeliveriesComponent implements OnInit{
   }
 
   search(){
-    console.log(this.start_date)
     this.filteredResult = ((this.start_date === undefined && this.end_date === undefined) || (this.start_date === "" && this.end_date === "")) ? this.aggregation : this.aggregation.filter((item:any) => {
       const converted_date = new Date(this.convert_timestamp_to_date(item.createdAt));
       return converted_date >= new Date(this.start_date) && converted_date <= new Date(this.end_date);
