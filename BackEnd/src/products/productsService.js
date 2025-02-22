@@ -86,6 +86,7 @@ module.exports.createOrdersDBService = (orderDetails) => {
                                 shippingaddress: orderDetails.shippingaddress,
                                 city: orderDetails.city,
                                 state: orderDetails.state,
+                                country: orderDetails.country,
                                 pin: orderDetails.pin,
                                 ordersplaced: orderDetails.ordersplaced,
                                 grandtotal: orderDetails.grandtotal,
