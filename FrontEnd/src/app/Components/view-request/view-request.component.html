@@ -34,6 +34,10 @@
                             <i class="fs-4 bi-clipboard"></i> <span class="ms-1 d-none d-sm-inline">Pending Orders</span> </a>                    </li>
                     <li>
                     <li>
+                        <a href="/user-delivery" class="nav-link px-0 align-middle" *ngIf='log_status === "user"'>
+                            <i class="fs-4 bi-file-post-fill"></i> <span class="ms-1 d-none d-sm-inline">Delivery Status</span> </a>
+                    </li>
+                    <li>
                         <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle" *ngIf='log_status === "admin"'>
                             <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products Panel</span></a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
