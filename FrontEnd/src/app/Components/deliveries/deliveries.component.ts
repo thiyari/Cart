@@ -14,7 +14,8 @@ import { ApiService } from '../../service/api.service';
 })
 export class DeliveriesComponent implements OnInit{
   aggregation: any[] = []
-
+  start_date: any;
+  end_date: any;
     constructor(
       private api: ApiService,
       private transactions: AggregationService,
@@ -60,6 +61,10 @@ export class DeliveriesComponent implements OnInit{
     } else {
       alert("Status not updated to 'Delivered', please update and try again")
     }
+  }
+
+  search(){
+    
   }
 
   logout(){

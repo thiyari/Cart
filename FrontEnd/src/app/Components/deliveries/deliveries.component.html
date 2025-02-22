@@ -67,6 +67,28 @@
                                 <div class="box">
                                     <div class="title">List of Deliveries</div>
                                     <hr>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="datepicker" class="form-label"><strong>Start Date:</strong></label>
+                                                <input [(ngModel)]="start_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label for="datepicker" class="form-label"><strong>End Date:</strong></label>
+                                                <input [(ngModel)]="end_date" [ngModelOptions]="{standalone: true}" type="date" class="form-control" id="datepicker" placeholder="Select a date">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="block">
+                                                <button type="submit" class="btn btn-primary" (click)="search()">Submit</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                    </div>
+
                                     <div class="table" style="border: none;">
                                             <div class ="table-responsive-md">                  
                                             <table class="table table-hover">
