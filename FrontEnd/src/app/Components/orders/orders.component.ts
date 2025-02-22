@@ -69,6 +69,7 @@ order_submit(){
     this.address = "";    
     this.city = "";
     this.state = "";
+    this.country = "";
     this.pin = "";
   }
 }
