@@ -75,6 +75,10 @@ var ordersSchema = new Schema({
         type: String,
         required: true
     },
+    country: {
+        type: String,
+        required: true
+    },
     pin: {
         type: Number,
         required: true

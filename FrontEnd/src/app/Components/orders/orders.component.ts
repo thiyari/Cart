@@ -17,6 +17,7 @@ phone: string="";
 address: string ="";
 city: string ="";
 state: string="";
+country: string = "";
 pin: string="";
 public products: any = [];
 public grandTotal !: number ;
@@ -31,7 +32,7 @@ constructor(private api: ApiService, private cartService: CartService){}
   }
 
 order_submit(){
-  if (this.name === "" || this.email === "" || this.phone === "" || this.phone.length != 10 || this.address === "" || this.city === "" || this.state === "" || this.pin ==="" || this.pin.length != 6){
+  if (this.name === "" || this.email === "" || this.phone === "" || this.phone.length != 10 || this.address === "" || this.city === "" || this.state === "" || this.country === "" || this.pin === ""){
     alert("Please fill the fields")
   }
   else{
@@ -48,6 +49,7 @@ order_submit(){
       "shippingaddress": this.address,
       "city": this.city,
       "state": this.state,
+      "country": this.country,
       "pin": this.pin,
       "ordersplaced":this.products,
       "grandtotal":this.grandTotal,

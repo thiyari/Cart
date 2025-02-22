@@ -132,6 +132,18 @@
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                             <div class="form-group">
+                                <label class="form-label">Country</label>
+                                <input 
+                                [(ngModel)]="country" [ngModelOptions]="{standalone: true}"
+                                type="text"  
+                                class="form-control mb-3" 
+                                id="country" 
+                                placeholder="Enter the country"
+                                required/>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
+                            <div class="form-group">
                                 <label class="form-label">Pin</label>
                                 <input 
                                 [(ngModel)]="pin" [ngModelOptions]="{standalone: true}"
@@ -139,7 +151,6 @@
                                 class="form-control mb-3" 
                                 id="pin" 
                                 placeholder="Enter the pin"
-                                pattern="^[1-9][0-9]{5}$"
                                 required/>
                                 <div class="valid-feedback">Valid.</div>
                                 <div class="invalid-feedback">Please fill out this field.</div>
