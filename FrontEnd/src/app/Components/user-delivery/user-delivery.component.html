@@ -130,26 +130,51 @@
                                                                             title="Order Confirmed">
                                                                         <i class="fa-solid fa-check"></i>
                                                                     </button>
+
                                                                     <span class="bg-secondary w-50 p-1
                                                                                     mx-n1 rounded mt-auto
-                                                                                    mb-auto">
+                                                                                    mb-auto" *ngIf="status === 'Order Confirmed'">
                                                                     </span>
+
+                                                                    <span class="btn btn-primary w-50 p-1
+                                                                                    mx-n1 rounded mt-auto
+                                                                                    mb-auto" *ngIf="status === 'Out For Delivery' || status === 'Delivered'">
+                                                                    </span>
+                
                                                                     <button class="btn bg-secondary
                                                                                     text-white 
                                                                                     rounded-circle" 
                                                                             data-bs-toggle="tooltip"
                                                                             title="Out for delivery" 
-                                                                            style="z-index:1">
+                                                                            style="z-index:1"  *ngIf="status === 'Order Confirmed'">
                                                                         <i class="fa-solid fa-check"></i>
                                                                     </button>
+                                                                    <button class="btn btn-primary
+                                                                                    text-white 
+                                                                                    rounded-circle" 
+                                                                            data-bs-toggle="tooltip"
+                                                                            title="Out for delivery" 
+                                                                            style="z-index:1" *ngIf="status === 'Out For Delivery' || status === 'Delivered'">
+                                                                        <i class="fa-solid fa-check"></i>
+                                                                    </button>                                                                    
                                                                     <span class="bg-secondary w-50 p-1 
                                                                                     mx-n1 rounded mt-auto 
-                                                                                    mb-auto">
+                                                                                    mb-auto" *ngIf="status === 'Order Confirmed' || status === 'Out For Delivery'">
+                                                                    </span>
+                                                                    <span class="btn-primary w-50 p-1 
+                                                                                    mx-n1 rounded mt-auto 
+                                                                                    mb-auto" *ngIf="status === 'Delivered'">
                                                                     </span>
                                                                     <button class="btn bg-secondary 
                                                                                     text-white rounded-circle" 
                                                                             data-bs-toggle="tooltip"
-                                                                            title="Order Delivered">
+                                                                            title="Order Delivered" *ngIf="status === 'Order Confirmed' || status === 'Out For Delivery'">
+                                                                        <i class="fa-solid fa-check"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-primary 
+                                                                                    text-white rounded-circle" 
+                                                                            data-bs-toggle="tooltip"
+                                                                            title="Order Delivered" *ngIf="status === 'Delivered'">
                                                                         <i class="fa-solid fa-check"></i>
                                                                     </button>
                                                                 </div>
