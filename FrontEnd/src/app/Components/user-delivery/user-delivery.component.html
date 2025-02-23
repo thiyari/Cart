@@ -36,34 +36,27 @@
                     <div class="col-md-10">
                         <div class="container">
                             <div class="card container">
-                              <div class="title">Delivery Tracking</div>
+                              <div class="title">Tracking Delivery</div>
                               <hr>
                                 <div class="box">
-                                    <div class="row" *ngIf="true">
+                                    <div class="row" *ngIf="!toggle">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <form class="form-inline">
                                                     <div class="col-md-7">
-                                                        <input class="form-control mr-sm-2" type="text" placeholder="Order Id" aria-label="text" >
+                                                        <input class="form-control mr-sm-2" type="text" [(ngModel)]="orderid" [ngModelOptions]="{standalone: true}" placeholder="Order Id" aria-label="text" >
                                                     </div>
                                                     <div class="col-md-1" style="padding: 10px;"></div>
                                                     <div class="col-md-4">
-                                                        <button class="btn btn-primary" style="width: 100%">Submit</button>
+                                                        <button class="btn btn-primary" style="width: 100%" (click)="onSubmit()">Submit</button>
                                                     </div>
                                                 </form>
-                                                <!--
-                                                <div class="col-md-8">
-                                                    <input type="text" class="form-control" placeholder="Enter your Order Id">
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <button class="btn btn-primary" style="width: 100%">Submit</button>
-                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-                                    <div class="d-flex flex-column overflow-auto h-100 text-dark" *ngIf="false">
+                                    <div class="d-flex flex-column overflow-auto h-100 text-dark" *ngIf="toggle">
 
                                         <div class="container h-50 px-4 mx-auto">
                                                 <div class="row d-flex 
@@ -81,30 +74,43 @@
                                                                 <i class="text-secondary 
                                                                             fa-solid fa-hashtag
                                                                             mr-1">
-                                                                </i>ZMJ82D9
+                                                                </i>{{orderid}}
                                                             </span>
                                                         </p>
                                                     </div>
                                                     <div class="d-flex flex-column 
-                                                                text-sm-right h5">
+                                                                text-sm-right h5" *ngIf="status === 'Out For Delivery' else date_of_delivery">
                                                         <p class="mb-0 font-weight-bolder 
                                                                     text-monospace">
                                                             Expected Arrival :
                                                             <span class="text-success font-weight-bold">
                                                                 <i class="text-secondary mr-1">
-                                                                </i>15-12-2024
+                                                                </i>{{expected_date}}
                                                             </span>
                                                         </p>
                                                     </div>
+                                                    <ng-template #date_of_delivery>
+                                                        <div class="d-flex flex-column 
+                                                                    text-sm-right h5" *ngIf="delivery_date != 'pending'">
+                                                            <p class="mb-0 font-weight-bolder 
+                                                                        text-monospace">
+                                                                Delivered On :
+                                                                <span class="text-success font-weight-bold">
+                                                                    <i class="text-secondary mr-1">
+                                                                    </i>{{delivery_date}}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </ng-template> 
                                                     <div class="d-flex flex-column 
-                                                    text-sm-right h5">
+                                                    text-sm-right h5" *ngIf="status === 'Out For Delivery' || status === 'Delivered'">
                                                         <p class="mb-0 font-weight-bold 
                                                                     text-monospace 
                                                                     pt-3 ml-5">
                                                             Tracking ID :
                                                             <span class="text-success font-weight-bold">
                                                                 <i class="text-secondary mr-1">
-                                                                </i>ACK1252
+                                                                </i>{{tracking_id}}
                                                             </span>
                                                         </p>
                                                     </div>
