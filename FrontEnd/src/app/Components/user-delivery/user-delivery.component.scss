@@ -11,6 +11,7 @@ span{
 }
 
 .card{
+    padding: 10px;
     border-width: 2px; 
     border-color: darkblue; 
 }
@@ -46,6 +47,7 @@ h4 {
 .btn-primary {
     background-color: darkblue;
     border: none;
+    border-radius:0%; 
 }  
 
 .custom-adjustment{
@@ -57,6 +59,12 @@ h4 {
     margin-left: 10%;
     width: 90%;
 }
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}  
 
 @media (max-width: 360px){
     h4 {
