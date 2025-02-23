@@ -50,22 +50,39 @@ h4 {
 
 .custom-adjustment{
     margin-left: 15%;
-    width: 70%;
+    width: 68%;
 }
 
 .custom-icons-adjustment{
     margin-left: 8%;
-    width: 92%;
+    width: 90%;
 }
 
 @media (max-width: 360px){
     h4 {
         left: 25px;
     }
+    .custom-adjustment{
+        margin-left: -15%;
+        width: 130%;
+    }
+    
+    .custom-icons-adjustment{
+        margin-left: 0%;
+        width: 125%;
+    }
 }
 
 @media only screen and (min-width: 361px) and (max-width: 768px){
     h4 {
         left: 25px;
+    }
+    .custom-adjustment{
+        margin-left: -15%;
+        width: 130%;
+    }   
+    .custom-icons-adjustment{
+        margin-left: 0%;
+        width: 125%;
     }
 }
