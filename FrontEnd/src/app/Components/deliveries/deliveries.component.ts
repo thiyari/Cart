@@ -62,11 +62,14 @@ export class DeliveriesComponent implements OnInit{
     }
   }
 
-  onDelete(order_item: any){
-    if(order_item.delivery.delivery_date != 'pending'){
-      const status = this.api.delete_order(order_item.orderid)
+  onDelete(response: any){
+    if(response.delivery.delivery_date != 'pending'){
+      const order_id = response.orderid
+      const reference_id = response.referenceid
+      const transaction_status = response.transactionstatus
+      const status = this.api.delete_record(order_id, reference_id, transaction_status)
       if(status){
-        this.filteredResult = this.filteredResult.filter((item:any) => item.orderid != order_item.orderid);
+        this.filteredResult = this.filteredResult.filter((item:any) => item.orderid != order_id);
       }
     } else {
       alert("Status not updated to 'Delivered', please update and try again")

@@ -385,7 +385,89 @@ var deleteOrderControllerFn = async(req,res)=>
 
     }    
 
+    
+var deletePayPalControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.deletePayPalDBService(req.params.referenceid)
+            if(result.status){
+                return res.send({"status": result.success, "message": result.msg});
+            }
+            else {
+                return res.send({"status": result.success, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
 
+    }    
+
+    
+var deleteRazorpayControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.deleteRazorpayDBService(req.params.referenceid)
+            if(result.status){
+                return res.send({"status": result.success, "message": result.msg});
+            }
+            else {
+                return res.send({"status": result.success, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+
+    }        
+
+    
+var deletePhonePeControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.deletePhonePeDBService(req.params.referenceid)
+            if(result.status){
+                return res.send({"status": result.success, "message": result.msg});
+            }
+            else {
+                return res.send({"status": result.success, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+
+    }        
+
+    
+var deleteGooglePayControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await productsService.deleteGooglePayDBService(req.params.referenceid)
+            if(result.status){
+                return res.send({"status": result.success, "message": result.msg});
+            }
+            else {
+                return res.send({"status": result.success, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+
+    }        
 
 var sendEmailControllerFn = async(req, res) => {
     var options = {
@@ -653,5 +735,9 @@ module.exports = {
     editProductDisplayControllerFn,
     sendEmailControllerFn,
     updateDeliveryControllerFn,
-    deleteOrderControllerFn
+    deleteOrderControllerFn,
+    deletePayPalControllerFn,
+    deleteRazorpayControllerFn,
+    deletePhonePeControllerFn,
+    deleteGooglePayControllerFn
 }

@@ -32,6 +32,9 @@ router.route('/api/image/delete/:id').delete(productsController.deleteImageContr
 router.route('/api/admins/delete/:id').delete(productsController.deleteAdminsControllerFn)
 router.route('/api/product/delete/:id').delete(productsController.deleteProductControllerFn)
 router.route('/api/order/delete/:orderid').delete(productsController.deleteOrderControllerFn)
-
+router.route('/api/paypal/delete/:referenceid').delete(productsController.deletePayPalControllerFn)
+router.route('/api/razorpay/delete/:referenceid').delete(productsController.deleteRazorpayControllerFn)
+router.route('/api/phonepe/delete/:referenceid').delete(productsController.deletePhonePeControllerFn)
+router.route('/api/googlepay/delete/:referenceid').delete(productsController.deleteGooglePayControllerFn)
 
 module.exports = router

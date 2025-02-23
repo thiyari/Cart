@@ -237,4 +237,68 @@ export class ApiService {
     }
     return result
   }
+  
+  delete_record(orderid:Number, referenceid:string, transactionstatus: string){
+    var result: boolean = false;
+    if (window.confirm(`Are you sure deleting the Order# ${orderid}`)){
+        if (transactionstatus === "Received: PayPal") {
+          try{      
+            const res1 = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`).subscribe()
+            const res2 = this.http.delete<any>(`${environment.SERVER_URI}/api/paypal/delete/${referenceid}`).subscribe()
+            if (res1 && res2) {
+              result = true
+            } else {
+              result = false
+            }  
+          }
+          catch (err) {
+            alert(err)
+          }
+        }
+        else if (transactionstatus === "Received: Razorpay") {
+          try{
+            const res1 = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`).subscribe()
+            const res2 = this.http.delete<any>(`${environment.SERVER_URI}/api/razorpay/delete/${referenceid}`).subscribe()
+            if (res1 && res2) {
+              result = true
+            } else {
+              result = false
+            }  
+          }
+          catch (err) {
+            alert(err)
+          }
+        }
+        else if (transactionstatus === "Received: PhonePe") {
+          try{
+            const res1 = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`).subscribe()
+            const res2 = this.http.delete<any>(`${environment.SERVER_URI}/api/phonepe/delete/${referenceid}`).subscribe()
+            if (res1 && res2) {
+              result = true
+            } else {
+              result = false
+            }  
+          }
+          catch (err) {
+            alert(err)
+          }
+        }
+        else if (transactionstatus === "Received: GooglePay") {
+          try{
+            const res1 = this.http.delete<any>(`${environment.SERVER_URI}/api/order/delete/${orderid}`).subscribe()
+            const res2 = this.http.delete<any>(`${environment.SERVER_URI}/api/googlepay/delete/${referenceid}`).subscribe()
+            if (res1 && res2) {
+              result = true
+            } else {
+              result = false
+            }
+          } 
+          catch (err) {
+            alert(err)
+          }
+        }
+
+    }
+    return result
+  }
 }

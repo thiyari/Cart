@@ -318,6 +318,71 @@ module.exports.deleteOrderDBService = async (orderid) => {
         })
 }
 
+
+module.exports.deletePayPalDBService = async (referenceid) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.paypaltxns.findOneAndDelete({referenceid:referenceid})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Record Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting record failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.deleteRazorpayDBService = async (referenceid) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.razorpaytxns.findOneAndDelete({referenceid:referenceid})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Record Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting record failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.deletePhonePeDBService = async (referenceid) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.phonepetxns.findOneAndDelete({referenceid:referenceid})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Record Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting record failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.deleteGooglePayDBService = async (referenceid) => {
+        return new Promise(async function myFn(resolve,reject){
+        await productsModel.googlepaytxns.findOneAndDelete({referenceid:referenceid})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Record Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting record failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
 module.exports.fetchAdminsDBService = () => {
         return new Promise(async function myFn(resolve,reject){
                 result = await productsModel.admins.find({});
