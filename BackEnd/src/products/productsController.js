@@ -248,7 +248,7 @@ var phonepestatusControllerFn = async(req, res) => {
                             subject: `Reg: Payment Order# ${orderid}`,
                             html: `        
                               <P>Dear ${user},</p>
-                              <p>We are very glad that you have choosen our ${company_name} Services, we hereby inform you that your payment process was succesful for the requested order #${orderid}. To download invoice, please login to our website with your registered email.</p>
+                              <p>We are very glad that you have choosen our ${company_name} Services, we hereby inform you that your payment process was successful for the requested <b>order #${orderid}</b>. To download invoice, please login to our website with your registered email.</p>
                               <p>Regards,</p>
                               <p>Admin</p>`
                         }
