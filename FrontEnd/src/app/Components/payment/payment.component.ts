@@ -41,13 +41,14 @@ export class PaymentComponent implements OnInit{
   }
   phonepe_payment(){
     let data = {
+      orderid: this.orders.orderid,
+      email: this.orders.email,
       name: this.orders.name,
       amount: this.orders.grandtotal,
       phone: this.orders.phone,
       merchantUserID: "MUID" + Date.now(),
       merchantTransactionID: this.orders.referenceid
     }
-    console.log(data)
     this.api.phonepe(data)
   }
 

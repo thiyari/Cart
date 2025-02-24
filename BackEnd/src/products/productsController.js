@@ -10,7 +10,12 @@ let mail_host = process.env.APP_MAIL_HOST
 let mail_port = process.env.APP_MAIL_PORT
 let app_user = process.env.APP_MAIL_USER_ID
 let app_pass = process.env.APP_MAIL_PASSWORD
+let company_name = process.env.COMPANY_NAME
+
 var productsService = require('./productsService');
+var orderid = 0;
+var user = "";
+var email = "";
 
 var nm = require('nodemailer');
 let savedOTPS = {};
@@ -133,7 +138,9 @@ var fetchOrdersControllerFn = async(req,res)=>
 var phonepeControllerFn = async(req, res) => {
 
     try{
-        console.log(req.body)
+        orderid = req.body.orderid;
+        user = req.body.name;
+        email = req.body.email;
         const merchantTransactionId = req.body.merchantTransactionID;
         const data = {
             merchantId: merchant_id,
@@ -171,7 +178,6 @@ var phonepeControllerFn = async(req, res) => {
         };
 
         axios.request(options).then(function (response){
-            console.log(response.data)
             return res.json(response.data)
         })
         .catch(function (error){
@@ -230,6 +236,33 @@ var phonepestatusControllerFn = async(req, res) => {
               axios(options)
                 .then(() => {
                     console.log("payment histroy created")
+                    const email_options = {
+                        url: `${process.env.SERVER_URI}/api/send-email`,
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        data: {
+                            to: email,
+                            subject: `Reg: Payment Order# ${orderid}`,
+                            html: `        
+                              <P>Dear ${user},</p>
+                              <p>We are very glad that you have choosen our ${company_name} Services, we hereby inform you that your payment process was succesful for the requested order #${orderid}. To download invoice, please login to our website with your registered email.</p>
+                              <p>Regards,</p>
+                              <p>Admin</p>`
+                        }
+                      };
+                      axios.request(email_options).then(function (response){
+                        if(response.status){
+                            console.log(response.message)
+                        } else {
+                            console.log(response.message)
+                        }
+                    })
+                    .catch(function (error){
+                        console.error(error);
+                    });
                 });
             const url = `${process.env.CLIENT_URI}/phonepetxn/${reference_id}`
             return res.redirect(url)
