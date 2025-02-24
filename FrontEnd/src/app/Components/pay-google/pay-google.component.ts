@@ -13,6 +13,8 @@ import { environment } from '../../../environments/environment';
 export class PayGoogleComponent implements OnInit{
 
   public orderid: any;
+  public name: any;
+  public email: any;
   public referenceid: any;
   public amount: any;
   paymentRequest!: google.payments.api.PaymentDataRequest;
@@ -24,6 +26,8 @@ export class PayGoogleComponent implements OnInit{
   
   ngOnInit(): void {
     this.orderid = this.localStore.getData("orderid")
+    this.name = this.localStore.getData("name")
+    this.email = this.localStore.getData("email")
     this.referenceid = this.localStore.getData("referenceid")
     this.amount = this.localStore.getData("amount")
     this.localStore.clearData()
@@ -75,6 +79,16 @@ export class PayGoogleComponent implements OnInit{
       amount: this.amount,
     }
     this.api.googlepay(data)
+    let email_body = {
+      to: this.email,
+      subject: `Reg: Payment Order# ${this.orderid}`,
+      html: `        
+        <P>Dear ${this.name},</p>
+        <p>We are very glad that you have choosen our ${environment.COMPANY_NAME} Services, we hereby inform you that your payment process was successful for the requested <b>order #${this.orderid}</b>. To download invoice, please login to our website with your registered email.</p>
+        <p>Regards,</p>
+        <p>Admin</p>`
+    }
+    this.api.send_mail(email_body);
     return (
     window.location.href = `${environment.CLIENT_URI}/googlepaytxn/${this.referenceid}`,
     {

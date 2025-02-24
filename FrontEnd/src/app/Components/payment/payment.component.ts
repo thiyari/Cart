@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit{
         );
       }
       this.localStore.saveData('orderid', this.orders?.orderid);
+      this.localStore.saveData('name', this.orders?.name);
+      this.localStore.saveData('email', this.orders?.email);
       this.localStore.saveData('referenceid', this.orders?.referenceid);
       this.localStore.saveData('amount', this.orders?.grandtotal);
     })
