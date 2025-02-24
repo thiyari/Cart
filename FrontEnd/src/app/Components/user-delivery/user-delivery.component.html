@@ -200,10 +200,17 @@
                                                     </div>
                                                     <div class="row d-inline-flex 
                                                                 align-items-center">
-                                                        <i class="text-primary fa-solid 
+                                                        <i class="text-secondary fa-solid 
+                                                                fa-truck-arrow-right
+                                                                fa-2xl mx-n2 mb-3"
+                                                                *ngIf="status === 'Order Confirmed'">
+                                                        </i>  
+                                                        <i class="text-warning fa-solid 
                                                                     fa-truck-arrow-right
-                                                                    fa-2xl mx-n2 mb-3">
+                                                                    fa-2xl mx-n2 mb-3"
+                                                                    *ngIf="status === 'Out For Delivery' || status === 'Delivered'">
                                                             </i>
+                                                        
                                                         <p class="text-dark 
                                                                     font-weight-bolder
                                                                     py-1 px-1 mx-n2">
@@ -214,9 +221,15 @@
                                                     </div>
                                                     <div class="row d-inline-flex 
                                                                 align-items-center">
-                                                        <i class="text-primary fa-solid
+                                                        <i class="text-secondary fa-solid
+                                                                fa-house-chimney 
+                                                                fa-2xl mx-n2 mb-3"
+                                                                *ngIf="status === 'Order Confirmed' || status === 'Out For Delivery'">
+                                                        </i>
+                                                        <i class="text-success fa-solid
                                                                     fa-house-chimney 
-                                                                    fa-2xl mx-n2 mb-3">
+                                                                    fa-2xl mx-n2 mb-3"
+                                                                    *ngIf="status === 'Delivered'">
                                                             </i>
                                                         <p class="text-dark font-weight-bolder
                                                                     py-1 px-1 mx-n2">
