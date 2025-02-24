@@ -107,6 +107,16 @@ export class PaypalComponent implements OnInit{
                         amount: purchase_response.amount.value,
                     }
                     this.api.paypal_pay(body)
+                    let email_body = {
+                        to: this.orders.email,
+                        subject: `Reg: Payment Order# ${this.orders.orderid}`,
+                        html: `        
+                          <P>Dear ${this.orders.name},</p>
+                          <p>We are very glad that you have choosen our ${environment.COMPANY_NAME} Services, we hereby inform you that your payment process was successful for the requested <b>order #${this.orders.orderid}</b>. To download invoice, please login to our website with your registered email.</p>
+                          <p>Regards,</p>
+                          <p>Admin</p>`
+                      }
+                    this.api.send_mail(email_body);
                 }
 
                 window.location.href = `${environment.CLIENT_URI}/paypaltxn/${this.orders.referenceid}`
