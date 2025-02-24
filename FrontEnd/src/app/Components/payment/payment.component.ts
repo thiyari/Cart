@@ -54,11 +54,15 @@ export class PaymentComponent implements OnInit{
 
   razorpay_payment(){
     const key = environment.RAZOR_PAY_KEY
+    const order_id = this.orders.orderid;
     const referenceid = this.orders.referenceid;
     const amount = this.orders.grandtotal
     const name = this.orders.name
     const email = this.orders.email
     const phone = this.orders.phone
+    const send_mail =  (email_body: any) => {
+      return this.api.send_mail(email_body)
+    }
     const razorpay_data = (body:any) => {
       return this.api.razorpay_pay(body)
     }
@@ -81,6 +85,16 @@ export class PaymentComponent implements OnInit{
           amount: amount
         }
         razorpay_data(body);
+        let email_body = {
+          to: email,
+          subject: `Reg: Payment Order# ${order_id}`,
+          html: `        
+            <P>Dear ${name},</p>
+            <p>We are very glad that you have choosen our ${environment.COMPANY_NAME} Services, we hereby inform you that your payment process was successful for the requested <b>order #${order_id}</b>. To download invoice, please login to our website with your registered email.</p>
+            <p>Regards,</p>
+            <p>Admin</p>`
+        }
+        send_mail(email_body);
         window.location.href = `${environment.CLIENT_URI}/razorpaytxn/${referenceid}`
         return window.location.href
       },
