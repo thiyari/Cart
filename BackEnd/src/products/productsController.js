@@ -254,10 +254,10 @@ var phonepestatusControllerFn = async(req, res) => {
                         }
                       };
                       axios.request(email_options).then(function (response){
-                        if(response.status){
-                            console.log(response.message)
+                        if(response.data.status){
+                            console.log(response.data.message)
                         } else {
-                            console.log(response.message)
+                            console.log(response.data.message)
                         }
                     })
                     .catch(function (error){
