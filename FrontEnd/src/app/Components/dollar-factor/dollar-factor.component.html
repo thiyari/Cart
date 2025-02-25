@@ -73,11 +73,13 @@
                                             <div class="row">
                                                 <form class="form-inline">
                                                     <div class="col-md-7">
-                                                        <input class="form-control mr-sm-2" type="text" placeholder="Order Id" aria-label="text" >
+                                                        <input class="form-control mr-sm-2" type="text" [(ngModel)]="dollar_factor" [ngModelOptions]="{standalone: true}" placeholder="Edit Dollar Factor" aria-label="text" *ngIf="!toggle">
+                                                        <input class="form-control mr-sm-2" type="text" [(ngModel)]="dollar_factor" [ngModelOptions]="{standalone: true}" placeholder="Enter Dollar Factor" aria-label="text" *ngIf="toggle">
                                                     </div>
                                                     <div class="col-md-1" style="padding: 10px;"></div>
                                                     <div class="col-md-4">
-                                                        <button class="btn btn-primary" style="width: 100%">Submit</button>
+                                                        <button class="btn btn-primary" style="width: 100%" (click)="onEdit()" *ngIf="!toggle">Edit</button>
+                                                        <button class="btn btn-primary" style="width: 100%" (click)="onSubmit()" *ngIf="toggle">Submit</button>
                                                     </div>
                                                 </form>
                                             </div>
