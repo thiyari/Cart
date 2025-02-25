@@ -30,9 +30,11 @@ import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.
 import { DeliveriesComponent } from './Components/deliveries/deliveries.component';
 import { ViewOrderDeliveryComponent } from './Components/view-order-delivery/view-order-delivery.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { DollarFactorComponent } from './Components/dollar-factor/dollar-factor.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'products', pathMatch:'full'},
+  {path:'dollar-factor', component: DollarFactorComponent},
   {path:'products', component: ProductsComponent},
   {path:'cart',component: CartComponent},
   {path:'prodreg',component: ProdregComponent},

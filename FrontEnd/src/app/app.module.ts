@@ -40,6 +40,7 @@ import { UserDeliveryComponent } from './Components/user-delivery/user-delivery.
 import { DeliveriesComponent } from './Components/deliveries/deliveries.component';
 import { ViewOrderDeliveryComponent } from './Components/view-order-delivery/view-order-delivery.component';
 import { ProductDetailsComponent } from './Components/product-details/product-details.component';
+import { DollarFactorComponent } from './Components/dollar-factor/dollar-factor.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ProductDetailsComponent } from './Components/product-details/product-de
     UserDeliveryComponent,
     DeliveriesComponent,
     ViewOrderDeliveryComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    DollarFactorComponent
   ],
   imports: [
     BrowserModule,

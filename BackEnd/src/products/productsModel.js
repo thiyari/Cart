@@ -227,7 +227,12 @@ var paypaltxnsSchema = new Schema({
     }
 })
 
-
+var currencySchema = new Schema({
+    USD: {
+        type: Number,
+        required: true
+    }
+})
 
 const products = mongoose.model("products",productsSchema)
 const orders = mongoose.model("orders",ordersSchema)
@@ -236,6 +241,7 @@ const googlepaytxns = mongoose.model("googlepaytxns",googlepaytxnsSchema)
 const paypaltxns = mongoose.model("paypaltxns",paypaltxnsSchema)
 const razorpaytxns = mongoose.model("razorpaytxns",razorpaytxnsSchema)
 const admins = mongoose.model("admins",adminsSchema)
+const currency = mongoose.model("currency",currencySchema)
 
 module.exports = {
     products, 
@@ -244,5 +250,6 @@ module.exports = {
     googlepaytxns,
     paypaltxns,
     razorpaytxns,
-    admins
+    admins,
+    currency
 }
