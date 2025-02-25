@@ -78,6 +78,16 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "delivery_date": "pending"
         }
         this.api.update_delivery(body, this.order.orderid);
+        let email_body = {
+          to: this.order.email,
+          subject: `Reg: Delivery status for your Order# ${this.order.orderid}`,
+          html: `        
+            <P>Dear ${this.order.name},</p>
+            <p>This is to inform you that your <b>order #${this.order.orderid}</b> is out for delivery, your tracking id for your order is <b>${this.tracking_id}</b>. For any details you may please visit our website and login with your registered email.</p>
+            <p>Regards,</p>
+            <p>Admin</p>`
+        }
+        this.api.send_mail(email_body)
         this.success = "Out For Delivery status is updated successfully"
         this.error = ""
       }
@@ -98,6 +108,16 @@ export class ViewOrderDeliveryComponent implements OnInit{
           "delivery_date": this.delivery_date,
         }
         this.api.update_delivery(body, this.order.orderid);
+        let email_body = {
+          to: this.order.email,
+          subject: `Reg: Delivery of your Order# ${this.order.orderid}`,
+          html: `        
+            <P>Dear ${this.order.name},</p>
+            <p>This is to inform you that your <b>order #${this.order.orderid}</b> is successfully delivered with tracing id <b>${this.tracking_id}</b>. For any details you may please visit our website and login with your registered email.</p>
+            <p>Regards,</p>
+            <p>Admin</p>`
+        }
+        this.api.send_mail(email_body)
         this.success =  "Successfully updated the status to Delivered"
         this.error = ""
       }
