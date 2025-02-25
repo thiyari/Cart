@@ -78,6 +78,24 @@ export class ApiService {
     }))
   }
 
+  getDollarCurrency(){
+    return this.http.get<any>(`${environment.SERVER_URI}/api/fetch/dollar-factor`)
+    .pipe(map((res)=>{
+      return res;
+    }))
+  }
+
+  setDollarCurrency(data: any){
+    return this.http.post<any>(`${environment.SERVER_URI}/api/dollar-factor`,data)
+    .subscribe((res:any)=>{
+      if(res.status){
+        alert(res.message)
+      } else {
+        alert(res.message)
+      }
+    })
+  }
+
   phonepe(data: any){
     return this.http.post<any>(`${environment.SERVER_URI}/api/phonepe`,data)
     .subscribe((response)=>{

@@ -11,6 +11,8 @@ router.route('/api/phonepetxn').get(productsController.fetchPhonepetxnController
 router.route('/api/googlepaytxn').get(productsController.fetchGooglepaytxnControllerFn)
 router.route('/api/paypaltxn').get(productsController.fetchPaypaltxnControllerFn)
 router.route('/api/razorpaytxn').get(productsController.fetchRazorpaytxnControllerFn)
+router.route('/api/fetch/dollar-factor').get(productsController.fetchDollarFactorControllerFn)
+router.route('/api/dollar-factor').post(productsController.createDollarFactorControllerFn)
 router.route('/api/send-otp').post(productsController.sendOtpControllerFn)
 router.route('/api/verify-otp').post(productsController.verifyOtpControllerFn)
 router.route('/api/send-email').post(productsController.sendEmailControllerFn)

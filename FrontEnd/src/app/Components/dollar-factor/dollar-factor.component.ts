@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class DollarFactorComponent implements OnInit{
   dollar_factor: any;
+  id: any;
   toggle: boolean = false;
   constructor(     
     private api: ApiService,
@@ -24,7 +25,16 @@ export class DollarFactorComponent implements OnInit{
     .subscribe((res)=>{
           if(res.valid){
               if (res.log_status === "admin") {
-                // to do
+                this.api.getDollarCurrency().subscribe((res:any)=>{
+                  if(res.message === "Success"){
+                    if(res.records.length === 0){
+                      this.dollar_factor = 0;
+                    } else {
+                      this.id = res.records[0].id;
+                      this.dollar_factor = res.records[0].USD
+                    }
+                  }
+                })
             }
           } else {
             this.router.navigate(['/login'])
@@ -37,6 +47,11 @@ export class DollarFactorComponent implements OnInit{
   }
   onSubmit(){
     this.toggle = false;
+    let body = {
+      "key": 1,
+      "USD": this.dollar_factor
+    }
+    this.api.setDollarCurrency(body)
   }
 
   logout(){

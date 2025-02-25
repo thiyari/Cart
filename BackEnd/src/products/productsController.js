@@ -63,6 +63,24 @@ var createAdminsControllerFn = async (req, res) => {
                 console.log(err);
             }
         }
+        
+
+    var createDollarFactorControllerFn = async(req,res)=>
+        {
+            try
+            {
+                var status = await productsService.createDollarFactorDBService(req.body, res)
+                if(status){
+                    res.status(200).send({"status":true,"message":"Dollar Factor updated successfully"});
+                }
+                else {
+                    res.status(400).send({"status":false,"message":"Error updating the dollar factor"});
+                }
+            }
+            catch(err){
+                console.log(err);
+            }
+        }
 
     var createOrdersControllerFn = async(req,res)=>
         {
@@ -82,6 +100,16 @@ var createAdminsControllerFn = async (req, res) => {
         }
     
 
+var fetchDollarFactorControllerFn = async(req, res)=>
+{
+    const result = await (productsService.fetchDollarFactorDBService())
+    if(result.status){
+       return res.status(200).send({message:"Success",records:result.data});
+    }
+    else {
+        return res.status(400).send({message:'Failed',records:result.data});
+    }
+}
 
 var fetchProductsControllerFn = async(req,res)=>
     {
@@ -772,5 +800,7 @@ module.exports = {
     deletePayPalControllerFn,
     deleteRazorpayControllerFn,
     deletePhonePeControllerFn,
-    deleteGooglePayControllerFn
+    deleteGooglePayControllerFn,
+    fetchDollarFactorControllerFn,
+    createDollarFactorControllerFn
 }

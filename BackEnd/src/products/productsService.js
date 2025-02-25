@@ -1,5 +1,20 @@
 var productsModel = require('./productsModel')
 
+module.exports.createDollarFactorDBService = (details) => {
+        return new Promise(async function myFn(resolve,reject){
+                await productsModel.currency.updateOne({key: details.key},{$set:{USD:details.USD}},{upsert:true})
+                        .then((docs)=>{
+                                if(docs) {
+                                   resolve({success:true,msg:"Dollar Factor updated successfully"});
+                                } else {
+                                   reject({success:false,msg:"Updating dollar factor failed"});
+                                }
+                            }).catch((err)=>{
+                               reject(err);
+                            });               
+                })
+}
+
 module.exports.createProductsDBService = (productDetails) => {
     return new Promise(function myFn(resolve,reject){
             async function insert(){
@@ -107,6 +122,17 @@ module.exports.createOrdersDBService = (orderDetails) => {
     
     }
     
+    
+module.exports.fetchDollarFactorDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await productsModel.currency.find({});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({status: false, data: result})
+                }
+        })
+}
 
 
 module.exports.fetchProductsDBService = () => {

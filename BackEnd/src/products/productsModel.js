@@ -228,6 +228,10 @@ var paypaltxnsSchema = new Schema({
 })
 
 var currencySchema = new Schema({
+    key: {
+        type: Number,
+        requied: true
+    },
     USD: {
         type: Number,
         required: true
