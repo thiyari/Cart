@@ -12,7 +12,7 @@ import { LocalService } from '../../service/local.service';
   styleUrl: './paypal.component.scss'
 })
 export class PaypalComponent implements OnInit{
-  dollar_factor:any = environment.DOLLAR_FACTOR;
+  public dollar_factor: any;
   public orders: any;
   public payPalConfig?: IPayPalConfig;
 
@@ -31,6 +31,15 @@ export class PaypalComponent implements OnInit{
         );
       }
     })
+    this.api.getDollarCurrency().subscribe((res:any)=>{
+        if(res.message === "Success"){
+          if(res.records.length === 0){
+            this.dollar_factor = 0;
+          } else {
+            this.dollar_factor = res.records[0].USD
+          }
+        }
+      })
     this.initConfig();
   }
 
