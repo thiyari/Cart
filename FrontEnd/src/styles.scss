@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+.slick-prev:before, .slick-next:before{
+    color: black !important;
+}
+
+.img-style{
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: 100%;
+}
+
+@media (max-width: 360px){
+    .img-style{
+        margin-left: auto;
+        margin-right: auto;
+        height: 150px;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 361px) and (max-width: 768px){
+    .img-style{
+        margin-left: auto;
+        margin-right: auto;
+        height: 150px;
+        width: 100%;
+    }
+}
