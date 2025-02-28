@@ -1,5 +1,7 @@
 import { PrerenderFallback, RenderMode, ServerRoute } from '@angular/ssr';
-import { environment } from '../environments/environment';
+//import { environment } from '../environments/environment';
+import { ApiService } from './service/api.service';
+import { inject } from '@angular/core';
 
 export const serverRoutes: ServerRoute[] = [
   {
@@ -69,10 +71,11 @@ export const serverRoutes: ServerRoute[] = [
   {
     path:'edit-admin/:id',
     renderMode: RenderMode.Prerender,
-    async getPrerenderParams() {
-      const admins_list = await fetch(`${environment.SERVER_URI}/api/admins`)
-      const admins_response = await admins_list.json()
-      const admins_ids = admins_response.records.map((x:any)=>x._id)
+    async getPrerenderParams():Promise<any> {
+      const admins_ids = inject(ApiService).getAdmins().subscribe((res)=>{res.records.map((x:any)=>{x._id})})
+      //const admins_list = await fetch(`${environment.SERVER_URI}/api/admins`)
+      //const admins_response = await admins_list.json()
+      //const admins_ids = admins_response.records.map((x:any)=>{(x._id)})
       return admins_ids
     },
     fallback: PrerenderFallback.Server
@@ -81,9 +84,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'viewrequest/:orderid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const viewrequest_list = await fetch(`${environment.SERVER_URI}/api/orders`)
-      const viewrequest_response = await viewrequest_list.json()
-      const viewrequest_orderids = viewrequest_response.records.map((x:any)=>x.orderid)
+      const viewrequest_orderids = inject(ApiService).getOrders().subscribe((res)=>{res.records.map((x:any)=>{x.orderid})})
+      //const viewrequest_list = await fetch(`${environment.SERVER_URI}/api/orders`)
+      //const viewrequest_response = await viewrequest_list.json()
+      //const viewrequest_orderids = viewrequest_response.records.map((x:any)=>{(x.orderid)})
       return viewrequest_orderids
     },
     fallback: PrerenderFallback.Server
@@ -92,9 +96,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'phonepetxn/:referenceid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const phonepe_list = await fetch(`${environment.SERVER_URI}/api/phonepetxn`)
-      const phonepe_response = await phonepe_list.json()
-      const phonepe_referenceids = phonepe_response.records.map((x:any)=>x.referenceid)
+      const phonepe_referenceids = inject(ApiService).phonepe_txn().subscribe((res)=>{res.records.map((x:any)=>{x.referenceid})})
+      //const phonepe_list = await fetch(`${environment.SERVER_URI}/api/phonepetxn`)
+      //const phonepe_response = await phonepe_list.json()
+      //const phonepe_referenceids = phonepe_response.records.map((x:any)=>{(x.referenceid)})
       return phonepe_referenceids
     },
     fallback: PrerenderFallback.Server
@@ -103,9 +108,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'googlepaytxn/:referenceid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const googlepay_list = await fetch(`${environment.SERVER_URI}/api/googlepaytxn`)
-      const googlepay_response = await googlepay_list.json()
-      const googlepay_referenceids = googlepay_response.records.map((x:any)=>x.referenceid)
+      const googlepay_referenceids = inject(ApiService).googlepay_txn().subscribe((res)=>{res.records.map((x:any)=>{x.referenceid})})
+      //const googlepay_list = await fetch(`${environment.SERVER_URI}/api/googlepaytxn`)
+      //const googlepay_response = await googlepay_list.json()
+      //const googlepay_referenceids = googlepay_response.records.map((x:any)=>{(x.referenceid)})
       return googlepay_referenceids
     },
     fallback: PrerenderFallback.Server
@@ -114,9 +120,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'paypaltxn/:referenceid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const paypal_list = await fetch(`${environment.SERVER_URI}/api/paypaltxn`)
-      const paypal_response = await paypal_list.json()
-      const paypal_referenceids = paypal_response.records.map((x:any)=>x.referenceid)
+      const paypal_referenceids = inject(ApiService).paypal_txn().subscribe((res)=>{res.records.map((x:any)=>{x.referenceid})})
+      //const paypal_list = await fetch(`${environment.SERVER_URI}/api/paypaltxn`)
+      //const paypal_response = await paypal_list.json()
+      //const paypal_referenceids = paypal_response.records.map((x:any)=>{(x.referenceid)})
       return paypal_referenceids
     },
     fallback: PrerenderFallback.Server
@@ -125,9 +132,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'razorpaytxn/:referenceid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const razorpay_list = await fetch(`${environment.SERVER_URI}/api/razorpaytxn`)
-      const razorpay_response = await razorpay_list.json()
-      const razorpay_referenceids = razorpay_response.records.map((x:any)=>x.referenceid)
+      const razorpay_referenceids = inject(ApiService).razorpay_txn().subscribe((res)=>{res.records.map((x:any)=>{x.referenceid})})
+      //const razorpay_list = await fetch(`${environment.SERVER_URI}/api/razorpaytxn`)
+      //const razorpay_response = await razorpay_list.json()
+      //const razorpay_referenceids = razorpay_response.records.map((x:any)=>{(x.referenceid)})
       return razorpay_referenceids
     },
     fallback: PrerenderFallback.Server
@@ -136,9 +144,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'product/:id',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
-      const products_response = await products_list.json()
-      const product_pids = products_response.records.map((x:any)=>x.pid)
+      const product_pids = inject(ApiService).getProducts().subscribe((res)=>{res.records.map((x:any)=>{x.pid})})
+      //const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
+      //const products_response = await products_list.json()
+      //const product_pids = products_response.records.map((x:any)=>{(x.pid)})
       return product_pids
     },
     fallback: PrerenderFallback.Server
@@ -147,9 +156,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'payment/:orderid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
-      const orders_response = await orders_list.json()
-      const paymment_orders = orders_response.records.map((x:any)=>x.orderid)
+      const paymment_orders = inject(ApiService).getOrders().subscribe((res)=>{res.records.map((x:any)=>{x.orderid})})
+      //const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
+      //const orders_response = await orders_list.json()
+      //const paymment_orders = orders_response.records.map((x:any)=>{(x.orderid)})
       return paymment_orders
     },
     fallback: PrerenderFallback.Server
@@ -162,9 +172,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'view-order/:orderid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
-      const orders_response = await orders_list.json()
-      const view_orders = orders_response.records.map((x:any)=>x.orderid)
+      const view_orders = inject(ApiService).getOrders().subscribe((res)=>{res.records.map((x:any)=>{x.orderid})})
+      //const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
+      //const orders_response = await orders_list.json()
+      //const view_orders = orders_response.records.map((x:any)=>{(x.orderid)})
       return view_orders
     },
     fallback: PrerenderFallback.Server
@@ -173,9 +184,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'view-order-delivery/:orderid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
-      const orders_response = await orders_list.json()
-      const view_order_delivery = orders_response.records.map((x:any)=>x.orderid)
+      const view_order_delivery = inject(ApiService).getOrders().subscribe((res)=>{res.records.map((x:any)=>{x.orderid})})      
+      //const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
+      //const orders_response = await orders_list.json()
+      //const view_order_delivery = orders_response.records.map((x:any)=>{(x.orderid)})
       return view_order_delivery
     },
     fallback: PrerenderFallback.Server
@@ -184,9 +196,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'payment-transaction/:referenceid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
-      const orders_response = await orders_list.json()
-      const payment_transaction_referenceids = orders_response.records.map((x:any)=>x.referenceid)
+      const payment_transaction_referenceids = inject(ApiService).getOrders().subscribe((res)=>{res.records.map((x:any)=>{x.referenceid})})      
+      //const orders_list = await fetch(`${environment.SERVER_URI}/api/orders`)
+      //const orders_response = await orders_list.json()
+      //const payment_transaction_referenceids = orders_response.records.map((x:any)=>{(x.referenceid)})
       return payment_transaction_referenceids
     },
     fallback: PrerenderFallback.Server
@@ -195,9 +208,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'prod-edit/:pid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
-      const products_response = await products_list.json()
-      const product_pids = products_response.records.map((x:any)=>x.pid)
+      const product_pids = inject(ApiService).getProducts().subscribe((res)=>{res.records.map((x:any)=>{x.pid})})
+      //const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
+      //const products_response = await products_list.json()
+      //const product_pids = products_response.records.map((x:any)=>{(x.pid)})
       return product_pids
     },
     fallback: PrerenderFallback.Server
@@ -206,9 +220,10 @@ export const serverRoutes: ServerRoute[] = [
     path:'product-details/:pid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
-      const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
-      const products_response = await products_list.json()
-      const product_pids = products_response.records.map((x:any)=>x.pid)
+      const product_pids = inject(ApiService).getProducts().subscribe((res)=>{res.records.map((x:any)=>{x.pid})})
+      //const products_list = await fetch(`${environment.SERVER_URI}/api/products`)
+      //const products_response = await products_list.json()
+      //const product_pids = products_response.records.map((x:any)=>{(x.pid)})
       return product_pids
     },
     fallback: PrerenderFallback.Server
