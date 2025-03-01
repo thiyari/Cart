@@ -5,67 +5,67 @@ import { PrerenderParamsService } from './service/prerender-params.service';
 export const serverRoutes: ServerRoute[] = [
   {
     path: '',
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   { 
     path:'dollar-factor',  
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'products',     
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'cart',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'prodreg',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'login',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'admin',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'orders',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'googlepay',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'prods',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'new-admin',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'admins-panel',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'admin-orders',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'pending-orders',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'user-orders',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'user-requests',    
-    renderMode: RenderMode.Prerender
+    renderMode: RenderMode.Server
   },
   {
     path:'paypal',
