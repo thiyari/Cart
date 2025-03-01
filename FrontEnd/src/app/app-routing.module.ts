@@ -49,6 +49,9 @@ const routes: Routes = [
   {path:'pending-orders',component: PendingOrdersComponent},
   {path:'user-orders',component: UserOrdersComponent},
   {path:'user-requests',component: UserRequestsComponent},
+  {path:'paypal',component: PaypalComponent},
+  {path:'user-delivery',component: UserDeliveryComponent},
+  {path:'deliveries',component: DeliveriesComponent},
   {path:'edit-admin/:id',component: EditAdminsComponent},
   {path:'viewrequest/:orderid',component: ViewRequestComponent},
   {path:'phonepetxn/:referenceid',component:PhonepeSuccessComponent},
@@ -57,14 +60,11 @@ const routes: Routes = [
   {path:'razorpaytxn/:referenceid',component: RazorpaySuccessComponent},
   {path:'product/:id',component: ViewProductComponent},
   {path:'payment/:orderid',component: PaymentComponent},
-  {path:'paypal',component: PaypalComponent},
   {path:'view-order/:orderid',component: ViewOrderComponent},
   {path:'view-order-delivery/:orderid',component: ViewOrderDeliveryComponent},
   {path:'payment-transaction/:referenceid',component: PaymentTransactionsComponent},
   {path:'prod-edit/:pid',component: ProdEditComponent},
-  {path:'product-details/:pid',component: ProductDetailsComponent},
-  {path:'user-delivery',component: UserDeliveryComponent},
-  {path:'deliveries',component: DeliveriesComponent}
+  {path:'product-details/:pid',component: ProductDetailsComponent}
 ];
 
 @NgModule({

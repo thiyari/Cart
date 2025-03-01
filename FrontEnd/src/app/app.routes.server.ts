@@ -68,6 +68,18 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path:'paypal',
+    renderMode: RenderMode.Server
+  },
+  {
+    path:'user-delivery',
+    renderMode: RenderMode.Server
+  },
+  {
+    path:'deliveries',
+    renderMode: RenderMode.Server
+  },
+  {
     path:'edit-admin/:id',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
@@ -148,10 +160,6 @@ export const serverRoutes: ServerRoute[] = [
     fallback: PrerenderFallback.Server
   },
   {
-    path:'paypal',
-    renderMode: RenderMode.Prerender
-  },
-  {
     path:'view-order/:orderid',
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
@@ -200,14 +208,6 @@ export const serverRoutes: ServerRoute[] = [
       return pids
     },
     fallback: PrerenderFallback.Server
-  },
-  {
-    path:'user-delivery',
-    renderMode: RenderMode.Prerender
-  },
-  {
-    path:'deliveries',
-    renderMode: RenderMode.Prerender
   }
 ];
 
