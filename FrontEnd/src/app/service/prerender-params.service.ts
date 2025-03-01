@@ -30,11 +30,20 @@ export class PrerenderParamsService {
   product() {
     this.api.getProducts().subscribe(res=>{
       if (res.message === "Success"){
-            this.product_ids = res.records.map((x:any)=>({pid: JSON.stringify(x.pid)}))
+            this.product_ids = res.records.map((x:any)=>({id: JSON.stringify(x.pid)}))
         }
     })
     return Promise.resolve(this.product_ids)
  }
+
+ product_view() {
+  this.api.getProducts().subscribe(res=>{
+    if (res.message === "Success"){
+          this.product_ids = res.records.map((x:any)=>({pid: JSON.stringify(x.pid)}))
+      }
+  })
+  return Promise.resolve(this.product_ids)
+} 
 
   orders() {
     this.api.getOrders().subscribe(res=>{

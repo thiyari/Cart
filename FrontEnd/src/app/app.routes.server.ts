@@ -186,7 +186,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const product_pids = inject(PrerenderParamsService)
-      const pids = await product_pids.product();
+      const pids = await product_pids.product_view();
       return pids
     },
     fallback: PrerenderFallback.Server
@@ -196,7 +196,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     async getPrerenderParams() {
       const product_pids = inject(PrerenderParamsService)
-      const pids = await product_pids.product();
+      const pids = await product_pids.product_view();
       return pids
     },
     fallback: PrerenderFallback.Server
