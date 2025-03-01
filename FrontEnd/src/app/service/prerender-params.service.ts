@@ -20,55 +20,69 @@ export class PrerenderParamsService {
 
   edit_admin(){
     this.api.getAdmins().subscribe(res=>{
-      this.admin_ids = res.records.map((x:any)=>{x.pid})
+      if (res.message === "Success"){
+      this.admin_ids = res.records.map((x:any)=>({pid: JSON.stringify(x.pid)}))
+      }
     })
     return Promise.resolve(this.admin_ids)
   }
 
   product() {
     this.api.getProducts().subscribe(res=>{
-      this.product_ids = res.records.map((x:any)=>{x.pid})
+      if (res.message === "Success"){
+            this.product_ids = res.records.map((x:any)=>({pid: JSON.stringify(x.pid)}))
+        }
     })
     return Promise.resolve(this.product_ids)
  }
 
   orders() {
     this.api.getOrders().subscribe(res=>{
-      this.order_ids = res.records.map((x:any)=>{x.orderid})
+      if (res.message === "Success"){
+      this.order_ids = res.records.map((x:any)=>({orderid: JSON.stringify(x.orderid)}))
+      }
     })
     return Promise.resolve(this.order_ids)
   }
 
   phonepe_txn(){
     this.api.phonepe_txn().subscribe(res=>{
-      this.phonepe_txn_ids = res.records.map((x:any)=>{x.referenceid})
+      if (res.message === "Success"){
+      this.phonepe_txn_ids = res.records.map((x:any)=>({referenceid: JSON.stringify(x.referenceid)}))
+      }
     })
     return Promise.resolve(this.phonepe_txn_ids)
   }
 
   googlepay_txn(){
     this.api.googlepay_txn().subscribe(res=>{
-      this.googlepay_txn_ids = res.records.map((x:any)=>{x.referenceid})
+      if (res.message === "Success"){
+      this.googlepay_txn_ids = res.records.map((x:any)=>({referenceid: JSON.stringify(x.referenceid)}))
+      }
     })
     return Promise.resolve(this.googlepay_txn_ids)
   }
 
   razorpay_txn(){
     this.api.razorpay_txn().subscribe(res=>{
-      this.razorpay_txn_ids = res.records.map((x:any)=>{x.referenceid})
+      if (res.message === "Success"){
+      this.razorpay_txn_ids = res.records.map((x:any)=>({referenceid: JSON.stringify(x.referenceid)}))
+      }
     })
     return Promise.resolve(this.razorpay_txn_ids)
   }
 
   paypal_txn(){
     this.api.paypal_txn().subscribe(res=>{
-      this.paypal_txn_ids = res.records.map((x:any)=>{x.referenceid})
+      if (res.message === "Success"){
+      this.paypal_txn_ids = res.records.map((x:any)=>({referenceid: JSON.stringify(x.referenceid)}))
+      }
     })
     return Promise.resolve(this.paypal_txn_ids)
   }
 
   payment_txn(){
-    this.payment_referenceids = this.transactions.merge_admindata().map((x:any)=>{x.referenceid})
+    this.payment_referenceids = this.transactions.merge_admindata().map((x:any)=>({referenceid: JSON.stringify(x.referenceid)}))
     return Promise.resolve(this.payment_referenceids)
   }
 }
