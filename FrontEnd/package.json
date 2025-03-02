@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "migrate-sass": "sass-migrator module --migrate-deps node_modules/slick-carousel/slick/slick-theme.scss",
+    "build": "npm run migrate-sass && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:FrontEnd": "node dist/front-end/server/server.mjs",
@@ -32,6 +33,7 @@
     "ngx-paypal": "^11.0.0",
     "ngx-slick-carousel": "^19.0.0",
     "rxjs": "~7.8.0",
+    "sass-migrator": "^2.3.1",
     "slick-carousel": "^1.8.1",
     "to-words": "^4.2.0",
     "tslib": "^2.3.0",
