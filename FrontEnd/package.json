@@ -36,8 +36,7 @@
     "slick-carousel": "^1.8.1",
     "to-words": "^4.2.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.15.0",
-    "sass-migrator": "^2.3.1"
+    "zone.js": "~0.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.0.6",
