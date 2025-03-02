@@ -33,7 +33,6 @@
     "ngx-paypal": "^11.0.0",
     "ngx-slick-carousel": "^19.0.0",
     "rxjs": "~7.8.0",
-    "sass-migrator": "^2.3.1",
     "slick-carousel": "^1.8.1",
     "to-words": "^4.2.0",
     "tslib": "^2.3.0",
@@ -52,6 +51,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "sass-migrator": "^2.3.1",
     "typescript": "~5.6.2"
   }
 }
