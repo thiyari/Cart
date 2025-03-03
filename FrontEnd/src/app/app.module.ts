@@ -10,7 +10,6 @@ import { ProductsComponent } from './Components/products/products.component';
 import { FormsModule, ReactiveFormsModule } from  '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ViewProductComponent } from './Components/view-product/view-product.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { OrdersComponent } from './Components/orders/orders.component';
 import { PaymentComponent } from './Components/payment/payment.component';
 import { FilterPipe } from './shared/filter.pipe';
@@ -84,7 +83,6 @@ import { FooterComponent } from './Components/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SlickCarouselModule,
     ReactiveFormsModule,
     PayGoogleComponent,
     NgxPayPalModule,

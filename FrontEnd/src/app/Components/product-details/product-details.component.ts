@@ -42,40 +42,25 @@ export class ProductDetailsComponent implements OnInit{
   }
 
 
-  slideConfig = {
-    "slidesToShow": 1,
-    "slidesToScroll": 1,
-    "dots":true,
-    "autoplay": true,
-    "autoplaySpeed": 5000,
-    "pauseOnHover": true,
-    "infinite": true,
-    "draggable": true,
-    "swipe	":true,
-    "arrows": true,
-    "responsive": [
-      {
-      "breakpoint": 992,
-      "settings": {
-        "arrows": true,
-        "infinite": true,
-        "slidesToShow": 1,
-        "slidesToScroll": 1
-      },
-      },
-      {
-        "breakpoint": 768,
-        "settings": {
-          "arrows": true,
-          "infinite": true,
-          "slidesToShow": 1,
-          "slidesToScroll": 1
-        },
-        }
-    ]
+  currentSlide = 0; // Index of the current slide
 
+  // Go to the next slide
+  nextSlide() {
+    if (this.currentSlide < this.product.images.length - 1) {
+      this.currentSlide++;
+    } else {
+      this.currentSlide = 0; // Loop back to the first slide
+    }
   }
 
+  // Go to the previous slide
+  previousSlide() {
+    if (this.currentSlide > 0) {
+      this.currentSlide--;
+    } else {
+      this.currentSlide = this.product.images.length - 1; // Loop to the last slide
+    }
+  }
 
     logout(){
         this.http.get<any>(`${environment.SERVER_URI}/api/logout`)
