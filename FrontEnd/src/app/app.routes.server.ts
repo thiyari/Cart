@@ -85,7 +85,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const admin_ids = inject(PrerenderParamsService)
       const ids = await admin_ids.edit_admin();
-      return ids
+      return ids.map(id => ({ id }));
     },
     fallback: PrerenderFallback.Server
   },
@@ -95,7 +95,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const order_ids = inject(PrerenderParamsService)
       const orderids = await order_ids.orders()
-      return orderids
+      return orderids.map(orderid => ({orderid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -105,7 +105,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const phonepe_reference_ids = inject(PrerenderParamsService)
       const reference_ids = await phonepe_reference_ids.phonepe_txn()
-      return reference_ids
+      return reference_ids.map(referenceid => ({referenceid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -115,7 +115,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const googlepay_reference_ids = inject(PrerenderParamsService)
       const reference_ids = await googlepay_reference_ids.googlepay_txn()
-      return reference_ids
+      return reference_ids.map(referenceid => ({referenceid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -125,7 +125,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const paypal_reference_ids = inject(PrerenderParamsService)
       const reference_ids = await paypal_reference_ids.paypal_txn()
-      return reference_ids
+      return reference_ids.map(referenceid => ({referenceid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -135,7 +135,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const razorpay_reference_ids = inject(PrerenderParamsService)
       const reference_ids = await razorpay_reference_ids.razorpay_txn()
-      return reference_ids
+      return reference_ids.map(referenceid => ({referenceid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -145,7 +145,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const product_pids = inject(PrerenderParamsService)
       const pids = await product_pids.product();
-      return pids
+      return pids.map(id => ({id}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -155,7 +155,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const order_ids = inject(PrerenderParamsService)
       const orderids = await order_ids.orders()
-      return orderids
+      return orderids.map(orderid => ({orderid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -165,7 +165,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const order_ids = inject(PrerenderParamsService)
       const orderids = await order_ids.orders()
-      return orderids
+      return orderids.map(orderid => ({orderid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -175,7 +175,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const order_ids = inject(PrerenderParamsService)
       const orderids = await order_ids.orders()
-      return orderids
+      return orderids.map(orderid => ({orderid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -185,7 +185,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const payment_reference_ids = inject(PrerenderParamsService)
       const reference_ids = await payment_reference_ids.payment_txn()
-      return reference_ids
+      return reference_ids.map(referenceid => ({referenceid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -195,7 +195,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const product_pids = inject(PrerenderParamsService)
       const pids = await product_pids.product_view();
-      return pids
+      return pids.map(pid => ({pid}));
     },
     fallback: PrerenderFallback.Server
   },
@@ -205,7 +205,7 @@ export const serverRoutes: ServerRoute[] = [
     async getPrerenderParams() {
       const product_pids = inject(PrerenderParamsService)
       const pids = await product_pids.product_view();
-      return pids
+      return pids.map(pid => ({pid}));
     },
     fallback: PrerenderFallback.Server
   }
