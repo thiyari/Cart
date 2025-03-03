@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "migrate-sass": "sass-migrator module --migrate-deps node_modules/slick-carousel/slick/slick-theme.scss",
-    "build": "npm run migrate-sass && ng build",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:FrontEnd": "node dist/front-end/server/server.mjs",
